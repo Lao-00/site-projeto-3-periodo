@@ -143,17 +143,36 @@ button {
 }
 
 .secao-principal h3 {
-    margin-top: 20px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+.secao-principal p {
+    margin-bottom: 15px;
+}
+
+.secao-principal h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 body {
     font-family: Arial;
 }
 
-.logo-canto {
+.logo-login {
     width: 290px;
     height: 150px;
     object-fit: cover;
+    display: block;
+    margin: 0 auto 24px auto;
+}
+
+.logo-sobre {
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover; 
     display: block;
     margin: 0 auto 24px auto;
 }
