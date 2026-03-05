@@ -25,9 +25,10 @@ button {
 }
 
 .login-container {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+    background-color: white;
+    padding: 50px;
+    border-radius: 20px;
+    width: 300px;
 }
 
 .login-card {
@@ -49,9 +50,10 @@ button {
 }
 
 .cadastro-container {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+    background-color: white;
+    padding: 50px;
+    border-radius: 20px;
+    width: 300px;
 }
 
 .cadastro-card {
@@ -69,8 +71,13 @@ button {
     justify-content: space-between;
 }
 
+.login-botao {
+    display: flex;
+    justify-content: space-between;
+}
+
 .header {
-    background-color: rgb(76, 143, 243);
+    background-color: rgb(0, 0, 0);
     color: #fff;
     padding-left: 40px;
     position: sticky;
@@ -92,7 +99,7 @@ button {
 }
 
 .logo span{
-    color: rgb(163, 255, 4);
+    color: rgb(3, 95, 255);
 }
 
 .nav {
@@ -106,12 +113,12 @@ button {
 }
 
 .nav a:hover {
-  color: rgb(163, 255, 4);
+  color: rgb(0, 0, 0);
   transition: color 0.2s;
 }
 
 .home-container {
-    background-color: rgb(102, 240, 226);
+    background-color: rgb(255, 255, 255);
 }
 
 .secao {
@@ -120,7 +127,7 @@ button {
 
 .secao-principal {
     display: flex;
-    background-color: rgb(43, 116, 226);
+    background-color: rgb(0, 37, 92);
     color: azure;
     margin: 35px;
     padding: 10px;
@@ -131,18 +138,22 @@ button {
 }
 
 .login-card a {
-    color: #0056b3;
+    color: #0400ff;
     text-decoration: underline;
-}
-
-.logo-canto {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 200px;
-    height: auto;
 }
 
 .secao-principal h3 {
     margin-top: 20px;
+}
+
+body {
+    font-family: Arial;
+}
+
+.logo-canto {
+    width: 290px;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 24px auto;
 }
