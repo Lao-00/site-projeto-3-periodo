@@ -13,28 +13,27 @@
         <img src="imgs/Logo.jpeg" alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto" class="logo-login-cadastro">
         <div class="login-card">
             <form action="home_page.html" method="get">
-                
                 <h1>Login</h1>
-                <p>
-                    E-Mail
-                <p>
-                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail">
-                </p>
-                </p>
-                <p>
-                   Senha
-                <p>
-                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
-                </p>
-                </p>
-                <p class="login-botao">
+
+                <div class="campo">
+                    <label for="email">E-Mail</label>
+                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="campo">
+                <   label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+                </div>
+
+                <div class="login-botao">
                     <button type="submit">Entrar</button>
-                </p>
-                    
+                </div>
+
             </form>
-                <p>
-                    Não tem conta?<a href="cadastro.html">Cadastre-se</a>
-                </p>
+
+            <p>
+                Não tem conta? <a href="cadastro.html">Cadastre-se</a>
+            </p>
         </div>
     </div>
 </body>
