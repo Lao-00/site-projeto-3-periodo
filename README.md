@@ -65,3 +65,7 @@ O projeto segue as diretrizes **WCAG 2.2 Nível AA**.
 **Foco visível —** o outline padrão do browser foi substituído por um estilo personalizado via `:focus-visible`, exibindo um contorno azul apenas durante a navegação por teclado.
 
 **Declaração de acessibilidade —** disponível em `acessibilidade.html`, acessível pelo rodapé de todas as páginas, contendo o padrão adotado, o que foi implementado e canal de contato para feedback.
+
+**Contraste de cores —** elementos seguem as diretrizes da WCAG possuindo contraste mínimo de 4.5:1 para texto normal e 3:1 para texto grande e ícones.
+
+**Fonte legível —** uso da fonte Arial sans-serif com tamanho mínimo de 16px.
