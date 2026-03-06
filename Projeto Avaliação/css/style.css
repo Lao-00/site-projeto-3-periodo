@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "upheavtt";
+  src: url('../fonts/upheavtt.ttf') format('truetype');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -81,6 +86,13 @@ button {
     color: #fff;
     padding-left: 40px;
     position: sticky;
+    font-family: 'upheavtt', sans-serif;
+}
+.header h1{
+    letter-spacing: 1px;
+    font-size: 47px;
+    margin-bottom: 2vh;
+    border-bottom: 2px solid white;
 }
 
 .header-container {
@@ -109,7 +121,7 @@ button {
 }
 
 .nav a {
-  font-size: 16px;
+  font-size: 25px;
 }
 
 .nav a:hover {
