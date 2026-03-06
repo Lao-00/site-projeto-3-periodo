@@ -143,6 +143,11 @@ button {
     text-decoration: underline;
 }
 
+.cadastro-card a {
+    color: #0400ff;
+    text-decoration: underline;
+}
+
 .secao-principal h3 {
     margin-top: 25px;
     margin-bottom: 5px;
