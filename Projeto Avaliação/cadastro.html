@@ -52,23 +52,61 @@
     </div>
 
     <script>
-        // pega os inputs do formulário
-        const campos = document.querySelectorAll('input');
-        // percorre cada um
-        campos.forEach(function (campo, index) {
-            campo.addEventListener('keydown', function (e) { // verifica se uma tecla é pressionada no campo
-                if (e.key === 'Enter') {
-                    e.preventDefault(); // se for enter, cancela o comportamento padrão (enviar formulário)
-                    const proximo = campos[index + 1]; // pega próximo input
-                    if (proximo) {
-                        proximo.focus(); //move foco pra ele
-                    } else {
-                        document.getElementById('form-cadastro').submit(); //quando está no último, submete o formulário
-                    }
-                }
-            });
+    const form = document.getElementById('form-cadastro');
+    const campos = form.querySelectorAll('input'); // pega os inputs do formulário
+
+    // valida os campos ao submeter
+    form.addEventListener('submit', function (e) {
+        let valid = true;
+
+        campos.forEach(campo => {
+            const erroSpan = document.getElementById(`${campo.id}-erro`); // pega o span de erro do campo
+            let mensagem = "";
+
+            // validação de campos vazios ou formato incorreto
+            if (!campo.checkValidity()) {
+                mensagem = "Este campo é obrigatório ou o formato está incorreto.";
+                valid = false;
+            }
+
+            // validação específica: confirmação de e-mail
+            if (campo.id === 'confirmar_email' && campo.value !== document.getElementById('email').value) {
+                mensagem = "Os e-mails não coincidem.";
+                valid = false;
+            }
+
+            // validação específica: confirmação de senha
+            if (campo.id === 'confirmar_senha' && campo.value !== document.getElementById('senha').value) {
+                mensagem = "As senhas não coincidem.";
+                valid = false;
+            }
+
+            if (mensagem) {
+                erroSpan.textContent = mensagem;
+                campo.setAttribute('aria-invalid', 'true');
+                e.preventDefault(); // cancela o envio se houver erro
+            } else {
+                erroSpan.textContent = "";
+                campo.setAttribute('aria-invalid', 'false');
+            }
         });
-    </script>
+    });
+
+    // percorre cada campo
+    campos.forEach(function (campo, index) {
+        campo.addEventListener('keydown', function (e) { // verifica se uma tecla é pressionada no campo
+            if (e.key === 'Enter') {
+                e.preventDefault(); // cancela o comportamento padrão (enviar formulário)
+                const proximo = campos[index + 1]; // pega próximo input
+                if (proximo) {
+                    proximo.focus(); // move foco pra ele
+                } else {
+                    form.requestSubmit(); // quando está no último, dispara o submit com validação
+                }
+            }
+        });
+    });
+</script>
 
 </body>
 

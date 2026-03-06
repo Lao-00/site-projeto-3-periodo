@@ -15,22 +15,24 @@
 
     <header class="header">
         <div class="header-container">
-            <h1 class="logo">Base <span>5</span> auto</h1>
-            <nav class="nav">
-                <a href="login.html">Login</a>
-                <a href="home_page.html">Início</a>
-                <a href="sobre.html">Sobre</a>
-                <a href="#">Projetos</a>
+            <h1 class="logo">Base <span>5</span> automações</h1>
+            <nav class="nav" aria-label="Menu Principal"> <!-- aria-label identifica o nav para leitores de tela -->
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="home_page.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="#">Projetos</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
+    <!-- id="conteudo-acessibilidade" é o destino do skip link -->
     <main id="conteudo-acessibilidade" class="main" tabindex="-1">
         <section class="secao">
             <article class="secao-principal">
 
                 <h2>Declaração de Acessibilidade</h2>
-
                 <p>
                     A Base 5 Automações tem o compromisso de garantir a acessibilidade digital de seus produtos
                     para todas as pessoas, incluindo aquelas com deficiência.
@@ -39,8 +41,7 @@
                 <h3>Padrão adotado</h3>
                 <p>
                     Este site busca conformidade com o nível <strong>AA</strong> das diretrizes
-                    <strong>WCAG 2.2</strong> (Web Content Accessibility Guidelines),
-                    publicadas pelo W3C.
+                    <strong>WCAG 2.2</strong> (Web Content Accessibility Guidelines), publicadas pelo W3C.
                 </p>
 
                 <h3>O que já foi implementado</h3>
@@ -60,11 +61,39 @@
                     Caso encontre alguma dificuldade de acesso, entre em contato conosco.
                 </p>
 
-                <h3>Feedback e contato</h3>
+                <h3>Relatar uma barreira de acessibilidade</h3>
+                <p id="form-instrucao">Use o formulário abaixo para nos informar sobre qualquer dificuldade técnica que você encontrou no site.</p>
+
+                <form id="form-feedback" novalidate aria-describedby="form-instrucao">
+                    <div class="campo">
+                        <label for="tipo-problema">Tipo de problema</label>
+                        <select id="tipo-problema" name="tipo-problema" required aria-required="true">
+                            <option value="">Selecione uma opção...</option>
+                            <option value="teclado">Problema com navegação por teclado</option>
+                            <option value="leitor">Problema com leitor de tela</option>
+                            <option value="contraste">Dificuldade com cores/contraste</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                        <span id="tipo-erro" class="mensagem-erro" aria-live="polite"></span>
+                    </div>
+
+                    <div class="campo">
+                        <label for="descricao-erro">Descreva o que aconteceu</label>
+                        <textarea id="descricao-erro" name="descricao"
+                                  required aria-required="true"
+                                  aria-describedby="dica-descricao erro-descricao"
+                                  placeholder="Ex: Não consigo acessar o botão de login usando a tecla Tab."></textarea>
+                        <small id="dica-descricao">Por favor, indique em qual página o erro ocorreu.</small>
+                        <span id="erro-descricao" class="mensagem-erro" aria-live="polite"></span>
+                    </div>
+
+                    <button type="submit">Enviar Relato</button>
+                </form>
+
+                <h3>Contato direto</h3>
                 <p>
-                    Se você encontrou alguma barreira de acessibilidade ou tem sugestões de melhoria,
-                    envie um e-mail para:
-                    <a href="mailto:acessibilidade@base5.com.br">acessibilidade@base5.com.br</a>
+                    Se preferir, envie um e-mail para:
+                    <a href="mailto:acessibilidade@base5.com.br" aria-label="Enviar e-mail para acessibilidade@base5.com.br">acessibilidade@base5.com.br</a>
                 </p>
                 <p>Faremos o possível para responder em até 2 dias úteis.</p>
 
@@ -74,9 +103,48 @@
 
     <footer class="footer">
         <p>
-            <a href="acessibilidade.html">Acessibilidade</a>
+            <a href="acessibilidade.html" aria-current="page">Acessibilidade</a>
+            <!-- aria-current="page" indica que este é o link da página atual -->
         </p>
     </footer>
+
+    <script>
+        const form = document.getElementById('form-feedback');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // cancela o envio padrão para validar antes
+            let temErro = false;
+
+            // validação do select
+            const tipo = document.getElementById('tipo-problema');
+            const tipoErro = document.getElementById('tipo-erro');
+            if (tipo.value === "") {
+                tipoErro.textContent = "Por favor, selecione o tipo de problema.";
+                tipo.setAttribute('aria-invalid', 'true');
+                temErro = true;
+            } else {
+                tipoErro.textContent = "";
+                tipo.setAttribute('aria-invalid', 'false');
+            }
+
+            // validação do textarea
+            const desc = document.getElementById('descricao-erro');
+            const descErro = document.getElementById('erro-descricao');
+            if (desc.value.trim().length < 10) {
+                descErro.textContent = "Por favor, forneça uma descrição um pouco mais detalhada.";
+                desc.setAttribute('aria-invalid', 'true');
+                temErro = true;
+            } else {
+                descErro.textContent = "";
+                desc.setAttribute('aria-invalid', 'false');
+            }
+
+            if (!temErro) {
+                alert("Obrigado pelo feedback! Analisaremos o problema em breve.");
+                form.reset();
+            }
+        });
+    </script>
 
 </body>
 
