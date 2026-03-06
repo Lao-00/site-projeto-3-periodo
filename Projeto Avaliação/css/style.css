@@ -90,8 +90,9 @@ button {
 }
 .header h1{
     letter-spacing: 1px;
-    font-size: 30px;
-    margin-bottom: 1vh;
+    font-size: 47px;
+    margin-bottom: 2vh;
+    border-bottom: 2px solid white;
 }
 
 .header-container {
@@ -120,7 +121,7 @@ button {
 }
 
 .nav a {
-  font-size: 16px;
+  font-size: 25px;
 }
 
 .nav a:hover {
