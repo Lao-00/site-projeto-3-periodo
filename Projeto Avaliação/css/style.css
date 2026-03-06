@@ -221,4 +221,8 @@ body {
 .footer a {
     color: inherit;
     text-decoration: underline;
+
+}
+.logo span {
+    color: #4d8fff;
 }
