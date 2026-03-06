@@ -38,23 +38,44 @@
     </div>
 
     <script>
-        // pega os inputs do formulário
-        const campos = document.querySelectorAll('input');
-        // percorre cada um
-        campos.forEach(function (campo, index) {
-            campo.addEventListener('keydown', function (e) { // verifica se uma tecla é pressionada no campo
-                if (e.key === 'Enter') {
-                    e.preventDefault(); // se for enter, cancela o comportamento padrão (enviar formulário)
-                    const proximo = campos[index + 1]; // pega próximo input
-                    if (proximo) {
-                        proximo.focus(); //move foco pra ele
-                    } else {
-                        document.getElementById('form-login').submit(); //quando está no último, submete o formulário
-                    }
-                }
-            });
+    const form = document.getElementById('form-login');
+    const campos = form.querySelectorAll('input'); // pega os inputs do formulário
+
+    // valida os campos ao submeter
+    form.addEventListener('submit', function(e) {
+        let valid = true;
+
+        campos.forEach(campo => {
+            const erroSpan = document.getElementById(`${campo.id}-erro`); // pega o span de erro do campo
+            if (!campo.checkValidity()) {
+                valid = false;
+                e.preventDefault(); // cancela o envio se houver erro
+                erroSpan.textContent = campo.type === 'email'
+                    ? "Por favor, insira um e-mail válido."
+                    : "Este campo é obrigatório.";
+                campo.setAttribute('aria-invalid', 'true');
+            } else {
+                erroSpan.textContent = "";
+                campo.setAttribute('aria-invalid', 'false');
+            }
         });
-    </script>
+    });
+
+    // percorre cada campo
+    campos.forEach(function (campo, index) {
+        campo.addEventListener('keydown', function (e) { // verifica se uma tecla é pressionada no campo
+            if (e.key === 'Enter') {
+                e.preventDefault(); // cancela o comportamento padrão (enviar formulário)
+                const proximo = campos[index + 1]; // pega próximo input
+                if (proximo) {
+                    proximo.focus(); // move foco pra ele
+                } else {
+                    form.requestSubmit(); // quando está no último, dispara o submit com validação
+                }
+            }
+        });
+    });
+</script>
 
 </body>
 
