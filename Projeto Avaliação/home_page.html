@@ -38,29 +38,6 @@
         <a href="acessibilidade.html">Acessibilidade</a>
     </p>
 </footer>
-<script>
-    const formNews = document.getElementById('form-newsletter');
-
-    if (formNews) {
-        formNews.addEventListener('submit', function (e) {
-            e.preventDefault(); // cancela o envio padrão para validar antes
-
-            const email = document.getElementById('email-news');
-            const erro = document.getElementById('news-erro');
-
-            if (!email.checkValidity()) { // valida o formato de e-mail pelo browser
-                erro.textContent = "Por favor, insira um e-mail válido.";
-                erro.style.color = ""; // garante que não fique verde de uma tentativa anterior
-                email.setAttribute('aria-invalid', 'true');
-            } else {
-                erro.textContent = "Inscrição realizada com sucesso!";
-                erro.style.color = "green";
-                email.setAttribute('aria-invalid', 'false');
-                email.value = ""; // limpa o campo após sucesso
-            }
-        });
-    }
-</script>
 </body>
 
 </html>
