@@ -322,7 +322,7 @@ body {
     list-style: none;  /* remove os pontinhos/números padrão de lista */
     padding: 4px 0 0 0; /* dá um pequeno espaço só no topo, zerando os outros lados */
     margin: 0; /* remove a margem padrão que o navegador coloca em listas */
-    display: none; /* garante que a lista apareça normalmente (uma embaixo da outra) */
+    display: none; /* escondido por padrão, aparece ao clicar no campo */
 }
 
 .campo-senha input:focus ~ .requisitos-senha {
