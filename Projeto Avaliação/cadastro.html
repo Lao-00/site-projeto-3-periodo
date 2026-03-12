@@ -33,11 +33,24 @@
                 <div class="campo-senha">
                     <label for="senha">Senha</label>
                     <input type="password" name="senha" id="senha" placeholder="Digite sua senha" tabindex="4" required>
+                    <ul class="requisitos-senha" id="requisitos-senha">
+                        <li id="req-tamanho" class="requisito">
+                            <span class="icone">✗</span> 8 caracteres
+                        </li>
+                        <li id="req-maiuscula" class="requisito">
+                            <span class="icone">✗</span> 1 letra maiúscula
+                        </li>
+                        <li id="req-numero" class="requisito">
+                            <span class="icone">✗</span> 1 número
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="campo-confirmar-senha">
                     <label for="confirmar_senha">Confirme sua senha</label>
                     <input type="password" name="confirmar_senha" id="confirmar_senha" placeholder="Confirme sua senha" tabindex="5" required>
+                    <p class="aviso-senhas" id="aviso-senhas"></p>
+                    <!-- O JS escreve conforme a pessoa digita-->
                 </div>
 
                 <div class="cadastro-botao">
@@ -68,6 +81,54 @@
                 }
             });
         });
+        
+        /* guarda os IDs do HTML */
+        const inputSenha = document.getElementById('senha');
+        const inputConfirmar = document.getElementById('confirmar_senha');
+        const avisoSenhas = document.getElementById('aviso-senhas');
+
+        const reqTamanho = document.getElementById('req-tamanho');
+        const reqMaiuscula = document.getElementById('req-maiuscula');
+        const reqNumero = document.getElementById('req-numero');
+
+        function verificarRequisito(elemento, ok) { /*verifica o ícone que está mostrando e se preenche os requisitos */
+            const icone = elemento.querySelector('.icone');
+            if (ok) {
+                elemento.classList.add('ok');
+                icone.textContent = '✓';
+            } else {
+                elemento.classList.remove('ok');
+                icone.textContent = '✗';
+            }
+        }
+
+        inputSenha.addEventListener('input', function () { /*executa toda vez que o campo senha é alterado */
+            const val = inputSenha.value; 
+
+            verificarRequisito(reqTamanho,   val.length >= 8); /* verifica se tem 8 caracteres */
+            verificarRequisito(reqMaiuscula, /[A-Z]/.test(val)); /*verifica se tem pelo menos uma letra maiúscula */
+            verificarRequisito(reqNumero,    /[0-9]/.test(val)); /*verifica se tem ao menos um número */
+
+            if (inputConfirmar.value.length > 0) checarConfirmacao();
+        });
+
+        function checarConfirmacao() {
+            if (inputConfirmar.value === '') {
+                avisoSenhas.textContent = '';
+                avisoSenhas.className = 'aviso-senhas';
+                return; /*se estiver vazio, não mostra o aviso */
+            }
+            if (inputSenha.value === inputConfirmar.value) {
+                avisoSenhas.textContent = '✓ As senhas coincidem';
+                avisoSenhas.className = 'aviso-senhas ok';
+            } else {
+                avisoSenhas.textContent = '✗ As senhas não coincidem';
+                avisoSenhas.className = 'aviso-senhas erro';
+            }
+        }
+
+        inputConfirmar.addEventListener('input', checarConfirmacao);
+
     </script>
 
 </body>
