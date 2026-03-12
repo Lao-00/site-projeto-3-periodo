@@ -417,7 +417,7 @@ body {
 
 .secao-principal-homepage{
     display: flex;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
                       url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400');
     background-size: cover;
     background-position: center;
@@ -570,16 +570,16 @@ body {
 }
 
 .plano-tag {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4c8ff3;
+    background-color: #1a56db;
     color: white;
     font-size: 0.75rem;
     padding: 4px 14px;
     border-radius: 20px;
     white-space: nowrap;
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .plano-preco {
@@ -598,11 +598,11 @@ body {
 
 .preco-periodo {
     font-size: 0.9rem;
-    color: #888;
+    color: #555;
 }
 
 .plano-destaque .preco-periodo {
-    color: #aac4ff;
+    color: #c8d8ff;
 }
 
 .plano-itens {
@@ -621,7 +621,7 @@ body {
 }
 
 .indisponivel {
-    opacity: 0.4;
+    opacity: 0.55;
 }
 
 .plano-btn {

@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre</title>
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+    .secao-principal-homepage {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
+                      url('imgs/escritorio.jpg');
+            }
+    </style>
 </head>
 
 <body class="home-container">
@@ -14,7 +20,7 @@
     <header class="header">
         <div class="header-container">
             <h1 class="logo">Base <span>5</span> automações</h1>
-            <nav class="nav">
+            <nav class="nav" aria-label="Navegação principal">
                 <a href="login.html">Login</a>
                 <a href="home_page.html">Início</a>
                 <a href="sobre.html">Sobre</a>
@@ -25,41 +31,73 @@
 
     <!-- id="conteudo-principal" é o destino do skip link -->
     <main id="conteudo-sobre" class="main" tabindex="-1">
+        <!-- BANNER -->
         <section class="secao">
-            <article class="secao-principal">
-                <img src="imgs/Logo.jpeg" alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto" class="logo-sobre">
-
-                <h2>Quem somos</h2>
-                <p>
-                    A Base 5 Automações oferece um Sistema de Gestão Empresarial versátil e flexível, atendendo aos mais diferentes segmentos, como supermercados, mini mercados, home centers, lojas de conveniência, materiais de construção, confecções, farmácias, panificações, distribuidoras, indústrias, auto-center, oficinas mecânicas e muitas outras.
-
-                </p>
-            
-                <h2>Nossas soluções:</h2>
-
-                <h3>Financeiro</h3>
-                <p>CPR, Caixas e Bancos, Cheques, Fluxo de Caixa, Carta de Crédito, Conciliação GW e Boletos.</p>
-
-                <h3>Gestão de Estoque</h3>
-                <p>Entrada de Estoque, Saída de Estoque, Romaneio e Rotas, Expedição e Desossa.</p>
-
-                <h3>Delivery</h3>
-                <p>Foco no gerenciamento de produção dos pedidos e entregas.</p>
-
-                <h3>Ordem de Serviço</h3>
-                <p>Tipos de O.S., Técnicos, Serviços, Comissão, Saída de Estoque, Abertura e Acompanhamento das O.S.</p>
-
-                <h3>Apuração de Impostos</h3>
-                <p>Agiliza e antecipa para o gestor os impostos gerados todo mês pela Contabilidade.</p>
-
-                <h3>Produção</h3>
-                <p>Ordens de Produção, Apontamento de Matérias-primas, Estimativa de Produção, Controle de Matérias-primas e Produtos Acabados.</p>
-
-                <h2>Onde estamos</h2>
-                <p>Farol 666: Predio Empresarial Chefões</p>
-                <p>Telefone: (82) 9 8765-4321</p>
+            <article class="secao-principal-homepage" aria-label="Apresentação da empresa">
+                <h2>Quem Somos</h2>
+                <p>A Base 5 Automações oferece um Sistema de Gestão Empresarial versátil e flexível, atendendo aos mais diferentes segmentos, como supermercados, mini mercados, home centers, lojas de conveniência, materiais de construção, confecções, farmácias, panificações, distribuidoras, indústrias, auto-center, oficinas mecânicas e muitas outras.</p>
             </article>
         </section>
+
+        <!-- SOLUÇÕES -->
+        <section class="secao-servicos" aria-label="Nossas Soluções">
+            <h2 class="servicos-titulo">Nossas Soluções</h2>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <span class="servico-icone">💰</span>
+                    <h3>Financeiro</h3>
+                    <p>CPR, Caixas e Bancos, Cheques, Fluxo de Caixa, Carta de Crédito, Conciliação GW e Boletos.</p>
+                </div>
+                <div class="servico-card">
+                    <span class="servico-icone">📦</span>
+                    <h3>Gestão de Estoque</h3>
+                    <p>Entrada de Estoque, Saída de Estoque, Romaneio e Rotas, Expedição e Desossa.</p>
+                </div>
+                <div class="servico-card">
+                    <span class="servico-icone">🛵</span>
+                    <h3>Delivery</h3>
+                    <p>Foco no gerenciamento de produção dos pedidos e entregas.</p>
+                </div>
+                <div class="servico-card">
+                    <span class="servico-icone">🔧</span>
+                    <h3>Ordem de Serviço</h3>
+                    <p>Tipos de O.S., Técnicos, Serviços, Comissão, Saída de Estoque, Abertura e Acompanhamento.</p>
+                </div>
+                <div class="servico-card">
+                    <span class="servico-icone">📋</span>
+                    <h3>Apuração de Impostos</h3>
+                    <p>Agiliza e antecipa para o gestor os impostos gerados todo mês pela Contabilidade.</p>
+                </div>
+                <div class="servico-card">
+                    <span class="servico-icone">🏭</span>
+                    <h3>Produção</h3>
+                    <p>Ordens de Produção, Apontamento de Matérias-primas, Estimativa e Controle de Produtos Acabados.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ONDE ESTAMOS -->
+        <section class="secao-stats" aria-label="Onde estamos">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-numero">📍</span>
+                    <span class="stat-label">Farol 666 — Prédio Empresarial Chefões</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-numero">📞</span>
+                    <span class="stat-label">(82) 9 8765-4321</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-numero">30+</span>
+                    <span class="stat-label">Anos de mercado</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-numero">500+</span>
+                    <span class="stat-label">Clientes ativos</span>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
