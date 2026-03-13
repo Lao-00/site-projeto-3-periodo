@@ -7,16 +7,16 @@
     <title>Acessibilidade — Base 5 Automações</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-    .servicos-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
+        .servicos-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
 
-    .secao-stats .stats-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    }
+        .secao-stats .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
     </style>
 </head>
 
@@ -43,7 +43,8 @@
         <section class="secao">
             <article class="secao-principal-acessibilidade" aria-label="Declaração de Acessibilidade">
                 <h2>Declaração de Acessibilidade</h2>
-                <p>A Base 5 Automações tem o compromisso de garantir a acessibilidade digital de seus produtos para todas as pessoas, incluindo aquelas com deficiência.</p>
+                <p>A Base 5 Automações tem o compromisso de garantir a acessibilidade digital de seus produtos para
+                    todas as pessoas, incluindo aquelas com deficiência.</p>
             </article>
         </section>
 
@@ -54,47 +55,56 @@
                 <div class="servico-card">
                     <span class="servico-icone">⌨️</span>
                     <h3>Navegação por Teclado</h3>
-                    <p>Navegação completa via Tab e Shift+Tab, com Enter movendo o foco entre campos nos formulários de login e cadastro.</p>
+                    <p>Navegação completa via Tab e Shift+Tab, com Enter movendo o foco entre campos nos formulários de
+                        login e cadastro.</p>
                 </div>
                 <div class="servico-card">
                     <span class="servico-icone">🔍</span>
                     <h3>Indicador de Foco Visível</h3>
-                    <p>Contorno azul visível em todos os elementos interativos ao navegar pelo teclado, ativado via CSS com <code>:focus-visible</code>.</p>
+                    <p>Contorno azul visível em todos os elementos interativos ao navegar pelo teclado, ativado via CSS
+                        com <code>:focus-visible</code>.</p>
                 </div>
                 <div class="servico-card">
                     <span class="servico-icone">📝</span>
                     <h3>Formulários Acessíveis</h3>
-                    <p>Todos os campos de login e cadastro possuem rótulos associados via <code>label for</code>, compatíveis com leitores de tela.</p>
+                    <p>Todos os campos de login e cadastro possuem rótulos associados via <code>label for</code>,
+                        compatíveis com leitores de tela.</p>
                 </div>
                 <div class="servico-card">
                     <span class="servico-icone">🖼️</span>
                     <h3>Textos Alternativos</h3>
-                    <p>Todas as imagens do site possuem atributo <code>alt</code> com descrição detalhada do conteúdo visual.</p>
+                    <p>Todas as imagens do site possuem atributo <code>alt</code> com descrição detalhada do conteúdo
+                        visual.</p>
                 </div>
                 <div class="servico-card">
                     <span class="servico-icone">⏭️</span>
                     <h3>Skip Link</h3>
-                    <p>Link visível ao pressionar Tab que permite pular o menu de navegação e ir diretamente ao conteúdo principal da página.</p>
+                    <p>Link visível ao pressionar Tab que permite pular o menu de navegação e ir diretamente ao conteúdo
+                        principal da página.</p>
                 </div>
                 <div class="servico-card">
                     <span class="servico-icone">🔔</span>
                     <h3>Avisos em Tempo Real</h3>
-                    <p>Validações do formulário de cadastro usam <code>aria-live</code> para que leitores de tela anunciem erros automaticamente ao digitar.</p>
+                    <p>Validações do formulário de cadastro usam <code>aria-live</code> para que leitores de tela
+                        anunciem erros automaticamente ao digitar.</p>
                 </div>
                 <div class="servico-card">
                     <span class="servico-icone">📑</span>
                     <h3>Hierarquia de Títulos</h3>
-                    <p>Todas as páginas seguem estrutura de títulos organizada com H1, H2 e H3, facilitando a navegação por leitores de tela.</p>
+                    <p>Todas as páginas seguem estrutura de títulos organizada com H1, H2 e H3, facilitando a navegação
+                        por leitores de tela.</p>
                 </div>
                 <div class="servico-card">
                     <span class="servico-icone">🏷️</span>
                     <h3>Regiões Identificadas</h3>
-                    <p>Seções e menus de navegação possuem <code>aria-label</code> descritivo, permitindo que leitores de tela identifiquem cada região da página.</p>
+                    <p>Seções e menus de navegação possuem <code>aria-label</code> descritivo, permitindo que leitores
+                        de tela identifiquem cada região da página.</p>
                 </div>
                 <div class="servico-card">
                     <span class="servico-icone">🎨</span>
                     <h3>Contraste de Cores</h3>
-                    <p>Cores dos textos e fundos revisadas para atingir o nível mínimo de contraste AA exigido pelo WCAG 2.2.</p>
+                    <p>Cores dos textos e fundos revisadas para atingir o nível mínimo de contraste AA exigido pelo WCAG
+                        2.2.</p>
                 </div>
             </div>
         </section>
@@ -129,16 +139,28 @@
         </p>
     </footer>
 
-<script>
-    const nome = localStorage.getItem('nomeUsuario');
-    const linkLogin = document.querySelector('.nav a[href="login.html"]');
+    <script>
+        const nome = localStorage.getItem('nomeUsuario');
+        const linkLogin = document.querySelector('.nav a[href="login.html"]');
 
-    if (nome && linkLogin) {
-    linkLogin.textContent = 'Olá, ' + nome;
-    linkLogin.removeAttribute('href'); // remove o link completamente
-    linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
-    }
-</script>
+        if (nome && linkLogin) {
+            linkLogin.textContent = 'Olá, ' + nome;
+            linkLogin.removeAttribute('href'); // remove o link completamente
+            linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
+        }
+    </script>
+
+    <!-- VLibras: tradutor de conteúdo para Libras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
 </body>
 

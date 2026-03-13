@@ -95,7 +95,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /*Sempre pegar 100% da altura do computador */
+    min-height: 100vh;
+    /*Sempre pegar 100% da altura do computador */
 }
 
 .cadastro-container {
@@ -185,13 +186,13 @@ body {
 }
 
 .header-container {
-  width: 100%;
-  display: flex;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 20px 40px;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px 40px;
 }
 
 .logo {
@@ -200,23 +201,23 @@ body {
     letter-spacing: -0.5px;
 }
 
-.logo span{
+.logo span {
     color: rgb(3, 95, 255);
 }
 
 .nav {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .nav a {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .nav a:hover {
-  color: #ccc;
-  transition: color 0.2s;
+    color: #ccc;
+    transition: color 0.2s;
 }
 
 .home-container {
@@ -272,26 +273,29 @@ body {
 }
 
 .logo-sobre {
-    width: 200px; 
+    width: 200px;
     height: 200px;
     border-radius: 50%;
-    object-fit: cover; 
+    object-fit: cover;
     display: block;
     margin: 0 auto 24px auto;
 }
 
-*:focus { /* remove o contorno dos elementos em foco por padrão */
-    outline: none; 
+*:focus {
+    /* remove o contorno dos elementos em foco por padrão */
+    outline: none;
 }
 
-*:focus-visible { /* contornos ativos apenas quando navegação por teclado está ativa */
+*:focus-visible {
+    /* contornos ativos apenas quando navegação por teclado está ativa */
     outline: 2px solid #1a56db;
     outline-offset: 3px;
     border-radius: 6px;
     box-shadow: 0 0 0 4px rgba(26, 86, 219, 0.15);
 }
 
-.skip-link { /* ao ativar a navegação por telcado 'tab' aparece uma mensagem perguntando se deseja pular para o formulário */
+.skip-link {
+    /* ao ativar a navegação por telcado 'tab' aparece uma mensagem perguntando se deseja pular para o formulário */
     position: fixed;
     top: -100px;
     right: 1rem;
@@ -304,7 +308,12 @@ body {
     text-decoration: none;
     transition: top 0.2s ease;
 }
-.skip-link:focus { top: 1rem; } /* ao pressionar 'enter' o foco vai para o formulário */
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+/* ao pressionar 'enter' o foco vai para o formulário */
 
 .footer {
     text-align: center;
@@ -319,25 +328,31 @@ body {
     text-decoration: underline;
 
 }
+
 .logo span {
     color: #4d8fff;
 }
 
 .requisitos-senha {
-    list-style: none;  /* remove os pontinhos/números padrão de lista */
-    padding: 4px 0 0 0; /* dá um pequeno espaço só no topo, zerando os outros lados */
-    margin: 0; /* remove a margem padrão que o navegador coloca em listas */
-    display: none; /* escondido por padrão, aparece ao clicar no campo */
+    list-style: none;
+    /* remove os pontinhos/números padrão de lista */
+    padding: 4px 0 0 0;
+    /* dá um pequeno espaço só no topo, zerando os outros lados */
+    margin: 0;
+    /* remove a margem padrão que o navegador coloca em listas */
+    display: none;
+    /* escondido por padrão, aparece ao clicar no campo */
 }
 
-.campo-senha input:focus ~ .requisitos-senha {
-    display: block; /* mostra quando o input está em foco */
+.campo-senha input:focus~.requisitos-senha {
+    display: block;
+    /* mostra quando o input está em foco */
 }
 
 .requisito {
-    font-size: 0.78rem; 
+    font-size: 0.78rem;
     color: #c0392b;
-    margin: 1px 0; 
+    margin: 1px 0;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -362,13 +377,19 @@ body {
     transition: color 0.2s;
 }
 
-.aviso-senhas.ok   { color: #27ae60; }
-.aviso-senhas.erro { color: #c0392b; }
+.aviso-senhas.ok {
+    color: #27ae60;
+}
+
+.aviso-senhas.erro {
+    color: #c0392b;
+}
 
 .login-card p {
     margin-top: 8px;
     font-size: 1rem;
-    white-space: nowrap; /* não quebrar a linha do cadastre-se */
+    white-space: nowrap;
+    /* não quebrar a linha do cadastre-se */
 }
 
 .secao-servicos {
@@ -384,7 +405,8 @@ body {
 
 .servicos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* se ajusta a largura do computador */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    /* se ajusta a largura do computador */
     gap: 20px;
 }
 
@@ -421,10 +443,10 @@ body {
     line-height: 1.5;
 }
 
-.secao-principal-homepage{
+.secao-principal-homepage {
     display: flex;
     background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
-                      url('../imgs/homepage.jpg');
+        url('../imgs/homepage.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -443,7 +465,7 @@ body {
     font-size: 2.5rem;
     letter-spacing: 1px;
     margin-bottom: 16px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .secao-principal-homepage p {
@@ -483,8 +505,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ESTATÍSTICAS */
@@ -701,7 +730,7 @@ body {
 .secao-principal-acessibilidade {
     display: flex;
     background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
-                      url('../imgs/acessibilidade.png');
+        url('../imgs/acessibilidade.png');
     background-size: cover;
     background-position: center;
     color: white;
@@ -719,7 +748,7 @@ body {
 .secao-principal-sobre {
     display: flex;
     background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
-                      url('../imgs/sobre.jpg');
+        url('../imgs/sobre.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -737,7 +766,7 @@ body {
 .secao-principal-projetos {
     display: flex;
     background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)),
-                      url('../imgs/bolsa.jpg');
+        url('../imgs/bolsa.jpg');
     background-size: cover;
     background-position: center;
     color: white;

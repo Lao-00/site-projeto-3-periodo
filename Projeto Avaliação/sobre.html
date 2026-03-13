@@ -29,7 +29,10 @@
         <section class="secao">
             <article class="secao-principal-sobre" aria-label="Apresentação da empresa">
                 <h2>Quem Somos</h2>
-                <p>A Base 5 Automações oferece um Sistema de Gestão Empresarial versátil e flexível, atendendo aos mais diferentes segmentos, como supermercados, mini mercados, home centers, lojas de conveniência, materiais de construção, confecções, farmácias, panificações, distribuidoras, indústrias, auto-center, oficinas mecânicas e muitas outras.</p>
+                <p>A Base 5 Automações oferece um Sistema de Gestão Empresarial versátil e flexível, atendendo aos mais
+                    diferentes segmentos, como supermercados, mini mercados, home centers, lojas de conveniência,
+                    materiais de construção, confecções, farmácias, panificações, distribuidoras, indústrias,
+                    auto-center, oficinas mecânicas e muitas outras.</p>
             </article>
         </section>
 
@@ -65,7 +68,8 @@
                 <div class="servico-card">
                     <span class="servico-icone">🏭</span>
                     <h3>Produção</h3>
-                    <p>Ordens de Produção, Apontamento de Matérias-primas, Estimativa e Controle de Produtos Acabados.</p>
+                    <p>Ordens de Produção, Apontamento de Matérias-primas, Estimativa e Controle de Produtos Acabados.
+                    </p>
                 </div>
             </div>
         </section>
@@ -95,21 +99,33 @@
     </main>
 
     <footer class="footer">
-    <p>
-        <a href="acessibilidade.html">Acessibilidade</a>
-    </p>
-</footer>
+        <p>
+            <a href="acessibilidade.html">Acessibilidade</a>
+        </p>
+    </footer>
 
-<script>
-    const nome = localStorage.getItem('nomeUsuario');
-    const linkLogin = document.querySelector('.nav a[href="login.html"]');
+    <script>
+        const nome = localStorage.getItem('nomeUsuario');
+        const linkLogin = document.querySelector('.nav a[href="login.html"]');
 
-    if (nome && linkLogin) {
-    linkLogin.textContent = 'Olá, ' + nome;
-    linkLogin.removeAttribute('href'); // remove o link completamente
-    linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
-    }
-</script>
+        if (nome && linkLogin) {
+            linkLogin.textContent = 'Olá, ' + nome;
+            linkLogin.removeAttribute('href'); // remove o link completamente
+            linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
+        }
+    </script>
+
+    <!-- VLibras: tradutor de conteúdo para Libras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
 </body>
 

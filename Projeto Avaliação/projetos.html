@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="./css/style.css">
     <style>
         .projetos-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+            grid-template-columns: repeat(2, 1fr);
+        }
     </style>
 </head>
 
@@ -35,7 +35,8 @@
         <section class="secao">
             <article class="secao-principal-projetos" aria-label="Projetos">
                 <h2>Nossos Projetos</h2>
-                <p>Conheça alguns dos projetos que desenvolvemos para nossos clientes e os resultados que alcançamos juntos.</p>
+                <p>Conheça alguns dos projetos que desenvolvemos para nossos clientes e os resultados que alcançamos
+                    juntos.</p>
             </article>
         </section>
 
@@ -48,7 +49,8 @@
                 <div class="projeto-card">
                     <span class="projeto-icone">🏪</span>
                     <p class="projeto-nome">Automação Financeira — Rede SuperMais</p>
-                    <p class="projeto-descricao">Implementação de sistema de conciliação automática de pagamentos para uma rede com 12 filiais, integrando caixas, bancos e emissão de boletos em um único painel.</p>
+                    <p class="projeto-descricao">Implementação de sistema de conciliação automática de pagamentos para
+                        uma rede com 12 filiais, integrando caixas, bancos e emissão de boletos em um único painel.</p>
                     <div class="projeto-resultado">
                         <strong>Resultado obtido</strong>
                         Redução de 75% no tempo de fechamento mensal e eliminação de erros manuais de lançamento.
@@ -58,7 +60,8 @@
                 <div class="projeto-card">
                     <span class="projeto-icone">🏭</span>
                     <p class="projeto-nome">Gestão de Produção — Indústria Fortis</p>
-                    <p class="projeto-descricao">Desenvolvimento de módulo de ordens de produção com controle de matérias-primas, apontamento em tempo real e estimativa de produtos acabados.</p>
+                    <p class="projeto-descricao">Desenvolvimento de módulo de ordens de produção com controle de
+                        matérias-primas, apontamento em tempo real e estimativa de produtos acabados.</p>
                     <div class="projeto-resultado">
                         <strong>Resultado obtido</strong>
                         Aumento de 40% na eficiência produtiva e redução de 30% no desperdício de insumos.
@@ -68,7 +71,8 @@
                 <div class="projeto-card">
                     <span class="projeto-icone">🛵</span>
                     <p class="projeto-nome">Sistema de Delivery — Padaria Grão & Arte</p>
-                    <p class="projeto-descricao">Implantação de módulo de gestão de pedidos e rotas de entrega, com painel de acompanhamento em tempo real para a equipe de produção e os entregadores.</p>
+                    <p class="projeto-descricao">Implantação de módulo de gestão de pedidos e rotas de entrega, com
+                        painel de acompanhamento em tempo real para a equipe de produção e os entregadores.</p>
                     <div class="projeto-resultado">
                         <strong>Resultado obtido</strong>
                         Crescimento de 60% nos pedidos online e redução de 20 minutos no tempo médio de entrega.
@@ -78,7 +82,8 @@
                 <div class="projeto-card">
                     <span class="projeto-icone">🔧</span>
                     <p class="projeto-nome">Ordem de Serviço — AutoCenter Nexum</p>
-                    <p class="projeto-descricao">Criação de sistema de abertura, acompanhamento e fechamento de ordens de serviço, com controle de peças, comissão de técnicos e histórico por veículo.</p>
+                    <p class="projeto-descricao">Criação de sistema de abertura, acompanhamento e fechamento de ordens
+                        de serviço, com controle de peças, comissão de técnicos e histórico por veículo.</p>
                     <div class="projeto-resultado">
                         <strong>Resultado obtido</strong>
                         Eliminação do uso de papel na oficina e aumento de 35% na satisfação dos clientes.
@@ -127,6 +132,18 @@
             linkLogin.removeAttribute('href');
             linkLogin.style.cursor = 'default';
         }
+    </script>
+
+    <!-- VLibras: tradutor de conteúdo para Libras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
 </body>

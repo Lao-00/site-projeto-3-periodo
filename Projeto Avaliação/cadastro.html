@@ -10,9 +10,12 @@
 
 <body class="cadastro-body">
     <div class="cadastro-container">
-        <img src="imgs/Logo.jpeg" alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto" class="logo-login-cadastro">
+        <img src="imgs/Logo.jpeg"
+            alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto"
+            class="logo-login-cadastro">
         <div class="cadastro-card">
-            <form id="form-cadastro" action="home_page.html" method="get"> <!-- Usando get em vez de post para simular o acesso após cadastro, com post dá erro porque não temos backend-->
+            <form id="form-cadastro" action="home_page.html" method="get">
+                <!-- Usando get em vez de post para simular o acesso após cadastro, com post dá erro porque não temos backend-->
                 <h1>Crie sua conta</h1>
 
                 <div class="campo-nome">
@@ -29,7 +32,8 @@
 
                 <div class="campo-confirmar-email">
                     <label for="confirmar_email">Confirme seu E-Mail</label>
-                    <input type="email" name="confirmar_email" id="confirmar_email" placeholder="Confirme seu e-mail" tabindex="3" required>
+                    <input type="email" name="confirmar_email" id="confirmar_email" placeholder="Confirme seu e-mail"
+                        tabindex="3" required>
                     <p class="aviso-senhas" id="aviso-confirmar-email" aria-live="polite"></p>
                 </div>
 
@@ -51,7 +55,8 @@
 
                 <div class="campo-confirmar-senha">
                     <label for="confirmar_senha">Confirme sua senha</label>
-                    <input type="password" name="confirmar_senha" id="confirmar_senha" placeholder="Confirme sua senha" tabindex="5" required>
+                    <input type="password" name="confirmar_senha" id="confirmar_senha" placeholder="Confirme sua senha"
+                        tabindex="5" required>
                     <p class="aviso-senhas" id="aviso-senhas" aria-live="polite"></p>
                     <!-- O JS escreve conforme a pessoa digita-->
                 </div>
@@ -81,7 +86,7 @@
                     } else {
                         const form = document.getElementById('form-cadastro');
                         const todosCampos = Array.from(campos); // transforma a lista de campos em array para usar o .every()
-                        const tudoPreenchido = todosCampos.every(function(c) { // verifica se TODOS os campos passam na condição
+                        const tudoPreenchido = todosCampos.every(function (c) { // verifica se TODOS os campos passam na condição
                             return c.value.trim() !== ''; // retorna true se o campo não estiver vazio
                         });
 
@@ -94,10 +99,10 @@
                 }
             });
         });
-        document.getElementById('form-cadastro').addEventListener('submit', function() {
+        document.getElementById('form-cadastro').addEventListener('submit', function () {
             localStorage.setItem('nomeUsuario', campoNome.value);
         });
-        
+
         // Confirmação de senha
         /* guarda os IDs do HTML */
         const inputSenha = document.getElementById('senha');
@@ -120,11 +125,11 @@
         }
 
         inputSenha.addEventListener('input', function () { /*executa toda vez que o campo senha é alterado */
-            const val = inputSenha.value; 
+            const val = inputSenha.value;
 
-            verificarRequisito(reqTamanho,   val.length >= 8); /* verifica se tem 8 caracteres */
+            verificarRequisito(reqTamanho, val.length >= 8); /* verifica se tem 8 caracteres */
             verificarRequisito(reqMaiuscula, /[A-Z]/.test(val)); /*verifica se tem pelo menos uma letra maiúscula */
-            verificarRequisito(reqNumero,    /[0-9]/.test(val)); /*verifica se tem ao menos um número */
+            verificarRequisito(reqNumero, /[0-9]/.test(val)); /*verifica se tem ao menos um número */
 
             if (inputConfirmar.value.length > 0) checarConfirmacao();
         });
@@ -145,10 +150,10 @@
         }
 
         inputConfirmar.addEventListener('input', checarConfirmacao);
-        
+
         // confirmação email
-        const inputEmail  = document.getElementById('email');
-        const avisoEmail  = document.getElementById('aviso-email');
+        const inputEmail = document.getElementById('email');
+        const avisoEmail = document.getElementById('aviso-email');
 
         inputEmail.addEventListener('input', function () {
             const val = inputEmail.value;
@@ -169,10 +174,10 @@
                 avisoEmail.className = 'aviso-senhas erro';
             }
         });
-        
+
         //verificação se emails coincidem
-        const inputConfirmarEmail  = document.getElementById('confirmar_email');
-        const avisoConfirmarEmail  = document.getElementById('aviso-confirmar-email');
+        const inputConfirmarEmail = document.getElementById('confirmar_email');
+        const avisoConfirmarEmail = document.getElementById('aviso-confirmar-email');
 
         function checarConfirmacaoEmail() {
             if (inputConfirmarEmail.value === '') {
@@ -219,6 +224,18 @@
         inputSenha.addEventListener('input', atualizarBotaoCadastro);
         inputConfirmar.addEventListener('input', atualizarBotaoCadastro);
 
+    </script>
+
+    <!-- VLibras: tradutor de conteúdo para Libras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
 </body>

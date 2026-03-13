@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br"> 
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -10,9 +10,12 @@
 
 <body class="login-body">
     <div class="login-container">
-        <img src="imgs/Logo.jpeg" alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto" class="logo-login-cadastro">
+        <img src="imgs/Logo.jpeg"
+            alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto"
+            class="logo-login-cadastro">
         <div class="login-card">
-            <form id="form-login" action="home_page.html" method="get"> <!-- Usando get em vez de post para simular o acesso após cadastro, com post dá erro porque não temos backend-->
+            <form id="form-login" action="home_page.html" method="get">
+                <!-- Usando get em vez de post para simular o acesso após cadastro, com post dá erro porque não temos backend-->
                 <h1>Login</h1>
 
                 <div class="campo-email">
@@ -49,7 +52,7 @@
                     } else {
                         const form = document.getElementById('form-login');
                         const todosCampos = Array.from(campos); // transforma a lista de campos em array para usar o .every()
-                        const tudoPreenchido = todosCampos.every(function(c) { // verifica se TODOS os campos passam na condição
+                        const tudoPreenchido = todosCampos.every(function (c) { // verifica se TODOS os campos passam na condição
                             return c.value.trim() !== ''; // retorna true se o campo não estiver vazio
                         });
 
@@ -77,6 +80,18 @@
 
         inputEmail.addEventListener('input', atualizarBotao);
         inputSenha.addEventListener('input', atualizarBotao);
+    </script>
+
+    <!-- VLibras: tradutor de conteúdo para Libras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
 </body>
