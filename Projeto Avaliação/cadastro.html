@@ -79,7 +79,17 @@
                     if (proximo) {
                         proximo.focus(); //move foco pra ele
                     } else {
-                        document.getElementById('form-cadastro').submit(); //quando está no último, submete o formulário
+                        const form = document.getElementById('form-cadastro');
+                        const todosCampos = Array.from(campos); // transforma a lista de campos em array para usar o .every()
+                        const tudoPreenchido = todosCampos.every(function(c) { // verifica se TODOS os campos passam na condição
+                            return c.value.trim() !== ''; // retorna true se o campo não estiver vazio
+                        });
+
+                        if (tudoPreenchido) {
+                            form.submit(); // todos preenchidos, envia
+                        } else {
+                            form.reportValidity(); // mostra o aviso nativo do navegador nos campos vazios
+                        }
                     }
                 }
             });
