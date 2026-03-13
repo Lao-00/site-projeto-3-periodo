@@ -9,7 +9,7 @@
 </head>
 
 <body class="home-container">
-      <!-- SKIP LINK: primeiro elemento da página, permite pular o nav e ir direto pro conteúdo -->
+    <!-- SKIP LINK: primeiro elemento da página, permite pular o nav e ir direto pro conteúdo -->
     <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
     <header class="header">
         <div class="header-container">
@@ -30,15 +30,18 @@
                 <h2>HÁ 30 ANOS CUIDANDO DO SEU FINANCEIRO</h2>
                 <div class="carrossel" aria-live="polite">
                     <div class="depoimento ativo">
-                        <p class="depoimento-texto">"Reduzimos 80% do tempo gasto com conciliação financeira. Melhor investimento que fizemos."</p>
+                        <p class="depoimento-texto">"Reduzimos 80% do tempo gasto com conciliação financeira. Melhor
+                            investimento que fizemos."</p>
                         <span class="depoimento-autor">— Carlos Mendes, CFO da LogTech</span>
                     </div>
                     <div class="depoimento">
-                        <p class="depoimento-texto">"A integração com nosso ERP foi simples e o suporte foi impecável durante todo o processo."</p>
+                        <p class="depoimento-texto">"A integração com nosso ERP foi simples e o suporte foi impecável
+                            durante todo o processo."</p>
                         <span class="depoimento-autor">— Ana Paula, Diretora Financeira da Nexum</span>
                     </div>
                     <div class="depoimento">
-                        <p class="depoimento-texto">"Em 3 meses já tínhamos retorno sobre o investimento. Os relatórios automáticos mudaram nossa rotina."</p>
+                        <p class="depoimento-texto">"Em 3 meses já tínhamos retorno sobre o investimento. Os relatórios
+                            automáticos mudaram nossa rotina."</p>
                         <span class="depoimento-autor">— Ricardo Torres, CEO da Fortis</span>
                     </div>
                 </div>
@@ -67,7 +70,8 @@
                 <div class="servico-card">
                     <span class="servico-icone">🔒</span>
                     <h3>Segurança e Conformidade</h3>
-                    <p>Seus dados protegidos com criptografia de ponta e em conformidade com as normas do Banco Central.</p>
+                    <p>Seus dados protegidos com criptografia de ponta e em conformidade com as normas do Banco Central.
+                    </p>
                 </div>
             </div>
         </section>
@@ -111,7 +115,8 @@
                         <li>✓ Automação de pagamentos</li>
                         <li>✓ Relatórios mensais</li>
                         <li class="indisponivel" aria-label="Não incluso: Integração com ERP">✗ Integração com ERP</li>
-                        <li class="indisponivel" aria-label="Não incluso: Suporte prioritário">✗ Suporte prioritário</li>
+                        <li class="indisponivel" aria-label="Não incluso: Suporte prioritário">✗ Suporte prioritário
+                        </li>
                     </ul>
                     <button class="plano-btn">Começar</button>
                 </div>
@@ -155,29 +160,42 @@
     </main>
 
     <footer class="footer">
-    <p>
-        <a href="acessibilidade.html">Acessibilidade</a>
-    </p>
-</footer>
+        <p>
+            <a href="acessibilidade.html">Acessibilidade</a>
+        </p>
+    </footer>
 
-<script>
-    const depoimentos = document.querySelectorAll('.depoimento'); //pega todos os depoimentos e guarda
-    let atual = 0; //guarda qual depoimento está sendo exibido no momento
-    setInterval(function () { // realiza uma função a cada tantos milisegundos
-        depoimentos[atual].classList.remove('ativo'); // remove o depoimento atual
-        atual = (atual + 1) % depoimentos.length; // definine o próximo como atual, quando chega a 0 volta ao íncio
-        depoimentos[atual].classList.add('ativo'); // mostra o próximo depoimetno
-    }, 5000);
+    <script>
+        const depoimentos = document.querySelectorAll('.depoimento'); //pega todos os depoimentos e guarda
+        let atual = 0; //guarda qual depoimento está sendo exibido no momento
+        setInterval(function () { // realiza uma função a cada tantos milisegundos
+            depoimentos[atual].classList.remove('ativo'); // remove o depoimento atual
+            atual = (atual + 1) % depoimentos.length; // definine o próximo como atual, quando chega a 0 volta ao íncio
+            depoimentos[atual].classList.add('ativo'); // mostra o próximo depoimetno
+        }, 5000);
 
-    const nome = localStorage.getItem('nomeUsuario');
-    const linkLogin = document.querySelector('.nav a[href="login.html"]');
+        const nome = localStorage.getItem('nomeUsuario');
+        const linkLogin = document.querySelector('.nav a[href="login.html"]');
 
-    if (nome && linkLogin) {
-    linkLogin.textContent = 'Olá, ' + nome;
-    linkLogin.removeAttribute('href'); // remove o link completamente
-    linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
-    }
-</script>
+        if (nome && linkLogin) {
+            linkLogin.textContent = 'Olá, ' + nome;
+            linkLogin.removeAttribute('href'); // remove o link completamente
+            linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
+        }
+    </script>
+
+    <!-- VLibras: tradutor de conteúdo para Libras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </body>
 
 </html>
