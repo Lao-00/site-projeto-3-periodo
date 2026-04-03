@@ -583,7 +583,11 @@ body {
     text-align: center;
     position: relative;
     transition: box-shadow 0.2s;
+    display: flex;         
+    flex-direction: column; 
+    align-items: center;    
 }
+
 
 .plano-card:hover {
     box-shadow: 0 4px 20px rgba(0, 37, 92, 0.12);

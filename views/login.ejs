@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="login-body">
     <div class="login-container">
-        <img src="imgs/Logo.jpeg"
+        <img src="/imgs/Logo.jpeg"
             alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto"
             class="logo-login-cadastro">
         <div class="login-card">
-            <form id="form-login" action="index.html" method="get">
-                <!-- Usando get em vez de post para simular o acesso após cadastro, com post dá erro porque não temos backend-->
+            <form id="form-login" action="/login" method="post">
                 <h1>Login</h1>
 
                 <div class="campo-email">
@@ -35,7 +34,7 @@
             </form>
 
             <p>
-                Não tem conta? <a href="cadastro.html" tabindex="4">Cadastre-se</a>
+                Não tem conta? <a href="/cadastro" tabindex="4">Cadastre-se</a>
             </p>
         </div>
     </div>

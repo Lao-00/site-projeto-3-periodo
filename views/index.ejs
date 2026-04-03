@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="home-container">
@@ -15,10 +15,17 @@
         <div class="header-container">
             <h1 class="logo">Base <span>5</span> automações</h1>
             <nav class="nav" aria-label="Navegação principal">
-                <a href="login.html">Login</a>
-                <a href="index.html">Início</a>
-                <a href="sobre.html">Sobre</a>
-                <a href="projetos.html">Projetos</a>
+                <a href="/">Início</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/projetos">Projetos</a>
+
+                <% if (usuario) { %>
+                    <span style="color: #4d8fff; font-weight: bold; margin-left: 20px;">Olá, <%= usuario.nome %></span>
+                    <a href="/logout" style="color: #c0392b;">Sair</a>
+                    <% } else { %>
+                        <a href="/login" style="margin-left: 20px;">Login</a>
+                        <a href="/cadastro">Cadastre-se</a>
+                        <% } %>
             </nav>
         </div>
     </header>
@@ -118,7 +125,8 @@
                         <li class="indisponivel" aria-label="Não incluso: Suporte prioritário">✗ Suporte prioritário
                         </li>
                     </ul>
-                    <a href="/comprar?plano=Basico" class="plano-btn" style="display:block; text-align:center;">Contratar</a>
+                    <a href="/comprar?plano=Basico" class="plano-btn"
+                        style="display:block; text-align:center;">Contratar</a>
                 </div>
 
                 <div class="plano-card plano-destaque">
@@ -135,7 +143,8 @@
                         <li>✓ Integração com ERP</li>
                         <li class="indisponivel">✗ Suporte prioritário</li>
                     </ul>
-                    <a href="/comprar?plano=Profissional" class="plano-btn" style="display:block; text-align:center;">Contratar</a>
+                    <a href="/comprar?plano=Profissional" class="plano-btn"
+                        style="display:block; text-align:center;">Contratar</a>
                 </div>
 
                 <div class="plano-card">
@@ -151,7 +160,8 @@
                         <li>✓ Integração com ERP</li>
                         <li>✓ Suporte prioritário 24/7</li>
                     </ul>
-                    <a href="/comprar?plano=Enterprise" class="plano-btn" style="display:block; text-align:center;">Contratar</a>
+                    <a href="/comprar?plano=Enterprise" class="plano-btn"
+                        style="display:block; text-align:center;">Contratar</a>
                 </div>
 
             </div>
@@ -173,15 +183,6 @@
             atual = (atual + 1) % depoimentos.length; // definine o próximo como atual, quando chega a 0 volta ao íncio
             depoimentos[atual].classList.add('ativo'); // mostra o próximo depoimetno
         }, 5000);
-
-        const nome = localStorage.getItem('nomeUsuario');
-        const linkLogin = document.querySelector('.nav a[href="login.html"]');
-
-        if (nome && linkLogin) {
-            linkLogin.textContent = 'Olá, ' + nome;
-            linkLogin.removeAttribute('href'); // remove o link completamente
-            linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
-        }
     </script>
 
     <!-- VLibras: tradutor de conteúdo para Libras -->

@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body class="cadastro-body">
     <div class="cadastro-container">
-        <img src="imgs/Logo.jpeg"
+        <img src="/imgs/Logo.jpeg"
             alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto"
             class="logo-login-cadastro">
         <div class="cadastro-card">
-            <form id="form-cadastro" action="index.html" method="get">
-                <!-- Usando get em vez de post para simular o acesso após cadastro, com post dá erro porque não temos backend-->
+            <form id="form-cadastro" action="/cadastro" method="post">
                 <h1>Crie sua conta</h1>
 
                 <div class="campo-nome">
@@ -67,7 +66,7 @@
                 </div>
             </form>
             <p>
-                Já tem conta? <a href="login.html" tabindex="8">Login</a>
+                Já tem conta? <a href="/login" tabindex="8">Login</a>
             </p>
         </div>
     </div>
@@ -99,9 +98,7 @@
                 }
             });
         });
-        document.getElementById('form-cadastro').addEventListener('submit', function () {
-            localStorage.setItem('nomeUsuario', campoNome.value);
-        });
+       
 
         // Confirmação de senha
         /* guarda os IDs do HTML */
