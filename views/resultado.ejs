@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="cadastro-body">
+    <a href="#conteudo-principal" class="skip-link">Pular para o resultado</a>
+
     <div class="cadastro-container">
-        <div class="cadastro-card" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+        <main id="conteudo-principal" class="cadastro-card" tabindex="-1" aria-live="polite" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
 
             <% if (sucesso) { %>
                 <h1 style="color: #27ae60; margin-bottom: 16px;">Sucesso! 🎉</h1>
@@ -22,10 +24,21 @@
                 </p>
             <% } %>
 
-            <a href="/" class="botao-pronto" style="padding: 12px 24px; border-radius: 20px; text-decoration: none; display: inline-block; color: white;">
+            <a href="/" class="botao-pronto" style="padding: 12px 24px; border-radius: 20px; text-decoration: none; display: inline-block; color: white;" aria-label="Voltar para a página inicial">
                 Voltar para a Home
             </a>
+        </main>
+    </div>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 </body>
 </html>
