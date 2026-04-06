@@ -636,7 +636,7 @@ button {
 /* Botões */
 .login-botao {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .cadastro-botao {

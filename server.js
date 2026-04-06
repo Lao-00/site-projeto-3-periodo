@@ -128,7 +128,7 @@ app.post('/comprar', async (req, res) => {
         res.render('resultado', { sucesso: true });
 
     } catch (err) {
-        console.error(err); // Continua imprimindo o erro no terminal Zsh para você debugar
+        console.error(err);
         
         // Renderiza a MESMA tela, mas passa sucesso como FALSE e envia o texto do erro
         res.status(500).render('resultado', { 
