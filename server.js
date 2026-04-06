@@ -1,7 +1,7 @@
 require('dotenv').config(); // Importa e configura o dotenv
 const express = require('express');
 const { Pool } = require('pg');
-const session = require('express-session'); // Novo
+const session = require('express-session');
 const bcrypt = require('bcrypt');
 const path = require('path');
 
@@ -18,7 +18,7 @@ const pool = new Pool({
 
 
 app.use(session({
-    secret: process.env.SESSION_SECRET, // Use algo aleatório aqui
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false } // 'true' apenas se usar HTTPS
@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
-// ROTAS DE TELAS (GET)
+// ROTAS DE TELAS
 app.get('/', (req, res) => {
     res.render('index');
 });
@@ -106,7 +106,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-// ROTA DE COMPRA ATUALIZADA (Vinculando ao usuário)
+// ROTA DE COMPRA (Vinculando ao usuário)
 app.post('/comprar', async (req, res) => {
     const { plano, nome, email } = req.body;
     const usuarioId = req.session.usuario ? req.session.usuario.id : null; // Pega o ID se estiver logado
