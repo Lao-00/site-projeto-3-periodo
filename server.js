@@ -188,10 +188,11 @@ app.post('/comprar', verificarLogin, async (req, res) => {
     // 1. Extraímos todos os campos do formulário
     const { plano, nome, email, cartao, validade, cvv, nomeCartao } = req.body;
     
+    console.log("PLANO QUE CHEGOU DO HTML: ->", plano, "<-");
     // =======================================================================
     // VALIDAÇÃO DE SEGURANÇA (Erro 400 - Bad Request)
     // =======================================================================
-    const planosValidos = ['Básico', 'Profissional', 'Enterprise']; // Ajuste aqui para os nomes exatos dos seus planos!
+    const planosValidos = ['Basico', 'Profissional', 'Enterprise']; // Ajuste aqui para os nomes exatos dos seus planos!
     
     // Se o plano estiver vazio ou não for um dos três planos oficiais:
     if (!plano || !planosValidos.includes(plano)) {

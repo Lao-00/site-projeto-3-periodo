@@ -799,4 +799,18 @@ button {
     .depoimento-texto {
         font-size: 0.95rem;
     }
+    /*PROJETO*/
+    .secao-principal-projetos {
+        margin: 10px;
+        padding: 30px 16px;
+        width: auto;
+    }
+
+    .secao-principal-projetos h2 {
+        font-size: 1.3rem;
+    }
+
+    .projetos-grid {
+        grid-template-columns: 1fr;
+    }
 }
