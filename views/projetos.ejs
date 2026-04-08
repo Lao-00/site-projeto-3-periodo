@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projetos — Base 5 Automações</title>
     <link rel="stylesheet" href="/css/style.css">
+
     <style>
         .projetos-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -20,94 +21,116 @@
     <header class="header">
         <div class="header-container">
             <h1 class="logo">Base <span>5</span> automações</h1>
+
             <nav class="nav" aria-label="Navegação principal">
-                <a href="login.html">Login</a>
-                <a href="index.html">Início</a>
-                <a href="sobre.html">Sobre</a>
-                <a href="projetos.html">Projetos</a>
+                <a href="/">Início</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/projetos">Projetos</a>
+
+                <% if (usuario) { %>
+                    <span style="color: #4d8fff; font-weight: bold; margin-left: 20px;">
+                        Olá, <%= usuario.nome %>
+                    </span>
+                    <a href="/logout" style="color: #c0392b;">Sair</a>
+                <% } else { %>
+                    <a href="/login" style="margin-left: 20px;">Login</a>
+                <% } %>
             </nav>
+
         </div>
     </header>
 
     <main id="conteudo-projetos" class="main" tabindex="-1">
 
-        <!-- BANNER -->
         <section class="secao">
             <article class="secao-principal-projetos" aria-label="Projetos">
                 <h2>Nossos Projetos</h2>
-                <p>Conheça alguns dos projetos que desenvolvemos para nossos clientes e os resultados que alcançamos
-                    juntos.</p>
+                <p>
+                    Conheça alguns dos projetos que desenvolvemos para nossos clientes
+                    e os resultados que alcançamos juntos.
+                </p>
             </article>
         </section>
 
-        <!-- CARDS -->
         <section class="secao-planos" aria-label="Cases de sucesso">
             <h2 class="planos-titulo">Cases de Sucesso</h2>
             <p class="planos-subtitulo">Resultados reais para empresas reais</p>
+
             <div class="projetos-grid">
 
                 <div class="projeto-card">
                     <span class="projeto-icone">🏪</span>
                     <p class="projeto-nome">Automação Financeira — Rede SuperMais</p>
-                    <p class="projeto-descricao">Implementação de sistema de conciliação automática de pagamentos para
-                        uma rede com 12 filiais, integrando caixas, bancos e emissão de boletos em um único painel.</p>
+                    <p class="projeto-descricao">
+                        Implementação de sistema de conciliação automática de pagamentos
+                        para uma rede com 12 filiais, integrando caixas, bancos e emissão
+                        de boletos em um único painel.
+                    </p>
                     <div class="projeto-resultado">
                         <strong>Resultado obtido</strong>
-                        Redução de 75% no tempo de fechamento mensal e eliminação de erros manuais de lançamento.
+                        Redução de 75% no tempo de fechamento mensal e eliminação de erros manuais.
                     </div>
                 </div>
 
                 <div class="projeto-card">
                     <span class="projeto-icone">🏭</span>
                     <p class="projeto-nome">Gestão de Produção — Indústria Fortis</p>
-                    <p class="projeto-descricao">Desenvolvimento de módulo de ordens de produção com controle de
-                        matérias-primas, apontamento em tempo real e estimativa de produtos acabados.</p>
+                    <p class="projeto-descricao">
+                        Desenvolvimento de módulo de ordens de produção com controle de matérias-primas,
+                        apontamento em tempo real e estimativa de produtos acabados.
+                    </p>
                     <div class="projeto-resultado">
                         <strong>Resultado obtido</strong>
-                        Aumento de 40% na eficiência produtiva e redução de 30% no desperdício de insumos.
+                        Aumento de 40% na eficiência produtiva e redução de 30% no desperdício.
                     </div>
                 </div>
 
                 <div class="projeto-card">
                     <span class="projeto-icone">🛵</span>
                     <p class="projeto-nome">Sistema de Delivery — Padaria Grão & Arte</p>
-                    <p class="projeto-descricao">Implantação de módulo de gestão de pedidos e rotas de entrega, com
-                        painel de acompanhamento em tempo real para a equipe de produção e os entregadores.</p>
+                    <p class="projeto-descricao">
+                        Implantação de módulo de gestão de pedidos e rotas de entrega
+                        com painel de acompanhamento em tempo real.
+                    </p>
                     <div class="projeto-resultado">
                         <strong>Resultado obtido</strong>
-                        Crescimento de 60% nos pedidos online e redução de 20 minutos no tempo médio de entrega.
+                        Crescimento de 60% nos pedidos online e redução no tempo de entrega.
                     </div>
                 </div>
 
                 <div class="projeto-card">
                     <span class="projeto-icone">🔧</span>
                     <p class="projeto-nome">Ordem de Serviço — AutoCenter Nexum</p>
-                    <p class="projeto-descricao">Criação de sistema de abertura, acompanhamento e fechamento de ordens
-                        de serviço, com controle de peças, comissão de técnicos e histórico por veículo.</p>
+                    <p class="projeto-descricao">
+                        Sistema de abertura e acompanhamento de ordens de serviço
+                        com controle de peças e histórico por veículo.
+                    </p>
                     <div class="projeto-resultado">
                         <strong>Resultado obtido</strong>
-                        Eliminação do uso de papel na oficina e aumento de 35% na satisfação dos clientes.
+                        Eliminação do uso de papel e aumento da satisfação dos clientes.
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- STATS -->
         <section class="secao-stats" aria-label="Números dos projetos">
             <div class="stats-grid">
                 <div class="stat-item">
                     <span class="stat-numero">200+</span>
                     <span class="stat-label">Projetos entregues</span>
                 </div>
+
                 <div class="stat-item">
                     <span class="stat-numero">15+</span>
                     <span class="stat-label">Segmentos atendidos</span>
                 </div>
+
                 <div class="stat-item">
                     <span class="stat-numero">98%</span>
                     <span class="stat-label">Clientes satisfeitos</span>
                 </div>
+
                 <div class="stat-item">
                     <span class="stat-numero">30 dias</span>
                     <span class="stat-label">Tempo médio de implantação</span>
@@ -119,33 +142,22 @@
 
     <footer class="footer">
         <p>
-            <a href="acessibilidade.html">Acessibilidade</a>
+            <a href="/acessibilidade">Acessibilidade</a>
         </p>
     </footer>
 
-    <script>
-        const nome = localStorage.getItem('nomeUsuario');
-        const linkLogin = document.querySelector('.nav a[href="login.html"]');
-
-        if (nome && linkLogin) {
-            linkLogin.textContent = 'Olá, ' + nome;
-            linkLogin.removeAttribute('href');
-            linkLogin.style.cursor = 'default';
-        }
-    </script>
-
-    <!-- VLibras: tradutor de conteúdo para Libras -->
+    <!-- VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
 </body>
-
 </html>
