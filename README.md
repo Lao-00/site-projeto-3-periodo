@@ -6,13 +6,13 @@ Projeto acadêmico que simula o site institucional de uma empresa fictícia de a
 
 ## 📄 Páginas
 
-| Arquivo | Descrição |
-|---|---|
-| `login.html` | Tela de login |
-| `cadastro.html` | Tela de cadastro de usuário |
-| `home_page.html` | Página inicial |
-| `sobre.html` | Página institucional com detalhes dos serviços |
-| `acessibilidade.html` | Declaração de acessibilidade |
+| Arquivo               | Descrição                                      |
+| --------------------- | ---------------------------------------------- |
+| `login.html`          | Tela de login                                  |
+| `cadastro.html`       | Tela de cadastro de usuário                    |
+| `home_page.html`      | Página inicial                                 |
+| `sobre.html`          | Página institucional com detalhes dos serviços |
+| `acessibilidade.html` | Declaração de acessibilidade                   |
 
 ---
 
