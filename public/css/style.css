@@ -729,7 +729,9 @@ button {
    7. RESPONSIVIDADE (Telas menores)
    ========================================================================== */
 @media (max-width: 600px) {
-    /* HEADER */
+    /*================*/
+    /*HEADER*/
+    /*================*/
     .header-container {
         flex-direction: column;
         align-items: flex-start;
@@ -741,7 +743,9 @@ button {
         gap: 12px;
     }
 
-    /* BANNER */
+    /*================*/
+    /*BANNER*/
+    /*================*/
     .secao {
         overflow: hidden;
     }
@@ -757,12 +761,16 @@ button {
         word-break: break-word;
     }
 
-    /* SERVIÇOS */
+    /*================*/
+    /*SERVIÇOS*/
+    /*================*/
     .secao-servicos {
         padding: 30px 15px;
     }
 
-    /* ESTATÍSTICAS */
+    /*================*/
+    /*ESTATÍSTICAS*/
+    /*================*/
     .secao-stats {
         padding: 30px 15px;
     }
@@ -771,7 +779,9 @@ button {
         font-size: 1.6rem;
     }
 
-    /* PLANOS */
+    /*================*/
+    /*PLANOS*/
+    /*================*/
     .secao-planos {
         padding: 40px 15px;
     }
@@ -779,8 +789,9 @@ button {
     .planos-grid {
         grid-template-columns: 1fr;
     }
-
-    /* LOGIN E CADASTRO */
+    /*================*/
+    /*LOGIN E CADASTRO*/
+    /*================*/
     .login-body,
     .cadastro-body {
         align-items: flex-start;
@@ -807,7 +818,9 @@ button {
     .depoimento-texto {
         font-size: 0.95rem;
     }
-    /*PROJETO*/
+    /*=================*/
+    /*PROJETOS*/
+    /*=================*/
     .secao-principal-projetos {
         margin: 10px;
         padding: 30px 16px;
@@ -820,5 +833,30 @@ button {
 
     .projetos-grid {
         grid-template-columns: 1fr;
+    }
+    /*=================*/
+    /*SOBRE*/
+    /*=================*/
+    .secao-principal-sobre{
+        margin: 10px;
+        padding: 30px 16px;
+        width: auto;
+    }
+
+    .secao-principal-sobre h2 {
+        font-size: 1.3rem;
+    }
+
+    .secao-principal-sobre p {
+        font-size: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .stat-item {
+        padding: 10px;
     }
 }
