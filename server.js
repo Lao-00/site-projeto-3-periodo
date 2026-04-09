@@ -15,16 +15,17 @@ const pool = new Pool({
     password: process.env.DB_PASS,
     port: process.env.DB_PORT,
     connectionTimeoutMillis: 5000, // Espera no máximo 5 segundos para conectar
-    query_timeout: 5000 // Espera no máximo 5 segundos para uma query rodar
+    query_timeout: 5000, // Espera no máximo 5 segundos para uma query rodar
 });
 
-
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // 'true' apenas se usar HTTPS
-}));
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: false }, // 'true' apenas se usar HTTPS
+    })
+);
 
 // Middleware para disponibilizar o usuário para todas as telas (EJS)
 app.use((req, res, next) => {
@@ -35,7 +36,7 @@ app.use((req, res, next) => {
 // Função de segurança para bloquear páginas restritas
 const verificarLogin = (req, res, next) => {
     if (req.session.usuario) {
-        next(); 
+        next();
     } else {
         res.status(403).send(`
             <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
@@ -55,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 // =======================================================================
-// MODO DE MANUTENÇÃO (Erro 503) 
+// MODO DE MANUTENÇÃO (Erro 503)
 // =======================================================================
 const emManutencao = false; // Quando precisar atualizar  o banco de dados, mude para 'true'
 
@@ -89,11 +90,10 @@ const limitadorGeral = rateLimit({
                 <a href="/" style="display: inline-block; padding: 12px 24px; background-color: rgb(0, 37, 92); color: white; text-decoration: none; border-radius: 20px;">Voltar para a Home</a>
             </div>
         `);
-    }
+    },
 });
 // Aplica o limitador EXCLUSIVAMENTE na rota de login (para proteger senhas)
 app.use('/login', limitadorGeral);
-
 
 // ROTAS DE TELAS
 app.get('/', (req, res) => {
@@ -121,7 +121,7 @@ app.get('/cadastro', (req, res) => {
 });
 
 app.get('/comprar', verificarLogin, (req, res) => {
-    const planoEscolhido = req.query.plano || 'Nenhum plano selecionado'; 
+    const planoEscolhido = req.query.plano || 'Nenhum plano selecionado';
     res.render('comprar', { plano: planoEscolhido });
 });
 
@@ -130,14 +130,15 @@ app.post('/cadastro', async (req, res) => {
     const { nome, email, senha } = req.body;
     try {
         const senhaHash = await bcrypt.hash(senha, 10); // Embaralha a senha
-        const query = 'INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3) RETURNING id, nome';
+        const query =
+            'INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3) RETURNING id, nome';
         const result = await pool.query(query, [nome, email, senhaHash]);
-        
+
         // Loga o usuário automaticamente após cadastrar
         req.session.usuario = result.rows[0];
         res.redirect('/');
     } catch (err) {
-        res.status(500).send("Erro ao cadastrar. Talvez o e-mail já exista.");
+        res.status(500).send('Erro ao cadastrar. Talvez o e-mail já exista.');
     }
 });
 
@@ -187,13 +188,13 @@ app.get('/logout', (req, res) => {
 app.post('/comprar', verificarLogin, async (req, res) => {
     // 1. Extraímos todos os campos do formulário
     const { plano, nome, email, cartao, validade, cvv, nomeCartao } = req.body;
-    
-    console.log("PLANO QUE CHEGOU DO HTML: ->", plano, "<-");
+
+    console.log('PLANO QUE CHEGOU DO HTML: ->', plano, '<-');
     // =======================================================================
     // VALIDAÇÃO DE SEGURANÇA (Erro 400 - Bad Request)
     // =======================================================================
     const planosValidos = ['Basico', 'Profissional', 'Enterprise']; // Ajuste aqui para os nomes exatos dos seus planos!
-    
+
     // Se o plano estiver vazio ou não for um dos três planos oficiais:
     if (!plano || !planosValidos.includes(plano)) {
         return res.status(400).send(`
@@ -209,7 +210,7 @@ app.post('/comprar', verificarLogin, async (req, res) => {
     // =======================================================================
 
     // 2. Pega o ID se estiver logado
-    const usuarioId = req.session.usuario ? req.session.usuario.id : null; 
+    const usuarioId = req.session.usuario ? req.session.usuario.id : null;
 
     try {
         // throw new Error("Simulando uma falha de conexão com o banco!");
@@ -218,19 +219,19 @@ app.post('/comprar', verificarLogin, async (req, res) => {
             (plano, nome_cliente, email_cliente, usuario_id, cartao, validade, cvv, nome_cartao) 
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         `;
-        
+
         await pool.query(query, [plano, nome, email, usuarioId, cartao, validade, cvv, nomeCartao]);
-        
+
         // Renderiza a tela passando a variável sucesso como TRUE
         res.render('resultado', { sucesso: true });
-
     } catch (err) {
         console.error(err);
-        
+
         // Renderiza a MESMA tela, mas passa sucesso como FALSE e envia o texto do erro
-        res.status(500).render('resultado', { 
-            sucesso: false, 
-            mensagem: "Não foi possível processar seu pedido no momento. Tente novamente mais tarde." 
+        res.status(500).render('resultado', {
+            sucesso: false,
+            mensagem:
+                'Não foi possível processar seu pedido no momento. Tente novamente mais tarde.',
         });
     }
 });

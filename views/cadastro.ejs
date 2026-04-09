@@ -69,172 +69,178 @@
                 Já tem conta? <a href="/login" tabindex="8">Login</a>
             </p>
         </div>
-    </div>
 
-    <script>
-        // pega os inputs do formulário
-        const campos = document.querySelectorAll('input');
-        // percorre cada um
-        campos.forEach(function (campo, index) {
-            campo.addEventListener('keydown', function (e) { // verifica se uma tecla é pressionada no campo
-                if (e.key === 'Enter') {
-                    e.preventDefault(); // se for enter, cancela o comportamento padrão (enviar formulário)
-                    const proximo = campos[index + 1]; // pega próximo input
-                    if (proximo) {
-                        proximo.focus(); //move foco pra ele
-                    } else {
-                        const form = document.getElementById('form-cadastro');
-                        const todosCampos = Array.from(campos); // transforma a lista de campos em array para usar o .every()
-                        const tudoPreenchido = todosCampos.every(function (c) { // verifica se TODOS os campos passam na condição
-                            return c.value.trim() !== ''; // retorna true se o campo não estiver vazio
-                        });
-
-                        if (tudoPreenchido) {
-                            form.submit(); // todos preenchidos, envia
+        <script>
+            // pega os inputs do formulário
+            const campos = document.querySelectorAll('input');
+            // percorre cada um
+            campos.forEach(function (campo, index) {
+                campo.addEventListener('keydown', function (e) {
+                    // verifica se uma tecla é pressionada no campo
+                    if (e.key === 'Enter') {
+                        e.preventDefault(); // se for enter, cancela o comportamento padrão (enviar formulário)
+                        const proximo = campos[index + 1]; // pega próximo input
+                        if (proximo) {
+                            proximo.focus(); //move foco pra ele
                         } else {
-                            form.reportValidity(); // mostra o aviso nativo do navegador nos campos vazios
+                            const form = document.getElementById('form-cadastro');
+                            const todosCampos = Array.from(campos); // transforma a lista de campos em array para usar o .every()
+                            const tudoPreenchido = todosCampos.every(function (c) {
+                                // verifica se TODOS os campos passam na condição
+                                return c.value.trim() !== ''; // retorna true se o campo não estiver vazio
+                            });
+
+                            if (tudoPreenchido) {
+                                form.submit(); // todos preenchidos, envia
+                            } else {
+                                form.reportValidity(); // mostra o aviso nativo do navegador nos campos vazios
+                            }
                         }
                     }
+                });
+            });
+
+            // Confirmação de senha
+            /* guarda os IDs do HTML */
+            const inputSenha = document.getElementById('senha');
+            const inputConfirmar = document.getElementById('confirmar_senha');
+            const avisoSenhas = document.getElementById('aviso-senhas');
+
+            const reqTamanho = document.getElementById('req-tamanho');
+            const reqMaiuscula = document.getElementById('req-maiuscula');
+            const reqNumero = document.getElementById('req-numero');
+
+            function verificarRequisito(elemento, ok) {
+                /*verifica o ícone que está mostrando e se preenche os requisitos */
+                const icone = elemento.querySelector('.icone');
+                if (ok) {
+                    elemento.classList.add('ok');
+                    icone.textContent = '✓';
+                } else {
+                    elemento.classList.remove('ok');
+                    icone.textContent = '✗';
+                }
+            }
+
+            inputSenha.addEventListener('input', function () {
+                /*executa toda vez que o campo senha é alterado */
+                const val = inputSenha.value;
+
+                verificarRequisito(reqTamanho, val.length >= 8); /* verifica se tem 8 caracteres */
+                verificarRequisito(
+                    reqMaiuscula,
+                    /[A-Z]/.test(val)
+                ); /*verifica se tem pelo menos uma letra maiúscula */
+                verificarRequisito(
+                    reqNumero,
+                    /[0-9]/.test(val)
+                ); /*verifica se tem ao menos um número */
+
+                if (inputConfirmar.value.length > 0) checarConfirmacao();
+            });
+
+            function checarConfirmacao() {
+                if (inputConfirmar.value === '') {
+                    avisoSenhas.textContent = '';
+                    avisoSenhas.className = 'aviso-senhas';
+                    return; /*se estiver vazio, não mostra o aviso */
+                }
+                if (inputSenha.value === inputConfirmar.value) {
+                    avisoSenhas.textContent = '✓ As senhas coincidem';
+                    avisoSenhas.className = 'aviso-senhas ok';
+                } else {
+                    avisoSenhas.textContent = '✗ As senhas não coincidem';
+                    avisoSenhas.className = 'aviso-senhas erro';
+                }
+            }
+
+            inputConfirmar.addEventListener('input', checarConfirmacao);
+
+            // confirmação email
+            const inputEmail = document.getElementById('email');
+            const avisoEmail = document.getElementById('aviso-email');
+
+            inputEmail.addEventListener('input', function () {
+                const val = inputEmail.value;
+
+                if (val === '') {
+                    avisoEmail.textContent = '';
+                    avisoEmail.className = 'aviso-senhas';
+                    return; /* campo vazio, não mostra nada */
+                }
+
+                const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val); //verifica se segue o modelo algo@algo.algo
+
+                if (emailValido) {
+                    avisoEmail.textContent = '✓ E-mail válido';
+                    avisoEmail.className = 'aviso-senhas ok';
+                } else {
+                    avisoEmail.textContent = '✗ E-mail inválido';
+                    avisoEmail.className = 'aviso-senhas erro';
                 }
             });
-        });
-       
 
-        // Confirmação de senha
-        /* guarda os IDs do HTML */
-        const inputSenha = document.getElementById('senha');
-        const inputConfirmar = document.getElementById('confirmar_senha');
-        const avisoSenhas = document.getElementById('aviso-senhas');
+            //verificação se emails coincidem
+            const inputConfirmarEmail = document.getElementById('confirmar_email');
+            const avisoConfirmarEmail = document.getElementById('aviso-confirmar-email');
 
-        const reqTamanho = document.getElementById('req-tamanho');
-        const reqMaiuscula = document.getElementById('req-maiuscula');
-        const reqNumero = document.getElementById('req-numero');
-
-        function verificarRequisito(elemento, ok) { /*verifica o ícone que está mostrando e se preenche os requisitos */
-            const icone = elemento.querySelector('.icone');
-            if (ok) {
-                elemento.classList.add('ok');
-                icone.textContent = '✓';
-            } else {
-                elemento.classList.remove('ok');
-                icone.textContent = '✗';
-            }
-        }
-
-        inputSenha.addEventListener('input', function () { /*executa toda vez que o campo senha é alterado */
-            const val = inputSenha.value;
-
-            verificarRequisito(reqTamanho, val.length >= 8); /* verifica se tem 8 caracteres */
-            verificarRequisito(reqMaiuscula, /[A-Z]/.test(val)); /*verifica se tem pelo menos uma letra maiúscula */
-            verificarRequisito(reqNumero, /[0-9]/.test(val)); /*verifica se tem ao menos um número */
-
-            if (inputConfirmar.value.length > 0) checarConfirmacao();
-        });
-
-        function checarConfirmacao() {
-            if (inputConfirmar.value === '') {
-                avisoSenhas.textContent = '';
-                avisoSenhas.className = 'aviso-senhas';
-                return; /*se estiver vazio, não mostra o aviso */
-            }
-            if (inputSenha.value === inputConfirmar.value) {
-                avisoSenhas.textContent = '✓ As senhas coincidem';
-                avisoSenhas.className = 'aviso-senhas ok';
-            } else {
-                avisoSenhas.textContent = '✗ As senhas não coincidem';
-                avisoSenhas.className = 'aviso-senhas erro';
-            }
-        }
-
-        inputConfirmar.addEventListener('input', checarConfirmacao);
-
-        // confirmação email
-        const inputEmail = document.getElementById('email');
-        const avisoEmail = document.getElementById('aviso-email');
-
-        inputEmail.addEventListener('input', function () {
-            const val = inputEmail.value;
-
-            if (val === '') {
-                avisoEmail.textContent = '';
-                avisoEmail.className = 'aviso-senhas';
-                return; /* campo vazio, não mostra nada */
+            function checarConfirmacaoEmail() {
+                if (inputConfirmarEmail.value === '') {
+                    avisoConfirmarEmail.textContent = '';
+                    avisoConfirmarEmail.className = 'aviso-senhas';
+                    return;
+                }
+                if (inputEmail.value === inputConfirmarEmail.value) {
+                    avisoConfirmarEmail.textContent = '✓ Os e-mails coincidem';
+                    avisoConfirmarEmail.className = 'aviso-senhas ok';
+                } else {
+                    avisoConfirmarEmail.textContent = '✗ Os e-mails não coincidem';
+                    avisoConfirmarEmail.className = 'aviso-senhas erro';
+                }
             }
 
-            const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val); //verifica se segue o modelo algo@algo.algo
+            inputConfirmarEmail.addEventListener('input', checarConfirmacaoEmail);
 
-            if (emailValido) {
-                avisoEmail.textContent = '✓ E-mail válido';
-                avisoEmail.className = 'aviso-senhas ok';
-            } else {
-                avisoEmail.textContent = '✗ E-mail inválido';
-                avisoEmail.className = 'aviso-senhas erro';
+            // atualiza o aviso de confirmação se a pessoa editar o email depois
+            inputEmail.addEventListener('input', function () {
+                if (inputConfirmarEmail.value.length > 0) checarConfirmacaoEmail();
+            });
+
+            const btnCriar = document.querySelector('#form-cadastro button[type="submit"]');
+            const campoNome = document.getElementById('nome');
+
+            function atualizarBotaoCadastro() {
+                const tudo_preenchido =
+                    campoNome.value.trim() !== '' &&
+                    inputEmail.value.trim() !== '' &&
+                    inputConfirmarEmail.value.trim() !== '' &&
+                    inputSenha.value.trim() !== '' &&
+                    inputConfirmar.value.trim() !== '';
+
+                if (tudo_preenchido) {
+                    btnCriar.classList.add('botao-pronto');
+                } else {
+                    btnCriar.classList.remove('botao-pronto');
+                }
             }
-        });
 
-        //verificação se emails coincidem
-        const inputConfirmarEmail = document.getElementById('confirmar_email');
-        const avisoConfirmarEmail = document.getElementById('aviso-confirmar-email');
+            campoNome.addEventListener('input', atualizarBotaoCadastro);
+            inputEmail.addEventListener('input', atualizarBotaoCadastro);
+            inputConfirmarEmail.addEventListener('input', atualizarBotaoCadastro);
+            inputSenha.addEventListener('input', atualizarBotaoCadastro);
+            inputConfirmar.addEventListener('input', atualizarBotaoCadastro);
+        </script>
 
-        function checarConfirmacaoEmail() {
-            if (inputConfirmarEmail.value === '') {
-                avisoConfirmarEmail.textContent = '';
-                avisoConfirmarEmail.className = 'aviso-senhas';
-                return;
-            }
-            if (inputEmail.value === inputConfirmarEmail.value) {
-                avisoConfirmarEmail.textContent = '✓ Os e-mails coincidem';
-                avisoConfirmarEmail.className = 'aviso-senhas ok';
-            } else {
-                avisoConfirmarEmail.textContent = '✗ Os e-mails não coincidem';
-                avisoConfirmarEmail.className = 'aviso-senhas erro';
-            }
-        }
-
-        inputConfirmarEmail.addEventListener('input', checarConfirmacaoEmail);
-
-        // atualiza o aviso de confirmação se a pessoa editar o email depois
-        inputEmail.addEventListener('input', function () {
-            if (inputConfirmarEmail.value.length > 0) checarConfirmacaoEmail();
-        });
-
-        const btnCriar = document.querySelector('#form-cadastro button[type="submit"]');
-        const campoNome = document.getElementById('nome');
-
-        function atualizarBotaoCadastro() {
-            const tudo_preenchido = campoNome.value.trim() !== ''
-                && inputEmail.value.trim() !== ''
-                && inputConfirmarEmail.value.trim() !== ''
-                && inputSenha.value.trim() !== ''
-                && inputConfirmar.value.trim() !== '';
-
-            if (tudo_preenchido) {
-                btnCriar.classList.add('botao-pronto');
-            } else {
-                btnCriar.classList.remove('botao-pronto');
-            }
-        }
-
-        campoNome.addEventListener('input', atualizarBotaoCadastro);
-        inputEmail.addEventListener('input', atualizarBotaoCadastro);
-        inputConfirmarEmail.addEventListener('input', atualizarBotaoCadastro);
-        inputSenha.addEventListener('input', atualizarBotaoCadastro);
-        inputConfirmar.addEventListener('input', atualizarBotaoCadastro);
-
-    </script>
-
-    <!-- VLibras: tradutor de conteúdo para Libras -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
+        <!-- VLibras: tradutor de conteúdo para Libras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
         </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-
-</body>
-
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+    </body>
 </html>

@@ -1,99 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    <body class="login-body">
+        <div class="login-container">
+            <img
+                src="/imgs/Logo_circular.png"
+                alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto"
+                class="logo-login-cadastro"
+            />
+            <div class="login-card">
+                <form id="form-login" action="/login" method="post">
+                    <h1 style="text-align: center; padding-bottom: 10px;">Login</h1>
 
-<body class="login-body">
-    <div class="login-container">
-        <img src="/imgs/Logo_circular.png"
-            alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto"
-            class="logo-login-cadastro">
-        <div class="login-card">
-            <form id="form-login" action="/login" method="post">
-                <h1 style="text-align: center; padding-bottom: 10px;">Login</h1>
+                    <div class="campo-email">
+                        <label for="email">E-Mail</label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Digite seu e-mail"
+                            tabindex="1"
+                            required
+                        />
+                    </div>
 
-                <div class="campo-email">
-                    <label for="email">E-Mail</label>
-                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" tabindex="1" required>
-                </div>
+                    <div class="campo-senha">
+                        <label for="senha">Senha</label>
+                        <input
+                            type="password"
+                            name="senha"
+                            id="senha"
+                            placeholder="Digite sua senha"
+                            tabindex="2"
+                            required
+                        />
+                    </div>
 
-                <div class="campo-senha">
-                    <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" tabindex="2" required>
-                </div>
+                    <div class="login-botao">
+                        <button type="reset" tabindex="7">Apagar</button>
+                        <button type="submit" tabindex="6">Entrar</button>
+                    </div>
+                </form>
 
-                <div class="login-botao">
-                    <button type="reset" tabindex="7">Apagar</button>
-                    <button type="submit" tabindex="6">Entrar</button>
-                </div>
-
-            </form>
-
-            <p>
-                Não tem conta? <a href="/cadastro" tabindex="4">Cadastre-se</a>
-            </p>
+                <p>Não tem conta? <a href="/cadastro" tabindex="4">Cadastre-se</a></p>
+            </div>
         </div>
-    </div>
 
-    <script>
-        const campos = document.querySelectorAll('input'); // pega os inputs do formulário
-        campos.forEach(function (campo, index) { // percorre cada um
-            campo.addEventListener('keydown', function (e) { // verifica se uma tecla é pressionada no campo
-                if (e.key === 'Enter') {
-                    e.preventDefault(); // se for enter, cancela o comportamento padrão (enviar formulário)
-                    const proximo = campos[index + 1]; // pega próximo input
-                    if (proximo) {
-                        proximo.focus(); //move foco pra ele
-                    } else {
-                        const form = document.getElementById('form-login');
-                        const todosCampos = Array.from(campos); // transforma a lista de campos em array para usar o .every()
-                        const tudoPreenchido = todosCampos.every(function (c) { // verifica se TODOS os campos passam na condição
-                            return c.value.trim() !== ''; // retorna true se o campo não estiver vazio
-                        });
-
-                        if (tudoPreenchido) {
-                            form.submit(); // todos preenchidos, envia
+        <script>
+            const campos = document.querySelectorAll('input'); // pega os inputs do formulário
+            campos.forEach(function (campo, index) {
+                // percorre cada um
+                campo.addEventListener('keydown', function (e) {
+                    // verifica se uma tecla é pressionada no campo
+                    if (e.key === 'Enter') {
+                        e.preventDefault(); // se for enter, cancela o comportamento padrão (enviar formulário)
+                        const proximo = campos[index + 1]; // pega próximo input
+                        if (proximo) {
+                            proximo.focus(); //move foco pra ele
                         } else {
-                            form.reportValidity(); // mostra o aviso nativo do navegador nos campos vazios
+                            const form = document.getElementById('form-login');
+                            const todosCampos = Array.from(campos); // transforma a lista de campos em array para usar o .every()
+                            const tudoPreenchido = todosCampos.every(function (c) {
+                                // verifica se TODOS os campos passam na condição
+                                return c.value.trim() !== ''; // retorna true se o campo não estiver vazio
+                            });
+
+                            if (tudoPreenchido) {
+                                form.submit(); // todos preenchidos, envia
+                            } else {
+                                form.reportValidity(); // mostra o aviso nativo do navegador nos campos vazios
+                            }
                         }
                     }
-                }
+                });
             });
-        });
 
-        const btnEntrar = document.querySelector('#form-login button[type="submit"]');
-        const inputEmail = document.getElementById('email');
-        const inputSenha = document.getElementById('senha');
+            const btnEntrar = document.querySelector('#form-login button[type="submit"]');
+            const inputEmail = document.getElementById('email');
+            const inputSenha = document.getElementById('senha');
 
-        function atualizarBotao() {
-            if (inputEmail.value.trim() !== '' && inputSenha.value.trim() !== '') { // trim() remove espaços em branco
-                btnEntrar.classList.add('botao-pronto');
-            } else {
-                btnEntrar.classList.remove('botao-pronto');
+            function atualizarBotao() {
+                if (inputEmail.value.trim() !== '' && inputSenha.value.trim() !== '') {
+                    // trim() remove espaços em branco
+                    btnEntrar.classList.add('botao-pronto');
+                } else {
+                    btnEntrar.classList.remove('botao-pronto');
+                }
             }
-        }
 
-        inputEmail.addEventListener('input', atualizarBotao);
-        inputSenha.addEventListener('input', atualizarBotao);
-    </script>
+            inputEmail.addEventListener('input', atualizarBotao);
+            inputSenha.addEventListener('input', atualizarBotao);
+        </script>
 
-    <!-- VLibras: tradutor de conteúdo para Libras -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
+        <!-- VLibras: tradutor de conteúdo para Libras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
         </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-
-</body>
-
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+    </body>
 </html>

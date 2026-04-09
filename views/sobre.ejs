@@ -1,139 +1,154 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sobre</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    <body class="home-container">
+        <!-- SKIP LINK: primeiro elemento da página, permite pular o nav e ir direto pro conteúdo -->
+        <a href="#conteudo-sobre" class="skip-link">Pular para o conteúdo</a>
+        <header class="header">
+            <div class="header-container">
+                <h1 class="logo">Base <span>5</span> automações</h1>
+                <nav class="nav" aria-label="Navegação principal">
+                    <a href="/login">Login</a>
+                    <a href="/index">Início</a>
+                    <a href="/sobre">Sobre</a>
+                    <a href="/projetos">Projetos</a>
 
-<body class="home-container">
-    <!-- SKIP LINK: primeiro elemento da página, permite pular o nav e ir direto pro conteúdo -->
-    <a href="#conteudo-sobre" class="skip-link">Pular para o conteúdo</a>
-    <header class="header">
-        <div class="header-container">
-            <h1 class="logo">Base <span>5</span> automações</h1>
-            <nav class="nav" aria-label="Navegação principal">
-                <a href="/login">Login</a>
-                <a href="/index">Início</a>
-                <a href="/sobre">Sobre</a>
-                <a href="/projetos">Projetos</a>
-
-                <% if (usuario) { %>
-                    <span style="color: #4d8fff; font-weight: bold; margin-left: 20px;">Olá, <%= usuario.nome %></span>
-                    <a href="/logout" style="color: #c0392b;">Sair</a>
+                    <% if (usuario) { %>
+                    <span style="color: #4d8fff; font-weight: bold; margin-left: 20px"
+                        >Olá, <%= usuario.nome %></span
+                    >
+                    <a href="/logout" style="color: #c0392b">Sair</a>
                     <% } else { %>
-                        <a href="/login" style="margin-left: 20px;">Login</a>
-                        <% } %>
-            </nav>
-        </div>
-    </header>
+                    <a href="/login" style="margin-left: 20px">Login</a>
+                    <% } %>
+                </nav>
+            </div>
+        </header>
 
-    <!-- id="conteudo-principal" é o destino do skip link -->
-    <main id="conteudo-sobre" class="main" tabindex="-1">
-        <!-- BANNER -->
-        <section class="secao">
-            <article class="secao-principal-sobre" aria-label="Apresentação da empresa">
-                <h2>Quem Somos</h2>
-                <p>A Base 5 Automações oferece um Sistema de Gestão Empresarial versátil e flexível, atendendo aos mais
-                    diferentes segmentos, como supermercados, mini mercados, home centers, lojas de conveniência,
-                    materiais de construção, confecções, farmácias, panificações, distribuidoras, indústrias,
-                    auto-center, oficinas mecânicas e muitas outras.</p>
-            </article>
-        </section>
-
-        <!-- SOLUÇÕES -->
-        <section class="secao-servicos" aria-label="Nossas Soluções">
-            <h2 class="servicos-titulo">Nossas Soluções</h2>
-            <div class="servicos-grid">
-                <div class="servico-card">
-                    <span class="servico-icone">💰</span>
-                    <h3>Financeiro</h3>
-                    <p>CPR, Caixas e Bancos, Cheques, Fluxo de Caixa, Carta de Crédito, Conciliação GW e Boletos.</p>
-                </div>
-                <div class="servico-card">
-                    <span class="servico-icone">📦</span>
-                    <h3>Gestão de Estoque</h3>
-                    <p>Entrada de Estoque, Saída de Estoque, Romaneio e Rotas, Expedição e Desossa.</p>
-                </div>
-                <div class="servico-card">
-                    <span class="servico-icone">🛵</span>
-                    <h3>Delivery</h3>
-                    <p>Foco no gerenciamento de produção dos pedidos e entregas.</p>
-                </div>
-                <div class="servico-card">
-                    <span class="servico-icone">🔧</span>
-                    <h3>Ordem de Serviço</h3>
-                    <p>Tipos de O.S., Técnicos, Serviços, Comissão, Saída de Estoque, Abertura e Acompanhamento.</p>
-                </div>
-                <div class="servico-card">
-                    <span class="servico-icone">📋</span>
-                    <h3>Apuração de Impostos</h3>
-                    <p>Agiliza e antecipa para o gestor os impostos gerados todo mês pela Contabilidade.</p>
-                </div>
-                <div class="servico-card">
-                    <span class="servico-icone">🏭</span>
-                    <h3>Produção</h3>
-                    <p>Ordens de Produção, Apontamento de Matérias-primas, Estimativa e Controle de Produtos Acabados.
+        <!-- id="conteudo-principal" é o destino do skip link -->
+        <main id="conteudo-sobre" class="main" tabindex="-1">
+            <!-- BANNER -->
+            <section class="secao">
+                <article class="secao-principal-sobre" aria-label="Apresentação da empresa">
+                    <h2>Quem Somos</h2>
+                    <p>
+                        A Base 5 Automações oferece um Sistema de Gestão Empresarial versátil e
+                        flexível, atendendo aos mais diferentes segmentos, como supermercados, mini
+                        mercados, home centers, lojas de conveniência, materiais de construção,
+                        confecções, farmácias, panificações, distribuidoras, indústrias,
+                        auto-center, oficinas mecânicas e muitas outras.
                     </p>
+                </article>
+            </section>
+
+            <!-- SOLUÇÕES -->
+            <section class="secao-servicos" aria-label="Nossas Soluções">
+                <h2 class="servicos-titulo">Nossas Soluções</h2>
+                <div class="servicos-grid">
+                    <div class="servico-card">
+                        <span class="servico-icone">💰</span>
+                        <h3>Financeiro</h3>
+                        <p>
+                            CPR, Caixas e Bancos, Cheques, Fluxo de Caixa, Carta de Crédito,
+                            Conciliação GW e Boletos.
+                        </p>
+                    </div>
+                    <div class="servico-card">
+                        <span class="servico-icone">📦</span>
+                        <h3>Gestão de Estoque</h3>
+                        <p>
+                            Entrada de Estoque, Saída de Estoque, Romaneio e Rotas, Expedição e
+                            Desossa.
+                        </p>
+                    </div>
+                    <div class="servico-card">
+                        <span class="servico-icone">🛵</span>
+                        <h3>Delivery</h3>
+                        <p>Foco no gerenciamento de produção dos pedidos e entregas.</p>
+                    </div>
+                    <div class="servico-card">
+                        <span class="servico-icone">🔧</span>
+                        <h3>Ordem de Serviço</h3>
+                        <p>
+                            Tipos de O.S., Técnicos, Serviços, Comissão, Saída de Estoque, Abertura
+                            e Acompanhamento.
+                        </p>
+                    </div>
+                    <div class="servico-card">
+                        <span class="servico-icone">📋</span>
+                        <h3>Apuração de Impostos</h3>
+                        <p>
+                            Agiliza e antecipa para o gestor os impostos gerados todo mês pela
+                            Contabilidade.
+                        </p>
+                    </div>
+                    <div class="servico-card">
+                        <span class="servico-icone">🏭</span>
+                        <h3>Produção</h3>
+                        <p>
+                            Ordens de Produção, Apontamento de Matérias-primas, Estimativa e
+                            Controle de Produtos Acabados.
+                        </p>
+                    </div>
                 </div>
+            </section>
+
+            <!-- ONDE ESTAMOS -->
+            <section class="secao-stats" aria-label="Onde estamos">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-numero">📍</span>
+                        <span class="stat-label">Rua dos bobos N°0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-numero">📞</span>
+                        <span class="stat-label">(82) 9 xxxx-xxxx</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-numero">30+</span>
+                        <span class="stat-label">Anos de mercado</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-numero">500+</span>
+                        <span class="stat-label">Clientes ativos</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>
+                <a href="/acessibilidade">Acessibilidade</a>
+            </p>
+        </footer>
+
+        <script>
+            const nome = localStorage.getItem('nomeUsuario');
+            const linkLogin = document.querySelector('.nav a[href="login.html"]');
+
+            if (nome && linkLogin) {
+                linkLogin.textContent = 'Olá, ' + nome;
+                linkLogin.removeAttribute('href'); // remove o link completamente
+                linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
+            }
+        </script>
+
+        <!-- VLibras: tradutor de conteúdo para Libras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
             </div>
-        </section>
-
-        <!-- ONDE ESTAMOS -->
-        <section class="secao-stats" aria-label="Onde estamos">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-numero">📍</span>
-                    <span class="stat-label">Rua dos bobos N°0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-numero">📞</span>
-                    <span class="stat-label">(82) 9 xxxx-xxxx</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-numero">30+</span>
-                    <span class="stat-label">Anos de mercado</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-numero">500+</span>
-                    <span class="stat-label">Clientes ativos</span>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <p>
-            <a href="acessibilidade.html">Acessibilidade</a>
-        </p>
-    </footer>
-
-    <script>
-        const nome = localStorage.getItem('nomeUsuario');
-        const linkLogin = document.querySelector('.nav a[href="login.html"]');
-
-        if (nome && linkLogin) {
-            linkLogin.textContent = 'Olá, ' + nome;
-            linkLogin.removeAttribute('href'); // remove o link completamente
-            linkLogin.style.cursor = 'default'; // muda o cursor de mãozinha para seta normal
-        }
-    </script>
-
-    <!-- VLibras: tradutor de conteúdo para Libras -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
         </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-
-</body>
-
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+    </body>
 </html>
