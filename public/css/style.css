@@ -110,7 +110,7 @@ button {
 .footer {
     text-align: center;
     padding: 1.5rem;
-    font-size: 1.00rem;
+    font-size: 1rem;
     border-top: 1px solid #ddd;
     margin-top: 2rem;
 }
@@ -175,16 +175,20 @@ button {
 }
 
 .secao-principal-homepage {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)), url('../imgs/homepage.jpg');
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../imgs/homepage.jpg');
 }
 .secao-principal-acessibilidade {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)), url('../imgs/acessibilidade.png');
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../imgs/acessibilidade.png');
 }
 .secao-principal-sobre {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)), url('../imgs/sobre.jpg');
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../imgs/sobre.jpg');
 }
 .secao-principal-projetos {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)), url('../imgs/bolsa.jpg');
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../imgs/bolsa.jpg');
 }
 
 /* Estilos para os títulos de todos os banners */
@@ -332,9 +336,9 @@ button {
     text-align: center;
     position: relative;
     transition: box-shadow 0.2s;
-    display: flex;         
-    flex-direction: column; 
-    align-items: center;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .plano-card:hover {
@@ -420,7 +424,9 @@ button {
     color: rgb(0, 37, 92);
     font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
 }
 
 .plano-btn:hover {
@@ -657,14 +663,18 @@ button {
 .cadastro-botao button:hover {
     background-color: rgb(76, 143, 243);
     color: #000;
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
 }
 
 .botao-pronto {
     background-color: rgb(0, 37, 92);
     color: white;
     border-color: rgb(0, 37, 92);
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 
 /* Mensagens de Validação e Requisitos de Senha */
@@ -719,7 +729,6 @@ button {
    7. RESPONSIVIDADE (Telas menores)
    ========================================================================== */
 @media (max-width: 600px) {
-
     /* HEADER */
     .header-container {
         flex-direction: column;
