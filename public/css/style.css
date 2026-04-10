@@ -547,7 +547,7 @@ button {
 /* Layout Geral das Telas */
 .login-body,
 .cadastro-body {
-    background-color: rgb(76, 143, 243);
+    background-color: rgb(0, 37, 92);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -565,6 +565,7 @@ button {
 .login-card,
 .cadastro-card {
     background-color: #fff;
+    border:5px solid rgb(76, 143, 243);
     padding: 50px;
     border-radius: 20px;
 }
@@ -592,11 +593,10 @@ button {
 
 /* Logos */
 .logo-login-cadastro {
-    width: 290px;
-    height: 150px;
-    object-fit: cover;
+    max-width: 100%;
+    height: auto;
     display: block;
-    margin: 0 auto 24px auto;
+    margin: 0 auto;
 }
 
 .logo-sobre {
