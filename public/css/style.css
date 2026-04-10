@@ -813,4 +813,8 @@ button {
     .depoimento-texto {
         font-size: 0.95rem;
     }
+    /*PROJETO*/
+    .projetos-grid {
+        grid-template-columns: 1fr;
+    }
 }
