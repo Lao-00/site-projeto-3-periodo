@@ -746,13 +746,19 @@ button {
         overflow: hidden;
     }
 
-    .secao-principal-homepage {
+    .secao-principal-homepage,
+    .secao-principal-acessibilidade,
+    .secao-principal-sobre,
+    .secao-principal-projetos {
         margin: 10px;
         padding: 30px 16px;
         width: auto;
     }
 
-    .secao-principal-homepage h2 {
+    .secao-principal-homepage h2,
+    .secao-principal-sobre h2,
+    .secao-principal-acessibilidade h2,
+    .secao-principal-projetos h2 {
         font-size: 1.3rem;
         word-break: break-word;
     }
@@ -806,43 +812,5 @@ button {
     /* CARROSSEL */
     .depoimento-texto {
         font-size: 0.95rem;
-    }
-    /*PROJETO*/
-    .secao-principal-projetos {
-        margin: 10px;
-        padding: 30px 16px;
-        width: auto;
-    }
-
-    .secao-principal-projetos h2 {
-        font-size: 1.3rem;
-    }
-
-    .projetos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /*SOBRE*/
-    .secao-principal-sobre {
-    margin: 10px;
-    padding: 30px 16px;
-    width: auto;
-    }
-
-    .secao-principal-sobre h2 {
-    font-size: 1.3rem;
-    }
-
-    .secao-principal-sobre p {
-    font-size: 1rem;
-    }
-
-    .stats-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    }
-
-    .stat-item {
-    padding: 10px;
     }
 }

@@ -10,26 +10,8 @@
     <body class="home-container">
         <!-- SKIP LINK: primeiro elemento da página, permite pular o nav e ir direto pro conteúdo -->
         <a href="#conteudo-sobre" class="skip-link">Pular para o conteúdo</a>
-        <header class="header">
-            <div class="header-container">
-                <h1 class="logo">Base <span>5</span> automações</h1>
-                <nav class="nav" aria-label="Navegação principal">
-                    <a href="/index">Início</a>
-                    <a href="/sobre">Sobre</a>
-                    <a href="/projetos">Projetos</a>
 
-                    <% if (usuario) { %>
-                    <span style="color: #4d8fff; font-weight: bold; margin-left: 20px"
-                        >Olá,
-                        <%= usuario.nome %></span
-                    >
-                    <a href="/logout" style="color: #c0392b">Sair</a>
-                    <% } else { %>
-                    <a href="/login" style="margin-left: 20px">Login</a>
-                    <% } %>
-                </nav>
-            </div>
-        </header>
+        <header class="header"><%- include('partials/navbar') %></header>
 
         <!-- id="conteudo-principal" é o destino do skip link -->
         <main id="conteudo-sobre" class="main" tabindex="-1">
@@ -122,11 +104,7 @@
             </section>
         </main>
 
-        <footer class="footer">
-            <p>
-                <a href="/acessibilidade">Acessibilidade</a>
-            </p>
-        </footer>
+        <footer class="footer"><%- include('partials/footer') %></footer>
 
         <script>
             const nome = localStorage.getItem('nomeUsuario');

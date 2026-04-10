@@ -16,26 +16,7 @@
     <body class="home-container">
         <a href="#conteudo-projetos" class="skip-link">Pular para o conteúdo</a>
 
-        <header class="header">
-            <div class="header-container">
-                <h1 class="logo">Base <span>5</span> automações</h1>
-
-                <nav class="nav" aria-label="Navegação principal">
-                    <a href="/">Início</a>
-                    <a href="/sobre">Sobre</a>
-                    <a href="/projetos">Projetos</a>
-
-                    <% if (usuario) { %>
-                    <span style="color: #4d8fff; font-weight: bold; margin-left: 20px">
-                        Olá, <%= usuario.nome %>
-                    </span>
-                    <a href="/logout" style="color: #c0392b">Sair</a>
-                    <% } else { %>
-                    <a href="/login" style="margin-left: 20px">Login</a>
-                    <% } %>
-                </nav>
-            </div>
-        </header>
+        <header class="header"><%- include('partials/navbar') %></header>
 
         <main id="conteudo-projetos" class="main" tabindex="-1">
             <section class="secao">
@@ -135,11 +116,7 @@
             </section>
         </main>
 
-        <footer class="footer">
-            <p>
-                <a href="/acessibilidade">Acessibilidade</a>
-            </p>
-        </footer>
+        <footer class="footer"><%- include('partials/footer') %></footer>
 
         <!-- VLibras -->
         <div vw class="enabled">
