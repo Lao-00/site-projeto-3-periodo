@@ -1,0 +1,34 @@
+{
+    "name": "site-projeto-3-periodo",
+    "version": "1.0.0",
+    "description": "Projeto acadêmico que simula o site institucional de uma empresa fictícia de automação financeira para empresas. Desenvolvido em HTML e CSS puro, sem frameworks ou bibliotecas externas.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Lao-00/site-projeto-3-periodo.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Lao-00/site-projeto-3-periodo/issues"
+    },
+    "homepage": "https://github.com/Lao-00/site-projeto-3-periodo#readme",
+    "dependencies": {
+        "bcrypt": "^6.0.0",
+        "dotenv": "^17.4.0",
+        "ejs": "^5.0.1",
+        "express": "^5.2.1",
+        "express-rate-limit": "^8.3.2",
+        "express-session": "^1.19.0",
+        "pg": "^8.20.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.14",
+        "prettier": "^3.8.1",
+        "prettier-plugin-ejs": "^1.0.3"
+    }
+}

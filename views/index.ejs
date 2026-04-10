@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+
+    <body class="home-container">
+        <!-- SKIP LINK: primeiro elemento da página, permite pular o nav e ir direto pro conteúdo -->
+        <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
+
+        <header class="header"><%- include('partials/navbar') %></header>
+
+        <!-- id="conteudo-principal" é o destino do skip link -->
+        <main id="conteudo-principal" class="main" tabindex="-1">
+            <section class="secao" aria-label="Apresentação">
+                <article class="secao-principal-homepage">
+                    <h2>HÁ 30 ANOS CUIDANDO DO SEU FINANCEIRO</h2>
+                    <div class="carrossel" aria-live="polite">
+                        <div class="depoimento ativo">
+                            <p class="depoimento-texto">
+                                "Reduzimos 80% do tempo gasto com conciliação financeira. Melhor
+                                investimento que fizemos."
+                            </p>
+                            <span class="depoimento-autor">— Carlos Mendes, CFO da LogTech</span>
+                        </div>
+                        <div class="depoimento">
+                            <p class="depoimento-texto">
+                                "A integração com nosso ERP foi simples e o suporte foi impecável
+                                durante todo o processo."
+                            </p>
+                            <span class="depoimento-autor"
+                                >— Ana Paula, Diretora Financeira da Nexum</span
+                            >
+                        </div>
+                        <div class="depoimento">
+                            <p class="depoimento-texto">
+                                "Em 3 meses já tínhamos retorno sobre o investimento. Os relatórios
+                                automáticos mudaram nossa rotina."
+                            </p>
+                            <span class="depoimento-autor">— Ricardo Torres, CEO da Fortis</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- SERVIÇOS -->
+            <section class="secao-servicos" aria-label="Nossos Serviços">
+                <h2 class="servicos-titulo">Nossos Serviços</h2>
+                <div class="servicos-grid">
+                    <div class="servico-card">
+                        <span class="servico-icone">💳</span>
+                        <h3>Automação de Pagamentos</h3>
+                        <p>
+                            Gerencie cobranças, boletos e transferências de forma automática, sem
+                            intervenção manual.
+                        </p>
+                    </div>
+                    <div class="servico-card">
+                        <span class="servico-icone">📊</span>
+                        <h3>Relatórios Financeiros</h3>
+                        <p>
+                            Visualize a saúde financeira da sua empresa em tempo real com dashboards
+                            intuitivos.
+                        </p>
+                    </div>
+                    <div class="servico-card">
+                        <span class="servico-icone">🔗</span>
+                        <h3>Integração com ERPs</h3>
+                        <p>
+                            Conecte nosso sistema ao seu ERP favorito e elimine retrabalho e erros
+                            de digitação.
+                        </p>
+                    </div>
+                    <div class="servico-card">
+                        <span class="servico-icone">🔒</span>
+                        <h3>Segurança e Conformidade</h3>
+                        <p>
+                            Seus dados protegidos com criptografia de ponta e em conformidade com as
+                            normas do Banco Central.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ESTATÍSTICAS -->
+            <section class="secao-stats" aria-label="Estatísticas">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-numero">500+</span>
+                        <span class="stat-label">Clientes ativos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-numero">R$ 10bi</span>
+                        <span class="stat-label">Processados por ano</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-numero">99,9%</span>
+                        <span class="stat-label">Uptime garantido</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-numero">30 anos</span>
+                        <span class="stat-label">De experiência no mercado</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PLANOS -->
+            <section class="secao-planos" aria-label="Planos">
+                <h2 class="planos-titulo">Planos</h2>
+                <p class="planos-subtitulo">Escolha o plano ideal para o seu negócio</p>
+                <div class="planos-grid">
+                    <div class="plano-card">
+                        <h3>Básico</h3>
+                        <div class="plano-preco">
+                            <span class="preco-valor">R$ 299</span>
+                            <span class="preco-periodo">/mês</span>
+                        </div>
+                        <ul class="plano-itens">
+                            <li>✓ Até 3 usuários</li>
+                            <li>✓ Automação de pagamentos</li>
+                            <li>✓ Relatórios mensais</li>
+                            <li class="indisponivel" aria-label="Não incluso: Integração com ERP">
+                                ✗ Integração com ERP
+                            </li>
+                            <li class="indisponivel" aria-label="Não incluso: Suporte prioritário">
+                                ✗ Suporte prioritário
+                            </li>
+                        </ul>
+                        <a
+                            href="/comprar?plano=Basico"
+                            class="plano-btn"
+                            style="display: block; text-align: center"
+                            >Contratar</a
+                        >
+                    </div>
+
+                    <div class="plano-card plano-destaque">
+                        <span class="plano-tag">Mais popular</span>
+                        <h3>Profissional</h3>
+                        <div class="plano-preco">
+                            <span class="preco-valor">R$ 699</span>
+                            <span class="preco-periodo">/mês</span>
+                        </div>
+                        <ul class="plano-itens">
+                            <li>✓ Até 10 usuários</li>
+                            <li>✓ Automação de pagamentos</li>
+                            <li>✓ Relatórios em tempo real</li>
+                            <li>✓ Integração com ERP</li>
+                            <li class="indisponivel">✗ Suporte prioritário</li>
+                        </ul>
+                        <a
+                            href="/comprar?plano=Profissional"
+                            class="plano-btn"
+                            style="display: block; text-align: center"
+                            >Contratar</a
+                        >
+                    </div>
+
+                    <div class="plano-card">
+                        <h3>Enterprise</h3>
+                        <div class="plano-preco">
+                            <span class="preco-valor">R$ 1.499</span>
+                            <span class="preco-periodo">/mês</span>
+                        </div>
+                        <ul class="plano-itens">
+                            <li>✓ Usuários ilimitados</li>
+                            <li>✓ Automação de pagamentos</li>
+                            <li>✓ Relatórios em tempo real</li>
+                            <li>✓ Integração com ERP</li>
+                            <li>✓ Suporte prioritário 24/7</li>
+                        </ul>
+                        <a
+                            href="/comprar?plano=Enterprise"
+                            class="plano-btn"
+                            style="display: block; text-align: center"
+                            >Contratar</a
+                        >
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer"><%- include('partials/footer') %></footer>
+
+        <script>
+            const depoimentos = document.querySelectorAll('.depoimento'); //pega todos os depoimentos e guarda
+            let atual = 0; //guarda qual depoimento está sendo exibido no momento
+            setInterval(function () {
+                // realiza uma função a cada tantos milisegundos
+                depoimentos[atual].classList.remove('ativo'); // remove o depoimento atual
+                atual = (atual + 1) % depoimentos.length; // definine o próximo como atual, quando chega a 0 volta ao íncio
+                depoimentos[atual].classList.add('ativo'); // mostra o próximo depoimetno
+            }, 5000);
+        </script>
+
+        <!-- VLibras: tradutor de conteúdo para Libras -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+    </body>
+</html>
