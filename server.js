@@ -38,15 +38,7 @@ const verificarLogin = (req, res, next) => {
     if (req.session.usuario) {
         next();
     } else {
-        res.status(403).send(`
-            <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
-                <h1>Ops! Acesso Negado.</h1>
-                <p>Você precisa fazer login para acessar a área de pagamento.</p>
-                <img src="https://http.dog/403.jpg" alt="Cachorro de guarda - Erro 403" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 100%; max-width: 750px; height: auto; margin: 20px auto; display: block;">
-                <br>
-                <a href="/login" style="display: inline-block; padding: 12px 24px; background-color: rgb(0, 37, 92); color: white; text-decoration: none; border-radius: 20px;">Ir para o Login</a>
-            </div>
-        `);
+        res.redirect('/login?aviso=restrito');
     }
 };
 
@@ -62,13 +54,7 @@ const emManutencao = false; // Quando precisar atualizar  o banco de dados, mude
 
 app.use((req, res, next) => {
     if (emManutencao) {
-        res.status(503).send(`
-            <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
-                <h1>Voltamos já! (Erro 503)</h1>
-                <p>O serviço está temporariamente indisponível. Nossa cabra de engenharia está consertando os cabos do servidor.</p>
-                <img src="https://httpgoats.com/503.jpg" alt="Cabra em manutenção - Erro 503" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 100%; max-width: 750px; height: auto; margin: 20px auto; display: block;">
-            </div>
-        `);
+        res.status(503).render('erro503');
     } else {
         next(); // Se não estiver em manutenção, deixa o site funcionar normal
     }
@@ -81,15 +67,7 @@ const limitadorGeral = rateLimit({
     max: 5, // Limite: bloqueia no 6º acesso dentro do mesmo minuto
     handler: (req, res) => {
         // Envia o HTML com a Cabra
-        res.status(429).send(`
-            <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
-                <h1>Ops! Vai com calma aí. (Erro 429)</h1>
-                <p>Você fez muitas tentativas seguidas. A nossa cabra de segurança bloqueou o acesso.<br>Respire um pouco e tente novamente daqui a 1 minuto.</p>
-                <img src="https://httpgoats.com/429.jpg" alt="Cabra de guarda - Erro 429" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 100%; max-width: 750px; height: auto; margin: 20px auto; display: block;">
-                <br>
-                <a href="/" style="display: inline-block; padding: 12px 24px; background-color: rgb(0, 37, 92); color: white; text-decoration: none; border-radius: 20px;">Voltar para a Home</a>
-            </div>
-        `);
+        res.status(429).render('erro429');
     },
 });
 // Aplica o limitador EXCLUSIVAMENTE na rota de login (para proteger senhas)
@@ -113,11 +91,13 @@ app.get('/projetos', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    const avisoUrl = req.query.aviso;
+    res.render('login', { aviso: avisoUrl });
 });
 
 app.get('/cadastro', (req, res) => {
-    res.render('cadastro');
+    const avisoUrl = req.query.aviso;
+    res.render('cadastro', { aviso: avisoUrl });
 });
 
 app.get('/comprar', verificarLogin, (req, res) => {
@@ -138,7 +118,14 @@ app.post('/cadastro', async (req, res) => {
         req.session.usuario = result.rows[0];
         res.redirect('/');
     } catch (err) {
-        res.status(500).send('Erro ao cadastrar. Talvez o e-mail já exista.');
+        // Verifica se o erro no PostgreSQL é o de e-mail duplicado (código 23505)
+        if (err.code === '23505') {
+            return res.redirect('/cadastro?aviso=duplicado');
+        }
+
+        // Se não for e-mail duplicado, então é um erro crítico (banco caiu, etc)
+        console.error('Erro crítico no cadastro:', err);
+        res.status(500).render('erro500');
     }
 });
 
@@ -155,26 +142,11 @@ app.post('/login', async (req, res) => {
                 return res.redirect('/');
             }
         }
-        // Substituindo o res.send() simples pela tela do Erro 401
-        res.status(401).send(`
-            <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
-                <h1>Ops! Acesso Não Autorizado (Erro 401)</h1>
-                <p>E-mail ou senha incorretos. O gato da segurança não te reconheceu!</p>
-                <img src="https://http.cat/401.jpg" alt="Gato - Erro 401" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 100%; max-width: 750px; height: auto; margin: 20px auto; display: block;">
-                <br>
-                <a href="/login" style="display: inline-block; padding: 12px 24px; background-color: rgb(0, 37, 92); color: white; text-decoration: none; border-radius: 20px;">Tentar Novamente</a>
-            </div>
-        `);
+        // Redirecionamento com aviso
+        res.redirect('/login?aviso=invalido');
     } catch (err) {
-        res.status(500).send(`
-            <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
-                <h1>Ops! Erro 500.</h1>
-                <p>Nosso servidor tropeçou nos cabos ou o banco de dados está tirando uma soneca.</p>
-                <img src="https://http.dog/500.jpg" alt="Cachorro - Erro 500" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 100%; max-width: 750px; height: auto; margin: 20px auto; display: block;">
-                <br>
-                <a href="/" style="display: inline-block; padding: 12px 24px; background-color: rgb(0, 37, 92); color: white; text-decoration: none; border-radius: 20px;">Voltar para a Home</a>
-            </div>
-        `);
+        console.error('Erro crítico', err);
+        res.status(500).render('erro500');
     }
 });
 
@@ -197,15 +169,7 @@ app.post('/comprar', verificarLogin, async (req, res) => {
 
     // Se o plano estiver vazio ou não for um dos três planos oficiais:
     if (!plano || !planosValidos.includes(plano)) {
-        return res.status(400).send(`
-            <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
-                <h1>Ops! Requisição Inválida (Erro 400)</h1>
-                <p>Os dados enviados estão incorretos ou foram adulterados. Não tente enganar o sistema!</p>
-                <img src="https://http.dog/400.jpg" alt="Cachorro julgador - Erro 400" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 100%; max-width: 750px; height: auto; margin: 20px auto; display: block;">
-                <br>
-                <a href="/" style="display: inline-block; padding: 12px 24px; background-color: rgb(0, 37, 92); color: white; text-decoration: none; border-radius: 20px;">Voltar aos Planos</a>
-            </div>
-        `);
+        return res.status(400).render('erro400');
     }
     // =======================================================================
 
@@ -236,32 +200,9 @@ app.post('/comprar', verificarLogin, async (req, res) => {
     }
 });
 
-// =======================================================================
-// BLOQUEIO DE MÉTODO (Erro 405) - Para quem tentar usar PUT, DELETE ou acessar /comprar de forma errada
-// =======================================================================
-app.all('/comprar', (req, res) => {
-    res.status(405).send(`
-        <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
-            <h1>Você não pode fazer isso! (Erro 405)</h1>
-            <p>O método HTTP que você tentou usar não é permitido nesta rota da Base 5 Automações.</p>
-            <img src="https://http.dog/405.jpg" alt="Cachorro bloqueando - Erro 405" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 100%; max-width: 750px; height: auto; margin: 20px auto; display: block;">
-            <br>
-            <a href="/" style="display: inline-block; padding: 12px 24px; background-color: rgb(0, 37, 92); color: white; text-decoration: none; border-radius: 20px;">Voltar para a Home</a>
-        </div>
-    `);
-});
-
 // ROTA 404 (Página Não Encontrada) - Deve ser sempre a última rota do arquivo!
 app.use((req, res) => {
-    res.status(404).send(`
-        <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif; color: rgb(0, 37, 92);">
-            <h1>Ops! Página não encontrada.</h1>
-            <p>O link que você tentou acessar não existe na Base 5 Automações.</p>
-            <img src="https://http.dog/404.jpg" alt="Cachorro cavando buraco - Erro 404" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 100%; max-width: 750px; height: auto; margin: 20px auto; display: block;">
-            <br>
-            <a href="/" style="display: inline-block; padding: 12px 24px; background-color: rgb(0, 37, 92); color: white; text-decoration: none; border-radius: 20px;">Voltar para a Home</a>
-        </div>
-    `);
+    res.status(404).render('erro404');
 });
 
 // Iniciar o servidor

@@ -1,73 +1,131 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cadastro</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body class="cadastro-body">
-    <div class="cadastro-container">
-        <img src="/imgs/Logo_circular.png"
-            alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto"
-            class="logo-login-cadastro">
-        <div class="cadastro-card">
-            <form id="form-cadastro" action="/cadastro" method="post">
-                <h1>Crie sua conta</h1>
-
-                <div class="campo-nome">
-                    <label for="nome">Nome</label>
-                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome" tabindex="1" required>
+    <body class="cadastro-body">
+        <div class="cadastro-container">
+            <img
+                src="/imgs/Logo_circular.png"
+                alt="Imagem com fundo branco com os dizeres B5 de forma estilizada e Base 5 em azul e automações em preto"
+                class="logo-login-cadastro"
+            />
+            <div class="cadastro-card">
+                <% if (aviso === 'duplicado') { %>
+                <div
+                    style="
+                        width: 100%;
+                        box-sizing: border-box;
+                        background-color: #f8d7da;
+                        color: #721c24;
+                        padding: 12px;
+                        border-radius: 8px;
+                        border: 1px solid #f5c6cb;
+                        margin-bottom: 20px;
+                        text-align: center;
+                        font-size: 0.9rem;
+                    "
+                >
+                    <strong>Erro de Cadastro:</strong>
+                    Este e-mail já está registado no sistema.
                 </div>
+                <% } %>
+                <form id="form-cadastro" action="/cadastro" method="post">
+                    <h1>Crie sua conta</h1>
 
-                <div class="campo-email">
-                    <label for="email">E-Mail</label>
-                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" tabindex="2" required>
-                    <p class="aviso-senhas" id="aviso-email" aria-live="polite"></p>
-                    <!-- O JS escreve conforme a pessoa digita-->
-                </div>
+                    <div class="campo-nome">
+                        <label for="nome">Nome</label>
+                        <input
+                            type="text"
+                            name="nome"
+                            id="nome"
+                            placeholder="Digite seu nome"
+                            tabindex="1"
+                            required
+                        />
+                    </div>
 
-                <div class="campo-confirmar-email">
-                    <label for="confirmar_email">Confirme seu E-Mail</label>
-                    <input type="email" name="confirmar_email" id="confirmar_email" placeholder="Confirme seu e-mail"
-                        tabindex="3" required>
-                    <p class="aviso-senhas" id="aviso-confirmar-email" aria-live="polite"></p>
-                </div>
+                    <div class="campo-email">
+                        <label for="email">E-Mail</label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Digite seu e-mail"
+                            tabindex="2"
+                            required
+                        />
+                        <p class="aviso-senhas" id="aviso-email" aria-live="polite"></p>
+                        <!-- O JS escreve conforme a pessoa digita-->
+                    </div>
 
-                <div class="campo-senha">
-                    <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" tabindex="4" required>
-                    <ul class="requisitos-senha" id="requisitos-senha">
-                        <li id="req-tamanho" class="requisito">
-                            <span class="icone">✗</span> 8 caracteres
-                        </li>
-                        <li id="req-maiuscula" class="requisito">
-                            <span class="icone">✗</span> 1 letra maiúscula
-                        </li>
-                        <li id="req-numero" class="requisito">
-                            <span class="icone">✗</span> 1 número
-                        </li>
-                    </ul>
-                </div>
+                    <div class="campo-confirmar-email">
+                        <label for="confirmar_email">Confirme seu E-Mail</label>
+                        <input
+                            type="email"
+                            name="confirmar_email"
+                            id="confirmar_email"
+                            placeholder="Confirme seu e-mail"
+                            tabindex="3"
+                            required
+                        />
+                        <p class="aviso-senhas" id="aviso-confirmar-email" aria-live="polite"></p>
+                    </div>
 
-                <div class="campo-confirmar-senha">
-                    <label for="confirmar_senha">Confirme sua senha</label>
-                    <input type="password" name="confirmar_senha" id="confirmar_senha" placeholder="Confirme sua senha"
-                        tabindex="5" required>
-                    <p class="aviso-senhas" id="aviso-senhas" aria-live="polite"></p>
-                    <!-- O JS escreve conforme a pessoa digita-->
-                </div>
+                    <div class="campo-senha">
+                        <label for="senha">Senha</label>
+                        <input
+                            type="password"
+                            name="senha"
+                            id="senha"
+                            placeholder="Digite sua senha"
+                            tabindex="4"
+                            required
+                        />
+                        <ul class="requisitos-senha" id="requisitos-senha">
+                            <li id="req-tamanho" class="requisito">
+                                <span class="icone">✗</span>
+                                8 caracteres
+                            </li>
+                            <li id="req-maiuscula" class="requisito">
+                                <span class="icone">✗</span>
+                                1 letra maiúscula
+                            </li>
+                            <li id="req-numero" class="requisito">
+                                <span class="icone">✗</span>
+                                1 número
+                            </li>
+                        </ul>
+                    </div>
 
-                <div class="cadastro-botao">
-                    <button type="reset" tabindex="7">Apagar</button>
-                    <button type="submit" tabindex="6">Criar</button>
-                </div>
-            </form>
-            <p>
-                Já tem conta? <a href="/login" tabindex="8">Login</a>
-            </p>
+                    <div class="campo-confirmar-senha">
+                        <label for="confirmar_senha">Confirme sua senha</label>
+                        <input
+                            type="password"
+                            name="confirmar_senha"
+                            id="confirmar_senha"
+                            placeholder="Confirme sua senha"
+                            tabindex="5"
+                            required
+                        />
+                        <p class="aviso-senhas" id="aviso-senhas" aria-live="polite"></p>
+                        <!-- O JS escreve conforme a pessoa digita-->
+                    </div>
+
+                    <div class="cadastro-botao">
+                        <button type="reset" tabindex="7">Apagar</button>
+                        <button type="submit" tabindex="6">Criar</button>
+                    </div>
+                </form>
+                <p>
+                    Já tem conta?
+                    <a href="/login" tabindex="8">Login</a>
+                </p>
+            </div>
         </div>
 
         <script>

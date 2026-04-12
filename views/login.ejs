@@ -15,6 +15,43 @@
                 class="logo-login-cadastro"
             />
             <div class="login-card">
+                <% if (aviso === 'restrito') { %>
+                <div
+                    style="
+                        width: 100%;
+                        box-sizing: border-box;
+                        background-color: #fff3cd;
+                        color: #856404;
+                        padding: 12px;
+                        border-radius: 8px;
+                        border: 1px solid #ffeeba;
+                        margin-bottom: 20px;
+                        text-align: center;
+                        font-size: 0.9rem;
+                    "
+                >
+                    <strong>Acesso Restrito:</strong>
+                    Faça login para acessar a área de pagamento.
+                </div>
+                <% } else if (aviso === 'invalido') { %>
+                <div
+                    style="
+                        width: 100%;
+                        box-sizing: border-box;
+                        background-color: #f8d7da;
+                        color: #721c24;
+                        padding: 12px;
+                        border-radius: 8px;
+                        border: 1px solid #f5c6cb;
+                        margin-bottom: 20px;
+                        text-align: center;
+                        font-size: 0.9rem;
+                    "
+                >
+                    <strong>Erro de Autenticação:</strong>
+                    E-mail ou senha incorretos.
+                </div>
+                <% } %>
                 <form id="form-login" action="/login" method="post">
                     <h1 style="text-align: center; padding-bottom: 10px">Login</h1>
 
@@ -48,7 +85,10 @@
                     </div>
                 </form>
 
-                <p>Não tem conta? <a href="/cadastro" tabindex="4">Cadastre-se</a></p>
+                <p>
+                    Não tem conta?
+                    <a href="/cadastro" tabindex="4">Cadastre-se</a>
+                </p>
             </div>
         </div>
 

@@ -814,3 +814,75 @@ button {
         font-size: 0.95rem;
     }
 }
+
+/* ==========================================================================
+   8. PÁGINAS DE ERRO
+   ========================================================================== */
+.erro-container {
+    text-align: center;
+    margin-top: 100px;
+    color: rgb(0, 37, 92);
+    padding: 20px;
+}
+
+.erro-container p {
+    font-size: 1rem;
+}
+
+.erro-imagem {
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+}
+
+.erro-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-principal {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgb(0, 37, 92);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-principal:hover {
+    background-color: rgb(0, 52, 130);
+}
+
+.btn-secundario {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: transparent;
+    color: rgb(0, 37, 92);
+    text-decoration: none;
+    border-radius: 20px;
+    border: 2px solid rgb(0, 37, 92);
+    font-weight: bold;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
+}
+
+.btn-secundario:hover {
+    background-color: rgb(0, 37, 92);
+    color: white;
+}
+
+.erro-incidente {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 30px;
+}
