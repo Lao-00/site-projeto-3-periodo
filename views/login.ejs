@@ -80,14 +80,14 @@
                     </div>
 
                     <div class="login-botao">
-                        <button type="reset" tabindex="7">Apagar</button>
-                        <button type="submit" tabindex="6">Entrar</button>
+                        <button type="reset" tabindex="3">Apagar</button>
+                        <button type="submit" tabindex="4">Entrar</button>
                     </div>
                 </form>
 
                 <p>
                     Não tem conta?
-                    <a href="/cadastro" tabindex="4">Cadastre-se</a>
+                    <a href="/cadastro" tabindex="5">Cadastre-se</a>
                 </p>
             </div>
         </div>
@@ -112,7 +112,7 @@
                             });
 
                             if (tudoPreenchido) {
-                                form.submit(); // todos preenchidos, envia
+                                form.requestSubmit(); // todos preenchidos, envia
                             } else {
                                 form.reportValidity(); // mostra o aviso nativo do navegador nos campos vazios
                             }
