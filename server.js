@@ -138,7 +138,11 @@ app.post('/login', async (req, res) => {
             const usuario = result.rows[0];
             const senhaValida = await bcrypt.compare(senha, usuario.senha);
             if (senhaValida) {
-                req.session.usuario = { id: usuario.id, nome: usuario.nome };
+                req.session.usuario = {
+                    id: usuario.id,
+                    nome: usuario.nome,
+                    is_admin: usuario.is_admin,
+                };
                 return res.redirect('/');
             }
         }
@@ -197,6 +201,29 @@ app.post('/comprar', verificarLogin, async (req, res) => {
             mensagem:
                 'Não foi possível processar seu pedido no momento. Tente novamente mais tarde.',
         });
+    }
+});
+
+app.get('/pedidos', verificarLogin, async (req, res) => {
+    const { id, is_admin } = req.session.usuario;
+    try {
+        let sql;
+        let params = [];
+
+        if (is_admin) {
+            // Admin vê tudo de todas as colunas
+            sql = 'SELECT * FROM pedidos ORDER BY data_pedido DESC';
+        } else {
+            // Usuário comum vê só o dele
+            sql = 'SELECT * FROM pedidos WHERE usuario_id = $1 ORDER BY data_pedido DESC';
+            params = [id];
+        }
+
+        const result = await pool.query(sql, params);
+        res.render('pedidos', { listaPedidos: result.rows, eAdmin: is_admin });
+    } catch (err) {
+        console.error(err);
+        res.status(500).render('erro500');
     }
 });
 

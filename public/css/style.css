@@ -817,6 +817,11 @@ button {
     .projetos-grid {
         grid-template-columns: 1fr;
     }
+    /* PEDIDOS  */
+    .pedidos-container {
+        margin: 20px 10px;
+        padding: 20px 15px;
+    }
 }
 
 /* ==========================================================================
@@ -889,4 +894,115 @@ button {
     font-size: 0.75rem;
     color: #888;
     margin-top: 30px;
+}
+
+/* ==========================================================================
+   9. PÁGINA DE PEDIDOS (DASHBOARD)
+   ========================================================================== */
+.pedidos-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 37, 92, 0.08); /* Sombra suave para destacar */
+}
+
+.pedidos-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.pedidos-header h1 {
+    color: rgb(0, 37, 92);
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.pedidos-header p {
+    color: #555;
+    font-size: 1.05rem;
+}
+
+/* Container da tabela com scroll horizontal para telas pequenas */
+.tabela-pedidos {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.tabela-pedidos table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; /* Impede que a tabela esmague muito em telas menores */
+}
+
+.tabela-pedidos th,
+.tabela-pedidos td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-pedidos th {
+    background-color: rgb(0, 37, 92);
+    color: white;
+    font-weight: 600;
+}
+
+.tabela-pedidos tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-pedidos tr:hover {
+    background-color: #f9fbff; /* Efeito hover sutil nas linhas */
+}
+
+/* Badges e Status */
+.badge-plano {
+    background-color: #e6efff;
+    color: rgb(0, 37, 92);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.status-ok {
+    color: #27ae60; /* Verde de sucesso da Base 5 */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-ok::before {
+    content: '✓';
+}
+
+/* Estado vazio (Quando não há pedidos) */
+.aviso-vazio {
+    text-align: center;
+    padding: 50px 20px;
+    color: #555;
+}
+
+.aviso-vazio p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.btn-primario {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgb(0, 37, 92);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-primario:hover {
+    background-color: rgb(0, 52, 130);
 }

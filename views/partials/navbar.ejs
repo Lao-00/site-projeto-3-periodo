@@ -8,7 +8,9 @@
         <a href="/">Início</a>
         <a href="/sobre">Sobre</a>
         <a href="/projetos">Projetos</a>
-
+        <% if (usuario) { %>
+        <a href="/pedidos"><%= usuario.is_admin ? 'Gerenciar Pedidos' : 'Meus Pedidos' %></a>
+        <% } %>
         <% if (usuario) { %>
         <span style="color: #4d8fff; font-weight: bold; margin-left: 20px">
             Olá, <%= usuario.nome %>

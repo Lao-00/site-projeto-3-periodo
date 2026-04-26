@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Meus pedidos</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <header class="header"><%- include('partials/navbar') %></header>
+
+        <main class="pedidos-container">
+            <header class="pedidos-header">
+                <h1>
+                    <%= eAdmin ? 'Gerenciamento Geral de Pedidos' : 'Seu Histórico de Compras' %>
+                </h1>
+                <p>
+                    Olá,
+                    <strong><%= usuario.nome %></strong>
+                    !
+                    <%= eAdmin ? 'Abaixo estão todas as transações do sistema.' : 'Aqui estão os detalhes dos seus planos contratados.' %>
+                </p>
+            </header>
+
+            <section class="tabela-pedidos">
+                <% if (listaPedidos.length > 0) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Plano</th>
+                            <% if (eAdmin) { %>
+                            <th>Cliente (E-mail)</th>
+                            <th>Cartão</th>
+                            <% } %>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% listaPedidos.forEach(pedido => { %>
+                        <tr>
+                            <td>
+                                #
+                                <%= pedido.id %>
+                            </td>
+                            <td><%= new Date(pedido.data_pedido).toLocaleDateString('pt-BR') %></td>
+                            <td>
+                                <span class="badge-plano">
+                                    <%= pedido.plano === 'Basico' ? 'Básico' : pedido.plano %>
+                                </span>
+                            </td>
+
+                            <% if (eAdmin) { %>
+                            <td>
+                                <%= pedido.nome_cliente %>
+                                <br />
+                                <small><%= pedido.email_cliente %></small>
+                            </td>
+                            <td>
+                                ****
+                                <%= pedido.cartao.slice(-4) %>
+                            </td>
+                            <% } %>
+
+                            <td><span class="status-ok">Concluído</span></td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                <div class="aviso-vazio">
+                    <p>Nenhum pedido encontrado no momento.</p>
+                    <a href="/#planos" class="btn-primario">Ver Planos Disponíveis</a>
+                </div>
+                <% } %>
+            </section>
+        </main>
+
+        <footer class="footer"><%- include('partials/footer') %></footer>
+    </body>
+</html>
