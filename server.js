@@ -90,6 +90,10 @@ app.get('/projetos', (req, res) => {
     res.render('projetos');
 });
 
+app.get('/perfil', (req, res) => {
+    res.render('perfil');
+})
+
 app.get('/login', (req, res) => {
     const avisoUrl = req.query.aviso;
     res.render('login', { aviso: avisoUrl });
@@ -223,6 +227,32 @@ app.get('/pedidos', verificarLogin, async (req, res) => {
         res.render('pedidos', { listaPedidos: result.rows, eAdmin: is_admin });
     } catch (err) {
         console.error(err);
+        res.status(500).render('erro500');
+    }
+});
+
+//ROTA DE PERFIL!
+app.get('/perfil', verificarLogin, async (req, res) => {
+    const usuarioId = req.session.usuario.id;
+
+    try {
+        const usuarioQuery = 'SELECT nome, email, cpf FROM usuarios WHERE id = $1';
+        const usuarioResult = await pool.query(usuarioQuery, [usuarioId]);
+        const dadosUsuario = usuarioResult.rows[0];
+
+        const pedidosQuery = 'SELECT COUNT(*) FROM pedidos WHERE usuario_id = $1';
+        const pedidosResult = await pool.query(pedidosQuery, [usuarioId]);
+        const totalCompras = pedidosResult.rows[0].count;
+
+        res.render('perfil', {
+            nome: dadosUsuario.nome,
+            email: dadosUsuario.email,
+            cpf: dadosUsuario.cpf || 'Não cadastrado',
+            compras: totalCompras
+        });
+
+    } catch (err) {
+        console.error('Erro crítico ao carregar o perfil:', err);
         res.status(500).render('erro500');
     }
 });
