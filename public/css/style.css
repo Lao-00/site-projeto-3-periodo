@@ -640,7 +640,7 @@ button {
     border-width: 1px;
     border-radius: 5px;
     padding: 8px;
-    width: 100%; 
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -846,7 +846,7 @@ button {
     .login-botao,
     .cadastro-botao {
         justify-content: center;
-        gap: 30px; 
+        gap: 30px;
     }
 
     .login-card,
@@ -857,7 +857,7 @@ button {
     .logo-login-cadastro {
         width: 60%;
         height: auto;
-        margin: 0 auto
+        margin: 0 auto;
     }
 
     /* CARROSSEL */

@@ -113,13 +113,13 @@ app.get('/perfil', verificarLogin, async (req, res) => {
 
         // 2. Busca os dados completos do usuário no banco de dados
         const usuarioQuery = await pool.query(
-            'SELECT nome, email, cpf FROM usuarios WHERE id = $1', 
+            'SELECT nome, email, cpf FROM usuarios WHERE id = $1',
             [usuarioId]
         );
 
         // 3. Busca as compras/pedidos feitos por esse usuário
         const pedidosQuery = await pool.query(
-            'SELECT plano, data_pedido FROM pedidos WHERE usuario_id = $1 ORDER BY data_pedido DESC', 
+            'SELECT plano, data_pedido FROM pedidos WHERE usuario_id = $1 ORDER BY data_pedido DESC',
             [usuarioId]
         );
 
@@ -132,11 +132,10 @@ app.get('/perfil', verificarLogin, async (req, res) => {
         const listaPedidos = pedidosQuery.rows;
 
         // 4. Renderiza a página enviando os dados do usuário e dos pedidos
-        res.render('perfil', { 
+        res.render('perfil', {
             dados: dadosUsuario,
-            pedidos: listaPedidos
+            pedidos: listaPedidos,
         });
-
     } catch (err) {
         console.error('Erro ao carregar perfil:', err);
         res.status(500).render('erro500');
@@ -154,9 +153,9 @@ app.get('/comprar', verificarLogin, (req, res) => {
 });
 
 app.get('/recuperar-senha', (req, res) => {
-    res.render('recuperacao', { 
-        etapa: 'solicitar', 
-        aviso: req.query.aviso || null 
+    res.render('recuperacao', {
+        etapa: 'solicitar',
+        aviso: req.query.aviso || null,
     });
 });
 
