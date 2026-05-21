@@ -117,24 +117,16 @@ app.get('/perfil', verificarLogin, async (req, res) => {
             [usuarioId]
         );
 
-        // 3. Busca as compras/pedidos feitos por esse usuário
-        const pedidosQuery = await pool.query(
-            'SELECT plano, data_pedido FROM pedidos WHERE usuario_id = $1 ORDER BY data_pedido DESC', 
-            [usuarioId]
-        );
-
         // Se por algum motivo o usuário não for encontrado no banco
         if (usuarioQuery.rows.length === 0) {
             return res.redirect('/logout');
         }
 
         const dadosUsuario = usuarioQuery.rows[0];
-        const listaPedidos = pedidosQuery.rows;
 
-        // 4. Renderiza a página enviando os dados do usuário e dos pedidos
+        // 3. Renderiza a página enviando APENAS os dados do usuário
         res.render('perfil', { 
-            dados: dadosUsuario,
-            pedidos: listaPedidos
+            dados: dadosUsuario
         });
 
     } catch (err) {

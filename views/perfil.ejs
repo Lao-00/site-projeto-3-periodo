@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: rgb(0, 37, 92);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,9 +36,9 @@
         .perfil-container {
             background-color: #ffffff;
             padding: 30px;
-            border-radius: 8px;
+            border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            width: 20%;
             max-width: 350px;
             box-sizing: border-box;
         }
@@ -46,8 +46,9 @@
         h2 {
             margin-top: 0;
             color: #333333;
-            border-bottom: 2px solid #007BFF;
+            border-bottom: 3px solid #007BFF;
             padding-bottom: 8px;
+            text-align: center;
         }
 
         .perfil-info {
@@ -58,14 +59,14 @@
             font-weight: bold;
             color: #666666;
             display: block;
-            font-size: 0.9em;
-            margin-top: 10px;
+            font-size: 1.1em;
+            margin-top: 15px;
         }
 
         .valor {
             color: #111111;
-            font-size: 1.1em;
-            margin-top: 4px;
+            font-size: 0.9em;
+            margin-top: 5px;
             word-wrap: break-word;
         }
 
@@ -79,7 +80,7 @@
         }
     </style>
 </head>
-    <body>
+    <body class="perfil-body">
         <header class="header"><%- include('partials/navbar') %></header>
             <main id="conteudo-perfil" class="main" tabindex="-1">
                 <div class="perfil-container">
@@ -100,22 +101,17 @@
                         <div class="valor"><%= dados.cpf ? dados.cpf : 'Não informado' %></div>
                     </div>
                     
-                    <div class="perfil-info">
-                        <h4 class="rotulo">Compras feitas</h4>
-                        <div class="valor">
-                            <% if (pedidos.length > 0) { %>
-                                <ul style="margin: 0; padding-left: 20px; font-size: 0.9em;">
-                                    <% pedidos.forEach(pedido => { %>
-                                        <li>
-                                            <strong>Plano:</strong> <%= pedido.plano %> <br>
-                                            <small style="color: #666;"><%= new Date(pedido.data_pedido).toLocaleDateString('pt-BR') %></small>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                            <% } else { %>
-                                <span style="color: #888; font-size: 0.9em;">Nenhuma compra localizada.</span>
-                            <% } %>
-                        </div>
+                    <div style="display: flex; justify-content: center; width: 100%; margin-top: 20px;">
+                        <a href="/recuperacao" style="
+                            display: inline-block;
+                            padding: 12px 24px;
+                            background-color: rgb(0, 37, 92);
+                            color: white;
+                            text-decoration: none;
+                            border-radius: 20px;
+                        ">
+                            Alterar Email ou Senha
+                        </a>
                     </div>
                 </div>
             </main>
