@@ -30,6 +30,8 @@
     "devDependencies": {
         "nodemon": "^3.1.14",
         "prettier": "^3.8.1",
-        "prettier-plugin-ejs": "^1.0.3"
+        "prettier-plugin-ejs": "^1.0.3",
+        "pretty-quick": "^4.2.2",
+        "simple-git-hooks": "^2.13.1"
     }
 }
