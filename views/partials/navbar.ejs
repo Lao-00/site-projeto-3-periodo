@@ -7,7 +7,6 @@
     <nav class="nav" aria-label="Navegação principal">
         <a href="/">Início</a>
         <a href="/sobre">Sobre</a>
-        <a href="/perfil">Perfil</a>
         <a href="/projetos">Projetos</a>
         <% if (usuario) { %>
         <a href="/pedidos"><%= usuario.is_admin ? 'Gerenciar Pedidos' : 'Meus Pedidos' %></a>
@@ -20,5 +19,6 @@
         <% } else { %>
         <a href="/login" style="margin-left: 20px">Login</a>
         <% } %>
+        <a href="/perfil">Perfil</a>
     </nav>
 </div>
