@@ -113,7 +113,7 @@ app.get('/perfil', verificarLogin, async (req, res) => {
 
         // 2. Busca os dados completos do usuário no banco de dados
         const usuarioQuery = await pool.query(
-            'SELECT nome, email, cpf FROM usuarios WHERE id = $1', 
+            'SELECT nome, email, cpf FROM usuarios WHERE id = $1',
             [usuarioId]
         );
 
@@ -125,10 +125,9 @@ app.get('/perfil', verificarLogin, async (req, res) => {
         const dadosUsuario = usuarioQuery.rows[0];
 
         // 3. Renderiza a página enviando APENAS os dados do usuário
-        res.render('perfil', { 
-            dados: dadosUsuario
+        res.render('perfil', {
+            dados: dadosUsuario,
         });
-
     } catch (err) {
         console.error('Erro ao carregar perfil:', err);
         res.status(500).render('erro500');
@@ -146,9 +145,9 @@ app.get('/comprar', verificarLogin, (req, res) => {
 });
 
 app.get('/recuperar-senha', (req, res) => {
-    res.render('recuperar-senha', { 
-        etapa: 'solicitar', 
-        aviso: req.query.aviso || null 
+    res.render('recuperar-senha', {
+        etapa: 'solicitar',
+        aviso: req.query.aviso || null,
     });
 });
 
@@ -354,7 +353,8 @@ app.post('/comprar', verificarLogin, async (req, res) => {
 
         // Renderiza a página global de erro 500, passando a mensagem específica do pedido
         res.status(500).render('erro500', {
-            mensagem: 'Não foi possível processar seu pedido no momento. Tente novamente mais tarde.'
+            mensagem:
+                'Não foi possível processar seu pedido no momento. Tente novamente mais tarde.',
         });
     }
 });

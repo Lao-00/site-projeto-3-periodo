@@ -17,13 +17,15 @@
             <div class="cadastro-card">
                 <% if (aviso === 'email_duplicado') { %>
                 <div class="alerta-erro">
-                    <strong>Erro de Cadastro:</strong> Este e-mail já está registrado no sistema.
+                    <strong>Erro de Cadastro:</strong>
+                    Este e-mail já está registrado no sistema.
                 </div>
                 <% } %>
 
                 <% if (aviso === 'cpf_duplicado') { %>
                 <div class="alerta-erro">
-                    <strong>Erro de Cadastro:</strong> Este CPF já está vinculado a uma conta.
+                    <strong>Erro de Cadastro:</strong>
+                    Este CPF já está vinculado a uma conta.
                 </div>
                 <% } %>
                 <form id="form-cadastro" action="/cadastro" method="post">
@@ -137,17 +139,17 @@
             // máscara CPF
             const inputCpf = document.getElementById('cpf');
             // pega o input através do ID
-            inputCpf.addEventListener('input', function(e){ //detecta mudanças no campo conforme é feito
-                let valor = e.target.value; //pega o texto digitado 
+            inputCpf.addEventListener('input', function (e) {
+                //detecta mudanças no campo conforme é feito
+                let valor = e.target.value; //pega o texto digitado
 
-                valor = valor.replace(/\D/g, ""); //qualquer caractere que não seja número é ignorado
-                valor = valor.replace(/(\d{3})(\d)/, "$1.$2"); //pega os 3 primeiros números e o próximo e add um ponto entre eles
-                valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
-                valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); //pega o bloco dos últimos 3 e os últimos 2 e adiciona um - entre
+                valor = valor.replace(/\D/g, ''); //qualquer caractere que não seja número é ignorado
+                valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); //pega os 3 primeiros números e o próximo e add um ponto entre eles
+                valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); //pega o bloco dos últimos 3 e os últimos 2 e adiciona um - entre
 
                 e.target.value = valor; //devolve o valor formatado
             });
-
 
             // pega os inputs do formulário
             const campos = document.querySelectorAll('input');
@@ -304,7 +306,7 @@
             }
 
             campoNome.addEventListener('input', atualizarBotaoCadastro); //verifica toda vez que o campo é atualizado
-            inputCpf.addEventListener('input', atualizarBotaoCadastro)
+            inputCpf.addEventListener('input', atualizarBotaoCadastro);
             inputEmail.addEventListener('input', atualizarBotaoCadastro);
             inputConfirmarEmail.addEventListener('input', atualizarBotaoCadastro);
             inputSenha.addEventListener('input', atualizarBotaoCadastro);

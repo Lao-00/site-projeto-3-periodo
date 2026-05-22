@@ -640,7 +640,7 @@ button {
     border-width: 1px;
     border-radius: 5px;
     padding: 8px;
-    width: 100%; 
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -769,7 +769,6 @@ button {
     color: #c0392b;
 }
 
-
 /* ==========================================================================
    7. ERROS E AVISOS
    ========================================================================== */
@@ -843,15 +842,15 @@ button {
 }
 
 .alerta-erro {
-    width: 100%; 
-    box-sizing: border-box; 
-    background-color: #f8d7da; 
-    color: #721c24; 
-    padding: 12px; 
-    border-radius: 8px; 
-    border: 1px solid #f5c6cb; 
-    margin-bottom: 20px; 
-    text-align: center; 
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    margin-bottom: 20px;
+    text-align: center;
     font-size: 0.9rem;
 }
 
@@ -1019,7 +1018,7 @@ button {
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%; 
+    width: 100%;
     max-width: 350px;
     box-sizing: border-box;
 }
@@ -1027,7 +1026,7 @@ button {
 .perfil-container h2 {
     margin-top: 0;
     color: #333333;
-    border-bottom: 3px solid #007BFF;
+    border-bottom: 3px solid #007bff;
     padding-bottom: 8px;
     text-align: center;
 }
@@ -1052,9 +1051,9 @@ button {
 }
 
 .perfil-botoes-container {
-    display: flex; 
-    justify-content: center; 
-    width: 100%; 
+    display: flex;
+    justify-content: center;
+    width: 100%;
     margin-top: 20px;
 }
 
@@ -1149,7 +1148,7 @@ button {
     .login-botao,
     .cadastro-botao {
         justify-content: center;
-        gap: 30px; 
+        gap: 30px;
     }
 
     .login-card,
@@ -1160,7 +1159,7 @@ button {
     .logo-login-cadastro {
         width: 60%;
         height: auto;
-        margin: 0 auto
+        margin: 0 auto;
     }
 
     /* CARROSSEL */

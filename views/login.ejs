@@ -16,16 +16,12 @@
             />
             <div class="login-card">
                 <% if (aviso === 'restrito') { %>
-                <div
-                    class="aviso-restrito"
-                >
+                <div class="aviso-restrito">
                     <strong>Acesso Restrito:</strong>
                     Faça login para acessar a área de pagamento.
                 </div>
                 <% } else if (aviso === 'invalido') { %>
-                <div
-                    class="aviso-invalido"
-                >
+                <div class="aviso-invalido">
                     <strong>Erro de Autenticação:</strong>
                     E-mail ou senha incorretos.
                 </div>
@@ -62,7 +58,9 @@
                         <button type="submit" tabindex="4">Entrar</button>
                     </div>
 
-                    <a href="/recuperar-senha" class="link-esqueci-senha" tabindex="3">Esqueci minha senha</a>
+                    <a href="/recuperar-senha" class="link-esqueci-senha" tabindex="3">
+                        Esqueci minha senha
+                    </a>
                 </form>
 
                 <p>
