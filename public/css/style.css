@@ -121,7 +121,7 @@ button {
 }
 
 /* ==========================================================================
-   4. SEÇÕES GLOBAIS E BANNERS (HERO SECTIONS)
+   4. SEÇÕES GLOBAIS E BANNERS 
    ========================================================================== */
 .secao {
     display: flex;
@@ -769,114 +769,9 @@ button {
     color: #c0392b;
 }
 
-/* ==========================================================================
-   7. RESPONSIVIDADE (Telas menores)
-   ========================================================================== */
-@media (max-width: 600px) {
-    /* HEADER */
-    .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        padding: 14px 20px;
-    }
-
-    .nav {
-        gap: 12px;
-    }
-
-    /* BANNER */
-    .secao {
-        overflow: hidden;
-    }
-
-    .secao-principal-homepage,
-    .secao-principal-acessibilidade,
-    .secao-principal-sobre,
-    .secao-principal-projetos {
-        margin: 10px;
-        padding: 30px 16px;
-        width: auto;
-    }
-
-    .secao-principal-homepage h2,
-    .secao-principal-sobre h2,
-    .secao-principal-acessibilidade h2,
-    .secao-principal-projetos h2 {
-        font-size: 1.3rem;
-        word-break: break-word;
-    }
-
-    /* SERVIÇOS */
-    .secao-servicos {
-        padding: 30px 15px;
-    }
-
-    /* ESTATÍSTICAS */
-    .secao-stats {
-        padding: 30px 15px;
-    }
-
-    .stat-numero {
-        font-size: 1.6rem;
-    }
-
-    /* PLANOS */
-    .secao-planos {
-        padding: 40px 15px;
-    }
-
-    .planos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* LOGIN E CADASTRO */
-    .login-body,
-    .cadastro-body {
-        align-items: center;
-        padding: 20px 0;
-    }
-
-    .login-container,
-    .cadastro-container {
-        width: calc(100% - 40px);
-        padding: 24px 20px;
-    }
-
-    .login-botao,
-    .cadastro-botao {
-        justify-content: center;
-        gap: 30px; 
-    }
-
-    .login-card,
-    .cadastro-card {
-        padding: 20px 0;
-    }
-
-    .logo-login-cadastro {
-        width: 60%;
-        height: auto;
-        margin: 0 auto
-    }
-
-    /* CARROSSEL */
-    .depoimento-texto {
-        font-size: 0.95rem;
-    }
-    /*PROJETO*/
-    .projetos-grid {
-        grid-template-columns: 1fr;
-    }
-    /* PEDIDOS  */
-    .pedidos-container {
-        margin: 20px 10px;
-        padding: 20px 15px;
-    }
-}
 
 /* ==========================================================================
-   8. PÁGINAS DE ERRO
+   7. ERROS E AVISOS
    ========================================================================== */
 .erro-container {
     text-align: center;
@@ -947,8 +842,47 @@ button {
     margin-top: 30px;
 }
 
+.alerta-erro {
+    width: 100%; 
+    box-sizing: border-box; 
+    background-color: #f8d7da; 
+    color: #721c24; 
+    padding: 12px; 
+    border-radius: 8px; 
+    border: 1px solid #f5c6cb; 
+    margin-bottom: 20px; 
+    text-align: center; 
+    font-size: 0.9rem;
+}
+
+.aviso-restrito {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ffeeba;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.aviso-invalido {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 /* ==========================================================================
-   9. PÁGINA DE PEDIDOS (DASHBOARD)
+   8. PÁGINA DE PEDIDOS (DASHBOARD)
    ========================================================================== */
 .pedidos-container {
     max-width: 1000px;
@@ -1056,4 +990,263 @@ button {
 
 .btn-primario:hover {
     background-color: rgb(0, 52, 130);
+}
+
+/* ==========================================================================
+   9. PÁGINA DE PERFIL
+   ========================================================================== */
+
+.perfil-body {
+    background-color: rgb(0, 37, 92);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Container para centralizar o perfil */
+#conteudo-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 40px 20px;
+}
+
+.perfil-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; 
+    max-width: 350px;
+    box-sizing: border-box;
+}
+
+.perfil-container h2 {
+    margin-top: 0;
+    color: #333333;
+    border-bottom: 3px solid #007BFF;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.perfil-info {
+    margin-bottom: 15px;
+}
+
+.perfil-info .rotulo {
+    font-weight: bold;
+    color: #666666;
+    display: block;
+    font-size: 1.1em;
+    margin-top: 15px;
+}
+
+.perfil-info .valor {
+    color: #111111;
+    font-size: 0.9em;
+    margin-top: 5px;
+    word-wrap: break-word;
+}
+
+.perfil-botoes-container {
+    display: flex; 
+    justify-content: center; 
+    width: 100%; 
+    margin-top: 20px;
+}
+
+.btn-perfil {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgb(0, 37, 92);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.btn-perfil:hover {
+    background-color: rgb(0, 52, 130);
+}
+
+/* ==========================================================================
+   10. RESPONSIVIDADE (Telas menores)
+   ========================================================================== */
+@media (max-width: 600px) {
+    /* HEADER */
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px 20px;
+    }
+
+    .nav {
+        gap: 12px;
+    }
+
+    /* BANNER */
+    .secao {
+        overflow: hidden;
+    }
+
+    .secao-principal-homepage,
+    .secao-principal-acessibilidade,
+    .secao-principal-sobre,
+    .secao-principal-projetos {
+        margin: 10px;
+        padding: 30px 16px;
+        width: auto;
+    }
+
+    .secao-principal-homepage h2,
+    .secao-principal-sobre h2,
+    .secao-principal-acessibilidade h2,
+    .secao-principal-projetos h2 {
+        font-size: 1.3rem;
+        word-break: break-word;
+    }
+
+    /* SERVIÇOS */
+    .secao-servicos {
+        padding: 30px 15px;
+    }
+
+    /* ESTATÍSTICAS */
+    .secao-stats {
+        padding: 30px 15px;
+    }
+
+    .stat-numero {
+        font-size: 1.6rem;
+    }
+
+    /* PLANOS */
+    .secao-planos {
+        padding: 40px 15px;
+    }
+
+    .planos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* LOGIN E CADASTRO */
+    .login-body,
+    .cadastro-body {
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .login-container,
+    .cadastro-container {
+        width: calc(100% - 40px);
+        padding: 24px 20px;
+    }
+
+    .login-botao,
+    .cadastro-botao {
+        justify-content: center;
+        gap: 30px; 
+    }
+
+    .login-card,
+    .cadastro-card {
+        padding: 20px 0;
+    }
+
+    .logo-login-cadastro {
+        width: 60%;
+        height: auto;
+        margin: 0 auto
+    }
+
+    /* CARROSSEL */
+    .depoimento-texto {
+        font-size: 0.95rem;
+    }
+    /*PROJETO*/
+    .projetos-grid {
+        grid-template-columns: 1fr;
+    }
+    /* PEDIDOS  */
+    .pedidos-container {
+        margin: 20px 10px;
+        padding: 20px 15px;
+    }
+    .perfil-container {
+        padding: 20px;
+    }
+    .perfil-container h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* ==========================================================================
+   11. RECUPERAÇÃO DE SENHA
+   ========================================================================== */
+
+/* 1. Textos de instrução e formulário */
+.texto-instrucao {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.recuperacao-btn-container {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 2. Tela de sucesso (Verifique seu e-mail) */
+.aviso-email-container {
+    text-align: center;
+}
+
+.aviso-email-icone {
+    font-size: 3rem;
+}
+
+.aviso-email-titulo {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.aviso-email-texto {
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* 3. Ajuste do botão principal para a tela de aviso */
+.btn-aviso {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+}
+
+/* ==========================================================================
+   12. RESULTADO DA COMPRA (SUCESSO)
+   ========================================================================== */
+
+/* 1. Alinhamento da caixa de sucesso */
+.resultado-sucesso-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 2. Cor e espaçamento do título */
+.resultado-titulo {
+    color: #27ae60;
+    margin-bottom: 16px;
+}
+
+/* 3. Ajuste do parágrafo */
+.resultado-texto {
+    margin-bottom: 30px;
+    line-height: 1.5;
+    color: #555;
 }

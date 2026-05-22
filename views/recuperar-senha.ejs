@@ -11,29 +11,14 @@
             <div class="cadastro-card">
                 <% if (etapa === 'solicitar') { %> <% if (typeof aviso !== 'undefined' && aviso ===
                 'nao_encontrado') { %>
-                <div
-                    style="
-                        width: 100%;
-                        box-sizing: border-box;
-                        background-color: #f8d7da;
-                        color: #721c24;
-                        padding: 12px;
-                        border-radius: 8px;
-                        border: 1px solid #f5c6cb;
-                        margin-bottom: 20px;
-                        text-align: center;
-                        font-size: 0.9rem;
-                    "
-                >
+                <div class="alerta-erro">
                     <strong>Erro:</strong>
                     Este e-mail não está cadastrado no sistema.
                 </div>
                 <% } %>
                 <form action="/recuperar-senha" method="post">
                     <h1>Recuperar Senha</h1>
-                    <p style="margin-bottom: 15px; font-size: 0.9rem; color: #555">
-                        Digite o e-mail da sua conta para receber o link.
-                    </p>
+                    <p class="texto-instrucao">Digite o e-mail da sua conta para receber o link.</p>
                     <div class="campo-email">
                         <label for="email">E-Mail</label>
                         <input
@@ -44,33 +29,27 @@
                             required
                         />
                     </div>
-                    <div class="cadastro-botao" style="justify-content: center; margin-top: 20px">
+                    <div class="cadastro-botao recuperacao-btn-container">
                         <button type="submit" class="botao-pronto">Enviar Link</button>
                     </div>
                 </form>
 
                 <% } else if (etapa === 'aviso') { %>
-                <div style="text-align: center">
-                    <span style="font-size: 3rem">📧</span>
-                    <h1 style="margin-top: 15px; margin-bottom: 10px">Verifique seu e-mail</h1>
-                    <p style="color: #555; line-height: 1.5; margin-bottom: 20px">
+                <div class="aviso-email-container">
+                    <span class="aviso-email-icone">📧</span>
+                    <h1 class="aviso-email-titulo">Verifique seu e-mail</h1>
+                    <p class="aviso-email-texto">
                         Enviamos um link de recuperação para o endereço informado. O link é válido
                         por 15 minutos.
                     </p>
-                    <a
-                        href="/login"
-                        class="btn-principal"
-                        style="display: inline-block; font-size: 0.9rem; padding: 10px 20px"
-                    >
-                        Voltar para o Login
-                    </a>
+                    <a href="/login" class="btn-principal btn-aviso">Voltar para o Login</a>
                 </div>
 
                 <% } else if (etapa === 'resetar') { %>
                 <form action="/resetar-senha" method="post" id="formReset">
                     <input type="hidden" name="token" value="<%= token %>" />
                     <h1>Nova Senha</h1>
-                    <p style="margin-bottom: 15px; font-size: 0.9rem; color: #555">
+                    <p class="texto-instrucao">
                         Digite e confirme sua nova senha de acesso.
                     </p>
                     <div class="campo-senha">
@@ -109,8 +88,8 @@
                         />
                         <p class="aviso-senhas" id="aviso-senhas" aria-live="polite"></p>
                     </div>
-                    <div class="cadastro-botao" style="justify-content: center; margin-top: 20px">
-                        <button type="submit" class="botao-pronto">Alterar Senha</button>
+                    <div class="cadastro-botao recuperacao-btn-container">
+                        <button type="submit" class="botao-pronto">Enviar Link</button>
                     </div>
                 </form>
 

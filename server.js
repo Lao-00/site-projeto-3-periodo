@@ -146,7 +146,7 @@ app.get('/comprar', verificarLogin, (req, res) => {
 });
 
 app.get('/recuperar-senha', (req, res) => {
-    res.render('recuperacao', { 
+    res.render('recuperar-senha', { 
         etapa: 'solicitar', 
         aviso: req.query.aviso || null 
     });
@@ -171,7 +171,7 @@ app.get('/resetar-senha', async (req, res) => {
         }
 
         // Se o token for válido, renderiza a tela passando o token para o formulário
-        res.render('recuperacao', { etapa: 'resetar', token: token });
+        res.render('recuperar-senha', { etapa: 'resetar', token: token });
     } catch (err) {
         console.error(err);
         res.status(500).render('erro500');
@@ -310,7 +310,7 @@ app.post('/recuperar-senha', async (req, res) => {
         await transporter.sendMail(mailOptions);
 
         // 6. Avisa o usuário que deu certo
-        res.render('recuperacao', { etapa: 'aviso' });
+        res.render('recuperar-senha', { etapa: 'aviso' });
     } catch (err) {
         console.error('Erro na recuperação:', err);
         res.status(500).render('erro500');
@@ -352,11 +352,9 @@ app.post('/comprar', verificarLogin, async (req, res) => {
     } catch (err) {
         console.error(err);
 
-        // Renderiza a MESMA tela, mas passa sucesso como FALSE e envia o texto do erro
-        res.status(500).render('resultado', {
-            sucesso: false,
-            mensagem:
-                'Não foi possível processar seu pedido no momento. Tente novamente mais tarde.',
+        // Renderiza a página global de erro 500, passando a mensagem específica do pedido
+        res.status(500).render('erro500', {
+            mensagem: 'Não foi possível processar seu pedido no momento. Tente novamente mais tarde.'
         });
     }
 });

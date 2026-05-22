@@ -10,7 +10,9 @@
     <body>
         <div class="erro-container">
             <h1>Erro 500</h1>
-            <p>Falha no servidor. Estamos resolvendo, aguarde um momento.</p>
+            <p>
+                <%= typeof mensagem !== 'undefined' ? mensagem : 'Falha no servidor. Estamos resolvendo, aguarde um momento.' %>
+            </p>
 
             <img src="/imgs/erro500.png" alt="Falha Crítica no Servidor" class="erro-imagem" />
 
