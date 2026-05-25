@@ -182,12 +182,11 @@
 
                 <% } else if (etapa === 'confirmar') { %>
                 <p>
-                    Enviamos um código de 6 dígitos para o seu e-mail atual. Digite-o abaixo para
-                    confirmar a alteração de
+                    Enviamos um código para o seu e-mail. Informe-o para confirmar a alteração de
                     <b><%= tipoAlteracao %></b>
                     .
                 </p>
-
+                <br />
                 <form action="/alterar-info/confirmar" method="POST">
                     <input type="hidden" name="tipoAlteracao" value="<%= tipoAlteracao %>" />
                     <input type="hidden" name="novoValor" value="<%= novoValor %>" />
