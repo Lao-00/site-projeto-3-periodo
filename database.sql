@@ -2,6 +2,7 @@
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(11) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     senha TEXT NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE
@@ -25,6 +26,5 @@ CREATE TABLE pedidos (
         ON DELETE SET NULL
 );
 
--- 3. Script para criar um admin inicial (Opcional) rodar APÓS ter criado o usuário pelo site e ele estiver no BD
--- INSERT INTO usuarios (nome, email, senha, is_admin) 
--- VALUES ('Administrador', 'admin@admin.com', 'SENHA_HASH_AQUI', TRUE);
+-- 3. Script para promover um usuário a admin (rodar APÓS ter criado o usuário pelo site e ele estiver no BD)
+UPDATE usuarios SET is_admin = TRUE WHERE email = 'email de admin aqui';
