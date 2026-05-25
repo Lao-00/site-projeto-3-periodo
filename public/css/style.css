@@ -541,7 +541,7 @@ button {
 }
 
 /* ==========================================================================
-   6. TELAS DE LOGIN E CADASTRO
+   6. TELAS DE LOGIN, CADASTRO E COMPRAR
    ========================================================================== */
 
 /* Layout Geral das Telas */
@@ -692,6 +692,7 @@ button {
 .cadastro-botao {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .login-botao button,
@@ -719,6 +720,24 @@ button {
     transition:
         background-color 0.3s,
         color 0.3s;
+}
+
+.link-voltar {
+    color: #1a56db;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1rem;
+    gap: 2px;
+    padding: 8px;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+.link-voltar:hover {
+    color: rgb(0, 37, 92);
+    text-decoration: underline;
 }
 
 /* Mensagens de Validação e Requisitos de Senha */
@@ -1039,13 +1058,13 @@ button {
     font-weight: bold;
     color: #666666;
     display: block;
-    font-size: 1.1em;
+    font-size: 1.2em;
     margin-top: 15px;
 }
 
 .perfil-info .valor {
     color: #111111;
-    font-size: 0.9em;
+    font-size: 1em;
     margin-top: 5px;
     word-wrap: break-word;
 }

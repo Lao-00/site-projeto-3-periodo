@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Alterar Informações - Base 5</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body class="cadastro-body">
+        <div class="cadastro-container">
+            <main class="cadastro-card">
+                <h1 style="text-align: center">Alterar Dados</h1>
+
+                <% if (aviso) { %>
+                <div class="alerta-erro">
+                    <p><%= aviso %></p>
+                </div>
+                <% } %>
+
+                <% if (etapa === 'escolha') { %>
+                <p
+                    style="
+                        text-align: center;
+                        margin-bottom: 20px;
+                        font-weight: bold;
+                        font-size: 1.1rem;
+                    "
+                >
+                    O que você deseja alterar?
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px">
+                    <a
+                        href="/alterar-info?tipo=email"
+                        class="btn-secundario"
+                        style="text-align: center; width: 100%; box-sizing: border-box"
+                    >
+                        Alterar E-mail
+                    </a>
+                    <a
+                        href="/alterar-info?tipo=senha"
+                        class="btn-secundario"
+                        style="text-align: center; width: 100%; box-sizing: border-box"
+                    >
+                        Alterar Senha
+                    </a>
+                </div>
+
+                <div style="text-align: center; display: flex; justify-content: center">
+                    <a href="/perfil" class="link-voltar">Voltar para o Perfil</a>
+                </div>
+
+                <% } else if (etapa === 'formulario') { %>
+                <form action="/alterar-info/solicitar" method="POST">
+                    <input type="hidden" name="tipoAlteracao" value="<%= tipoAlteracao %>" />
+
+                    <label
+                        for="novoValor"
+                        style="font-weight: bold; margin-bottom: 10px; display: block"
+                    >
+                        <%= tipoAlteracao === 'email' ? 'Digite o NOVO E-mail:' : 'Digite a NOVA
+                        Senha:' %>
+                    </label>
+
+                    <input
+                        type="<%= tipoAlteracao === 'email' ? 'email' : 'password' %>"
+                        name="novoValor"
+                        id="novoValor"
+                        required
+                        placeholder="<%= tipoAlteracao === 'email' ? 'novo@email.com' : 'Sua nova senha' %>"
+                        style="
+                            width: 100%;
+                            padding: 10px;
+                            margin-bottom: 20px;
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                            box-sizing: border-box;
+                        "
+                    />
+
+                    <div class="cadastro-botao">
+                        <a href="/alterar-info" class="link-voltar">Voltar</a>
+                        <button type="submit" class="botao-pronto">Enviar Código</button>
+                    </div>
+                </form>
+
+                <% } else if (etapa === 'confirmar') { %>
+                <p>
+                    Enviamos um código de 6 dígitos para o seu e-mail. Informe-o para confirmar a
+                    alteração de
+                    <b><%= tipoAlteracao %></b>
+                    .
+                </p>
+                <br />
+                <form action="/alterar-info/confirmar" method="POST">
+                    <input type="hidden" name="tipoAlteracao" value="<%= tipoAlteracao %>" />
+                    <input type="hidden" name="novoValor" value="<%= novoValor %>" />
+
+                    <label for="codigo">Código de Confirmação:</label>
+                    <input
+                        type="text"
+                        name="codigo"
+                        id="codigo"
+                        maxlength="6"
+                        required
+                        placeholder="123456"
+                        style="
+                            width: 100%;
+                            padding: 8px;
+                            margin-bottom: 15px;
+                            font-size: 1.5rem;
+                            text-align: center;
+                            letter-spacing: 5px;
+                        "
+                    />
+
+                    <div class="cadastro-botao">
+                        <a href="/alterar-info" class="link-voltar">Cancelar</a>
+                        <button type="submit" class="botao-pronto">Confirmar</button>
+                    </div>
+                </form>
+
+                <% } else if (etapa === 'sucesso') { %>
+                <div style="text-align: center">
+                    <h2 style="color: #27ae60; margin-bottom: 15px">Alteração concluída!</h2>
+                    <p>Seus dados foram atualizados com sucesso.</p>
+                    <a href="/perfil" class="btn-principal" style="margin-top: 20px">
+                        Voltar para o Perfil
+                    </a>
+                </div>
+                <% } %>
+            </main>
+        </div>
+    </body>
+</html>

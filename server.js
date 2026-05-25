@@ -201,6 +201,127 @@ app.post('/resetar-senha', async (req, res) => {
         res.status(500).render('erro500');
     }
 });
+// ============================================
+// ============================================
+
+// ============================================
+// ALTERAÇÃO DE DADOS (PERFIL)
+// ============================================
+
+// 1. Renderiza a tela inicial de escolha ou o formulário selecionado
+app.get('/alterar-info', verificarLogin, (req, res) => {
+    const tipo = req.query.tipo; // Pega o ?tipo= da URL
+
+    // Se o usuário já escolheu o que alterar, manda para a tela do input
+    if (tipo === 'email' || tipo === 'senha') {
+        res.render('alterar-info', { etapa: 'formulario', tipoAlteracao: tipo, aviso: null });
+    } else {
+        // Se não, mostra a tela inicial com os dois botões
+        res.render('alterar-info', { etapa: 'escolha', aviso: null });
+    }
+});
+
+// 2. Recebe o que ele quer mudar, gera o código e envia o e-mail
+app.post('/alterar-info/solicitar', verificarLogin, async (req, res) => {
+    const { tipoAlteracao, novoValor } = req.body;
+    const usuarioId = req.session.usuario.id;
+
+    try {
+        // Busca o email atual do usuário no banco para saber pra onde enviar o código
+        const userQuery = await pool.query('SELECT email FROM usuarios WHERE id = $1', [usuarioId]);
+        const emailAtual = userQuery.rows[0].email;
+
+        // Gera um código numérico de 6 dígitos (ex: 482910)
+        const codigo = Math.floor(100000 + Math.random() * 900000).toString();
+        const expiracao = new Date(Date.now() + 900000); // 15 minutos
+
+        // Salva o código no banco
+        await pool.query(
+            'UPDATE usuarios SET token_recuperacao = $1, expiracao_token = $2 WHERE id = $3',
+            [codigo, expiracao, usuarioId]
+        );
+
+        // Monta e dispara o e-mail
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: emailAtual,
+            subject: 'Base 5 - Código de Segurança',
+            html: `
+                <h3>Código de Confirmação</h3>
+                <p>Você solicitou a alteração de <b>${tipoAlteracao}</b> na Base 5 Automações.</p>
+                <p>Seu código de segurança é: <strong style="font-size: 24px; color: #1a56db;">${codigo}</strong></p>
+                <p>Este código expira em 15 minutos. Se não foi você quem solicitou, ignore este e-mail.</p>
+            `,
+        };
+        await transporter.sendMail(mailOptions);
+
+        // Manda o usuário para a etapa de digitar o código, passando o que ele quer alterar pra frente
+        res.render('alterar-info', {
+            etapa: 'confirmar',
+            tipoAlteracao,
+            novoValor,
+            aviso: null,
+        });
+    } catch (err) {
+        console.error('Erro ao solicitar alteração:', err);
+        res.status(500).render('erro500');
+    }
+});
+
+// 3. Verifica se o código tá certo e salva a alteração no banco
+app.post('/alterar-info/confirmar', verificarLogin, async (req, res) => {
+    // Esses 3 campos vêm do formulário escondido (hidden) + input do código
+    const { codigo, tipoAlteracao, novoValor } = req.body;
+    const usuarioId = req.session.usuario.id;
+
+    try {
+        // Verifica se o código bate com o do banco e se não passou de 15 minutos
+        const result = await pool.query(
+            'SELECT id FROM usuarios WHERE id = $1 AND token_recuperacao = $2 AND expiracao_token > NOW()',
+            [usuarioId, codigo]
+        );
+
+        // Se o código for errado ou estiver expirado, devolve pra tela com aviso
+        if (result.rows.length === 0) {
+            return res.render('alterar-info', {
+                etapa: 'confirmar',
+                tipoAlteracao,
+                novoValor,
+                aviso: 'Código inválido ou expirado! Verifique seu e-mail novamente.',
+            });
+        }
+
+        // Se o código passou, executamos a alteração de fato!
+        if (tipoAlteracao === 'senha') {
+            const senhaHash = await bcrypt.hash(novoValor, 10); // Criptografa a nova senha
+            await pool.query(
+                'UPDATE usuarios SET senha = $1, token_recuperacao = NULL, expiracao_token = NULL WHERE id = $2',
+                [senhaHash, usuarioId]
+            );
+        } else if (tipoAlteracao === 'email') {
+            await pool.query(
+                'UPDATE usuarios SET email = $1, token_recuperacao = NULL, expiracao_token = NULL WHERE id = $2',
+                [novoValor, usuarioId]
+            );
+        }
+
+        // Exibe a telinha de sucesso
+        res.render('alterar-info', { etapa: 'sucesso', aviso: null });
+    } catch (err) {
+        // Tratamento caso ele tente alterar para um e-mail que já existe no banco
+        if (err.code === '23505' && err.constraint.includes('email')) {
+            return res.render('alterar-info', {
+                etapa: 'escolha',
+                aviso: 'Este e-mail já está em uso por outra conta.',
+            });
+        }
+        console.error('Erro ao confirmar alteração:', err);
+        res.status(500).render('erro500');
+    }
+});
+
+// ============================================
+// ============================================
 
 // ROTA DE CADASTRO
 app.post('/cadastro', async (req, res) => {
