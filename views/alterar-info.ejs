@@ -50,47 +50,144 @@
                 </div>
 
                 <% } else if (etapa === 'formulario') { %>
-                <form action="/alterar-info/solicitar" method="POST">
+                <form action="/alterar-info/solicitar" method="POST" id="form-alterar">
                     <input type="hidden" name="tipoAlteracao" value="<%= tipoAlteracao %>" />
 
                     <label
                         for="novoValor"
                         style="font-weight: bold; margin-bottom: 10px; display: block"
                     >
-                        <%= tipoAlteracao === 'email' ? 'Digite o NOVO E-mail:' : 'Digite a NOVA
-                        Senha:' %>
+                        <%= tipoAlteracao === 'email' ? `Digite o NOVO E-mail:` : `Digite a NOVA
+                        Senha:` %>
                     </label>
 
-                    <input
-                        type="<%= tipoAlteracao === 'email' ? 'email' : 'password' %>"
-                        name="novoValor"
-                        id="novoValor"
-                        required
-                        placeholder="<%= tipoAlteracao === 'email' ? 'novo@email.com' : 'Sua nova senha' %>"
-                        style="
-                            width: 100%;
-                            padding: 10px;
-                            margin-bottom: 20px;
-                            border-radius: 5px;
-                            border: 1px solid #ccc;
-                            box-sizing: border-box;
-                        "
-                    />
+                    <div class="<%= tipoAlteracao === 'email' ? 'campo-email' : 'campo-senha' %>">
+                        <input
+                            type="<%= tipoAlteracao === 'email' ? 'email' : 'password' %>"
+                            name="novoValor"
+                            id="novoValor"
+                            required
+                            placeholder="<%= tipoAlteracao === 'email' ? 'novo@email.com' : 'Sua nova senha' %>"
+                            style="
+                                width: 100%;
+                                padding: 10px;
+                                margin-bottom: 20px;
+                                border-radius: 5px;
+                                border: 1px solid #ccc;
+                                box-sizing: border-box;
+                            "
+                        />
 
-                    <div class="cadastro-botao">
+                        <% if (tipoAlteracao === 'email') { %>
+                        <p
+                            class="aviso-senhas"
+                            id="aviso-email"
+                            aria-live="polite"
+                            style="margin-top: -15px; margin-bottom: 15px"
+                        ></p>
+                        <% } else if (tipoAlteracao === 'senha') { %>
+                        <ul
+                            class="requisitos-senha"
+                            id="requisitos-senha"
+                            style="margin-top: -15px; margin-bottom: 15px"
+                        >
+                            <li id="req-tamanho" class="requisito">
+                                <span class="icone">✗</span>
+                                8 caracteres
+                            </li>
+                            <li id="req-maiuscula" class="requisito">
+                                <span class="icone">✗</span>
+                                1 letra maiúscula
+                            </li>
+                            <li id="req-numero" class="requisito">
+                                <span class="icone">✗</span>
+                                1 número
+                            </li>
+                        </ul>
+                        <% } %>
+                    </div>
+
+                    <div class="cadastro-botao" style="display: flex; align-items: center">
                         <a href="/alterar-info" class="link-voltar">Voltar</a>
                         <button type="submit" class="botao-pronto">Enviar Código</button>
                     </div>
                 </form>
 
+                <script>
+                    const tipo = '<%= tipoAlteracao %>';
+                    const inputNovo = document.getElementById('novoValor');
+                    const formAlterar = document.getElementById('form-alterar');
+
+                    if (tipo === 'email') {
+                        const avisoEmail = document.getElementById('aviso-email');
+
+                        inputNovo.addEventListener('input', function () {
+                            const val = inputNovo.value;
+                            if (val === '') {
+                                avisoEmail.textContent = '';
+                                avisoEmail.className = 'aviso-senhas';
+                                return;
+                            }
+                            const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+                            if (emailValido) {
+                                avisoEmail.textContent = '✓ E-mail válido';
+                                avisoEmail.className = 'aviso-senhas ok';
+                            } else {
+                                avisoEmail.textContent = '✗ E-mail inválido';
+                                avisoEmail.className = 'aviso-senhas erro';
+                            }
+                        });
+
+                        formAlterar.addEventListener('submit', function (e) {
+                            const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputNovo.value);
+                            if (!emailValido) {
+                                e.preventDefault();
+                                alert('Por favor, insira um e-mail válido antes de continuar.');
+                            }
+                        });
+                    } else if (tipo === 'senha') {
+                        const reqTamanho = document.getElementById('req-tamanho');
+                        const reqMaiuscula = document.getElementById('req-maiuscula');
+                        const reqNumero = document.getElementById('req-numero');
+
+                        function verificarRequisito(elemento, ok) {
+                            const icone = elemento.querySelector('.icone');
+                            if (ok) {
+                                elemento.classList.add('ok');
+                                icone.textContent = '✓';
+                            } else {
+                                elemento.classList.remove('ok');
+                                icone.textContent = '✗';
+                            }
+                        }
+
+                        inputNovo.addEventListener('input', function () {
+                            const val = inputNovo.value;
+                            verificarRequisito(reqTamanho, val.length >= 8);
+                            verificarRequisito(reqMaiuscula, /[A-Z]/.test(val));
+                            verificarRequisito(reqNumero, /[0-9]/.test(val));
+                        });
+
+                        formAlterar.addEventListener('submit', function (e) {
+                            const val = inputNovo.value;
+                            const valido =
+                                val.length >= 8 && /[A-Z]/.test(val) && /[0-9]/.test(val);
+                            if (!valido) {
+                                e.preventDefault();
+                                alert('A sua nova senha não atende a todos os requisitos.');
+                            }
+                        });
+                    }
+                </script>
+
                 <% } else if (etapa === 'confirmar') { %>
                 <p>
-                    Enviamos um código de 6 dígitos para o seu e-mail. Informe-o para confirmar a
-                    alteração de
+                    Enviamos um código de 6 dígitos para o seu e-mail atual. Digite-o abaixo para
+                    confirmar a alteração de
                     <b><%= tipoAlteracao %></b>
                     .
                 </p>
-                <br />
+
                 <form action="/alterar-info/confirmar" method="POST">
                     <input type="hidden" name="tipoAlteracao" value="<%= tipoAlteracao %>" />
                     <input type="hidden" name="novoValor" value="<%= novoValor %>" />
@@ -113,7 +210,7 @@
                         "
                     />
 
-                    <div class="cadastro-botao">
+                    <div class="cadastro-botao" style="display: flex; align-items: center">
                         <a href="/alterar-info" class="link-voltar">Cancelar</a>
                         <button type="submit" class="botao-pronto">Confirmar</button>
                     </div>
