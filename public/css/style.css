@@ -554,6 +554,10 @@ button {
     min-height: 100vh; /* Sempre pegar 100% da altura do computador */
 }
 
+#container-exclusivo-cadastro {
+    padding: 5px 50px 50px 50px;
+}
+
 .login-container,
 .cadastro-container {
     background-color: white;
@@ -593,6 +597,10 @@ button {
     height: auto;
     display: block;
     margin: 0 auto;
+}
+
+#container-exclusivo-cadastro .logo-login-cadastro {
+    margin-bottom: -40px;
 }
 
 .logo-sobre {

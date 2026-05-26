@@ -6,7 +6,7 @@ const { Pool } = require('pg');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const path = require('path');
-
+const pgSession = require('connect-pg-simple')(session);
 const app = express();
 
 // Configuração do banco de dados puxando do arquivo .env
@@ -30,10 +30,17 @@ const transporter = nodemailer.createTransport({
 
 app.use(
     session({
+        store: new pgSession({
+            pool: pool,
+            tableName: 'session',
+        }),
         secret: process.env.SESSION_SECRET,
         resave: false,
-        saveUninitialized: true,
-        cookie: { secure: false }, // 'true' apenas se usar HTTPS
+        saveUninitialized: false,
+        cookie: {
+            secure: false,
+            maxAge: 5 * 60 * 60 * 1000, // 5 horas em milissegundos
+        },
     })
 );
 
@@ -77,12 +84,12 @@ const limitadorGeral = rateLimit({
     windowMs: 1 * 60 * 1000, // Janela de tempo: 1 minuto (em milissegundos)
     max: 5, // Limite: bloqueia no 6º acesso dentro do mesmo minuto
     handler: (req, res) => {
-        // Envia o HTML com a Cabra
         res.status(429).render('erro429');
     },
 });
-// Aplica o limitador EXCLUSIVAMENTE na rota de login (para proteger senhas)
 app.use('/login', limitadorGeral);
+app.use('/cadastro', limitadorGeral);
+app.use('/comprar', limitadorGeral);
 
 // ROTAS DE TELAS
 app.get('/', (req, res) => {
@@ -437,16 +444,16 @@ app.post('/recuperar-senha', async (req, res) => {
     }
 });
 
-// ROTA DE COMPRA (Vinculando ao usuário e salvando cartão)
+// ROTA DE COMPRA (Vinculando ao usuário e salvando apenas o final do cartão para segurança)
 app.post('/comprar', verificarLogin, async (req, res) => {
-    // 1. Extraímos todos os campos do formulário
+    // Extrai todos os campos do formulário
     const { plano, nome, email, cartao, validade, cvv, nomeCartao } = req.body;
 
     console.log('PLANO QUE CHEGOU DO HTML: ->', plano, '<-');
     // =======================================================================
     // VALIDAÇÃO DE SEGURANÇA (Erro 400 - Bad Request)
     // =======================================================================
-    const planosValidos = ['Basico', 'Profissional', 'Enterprise']; // Ajuste aqui para os nomes exatos dos seus planos!
+    const planosValidos = ['Basico', 'Profissional', 'Enterprise'];
 
     // Se o plano estiver vazio ou não for um dos três planos oficiais:
     if (!plano || !planosValidos.includes(plano)) {
@@ -454,18 +461,22 @@ app.post('/comprar', verificarLogin, async (req, res) => {
     }
     // =======================================================================
 
-    // 2. Pega o ID se estiver logado
+    // Pega o ID se estiver logado
     const usuarioId = req.session.usuario ? req.session.usuario.id : null;
 
     try {
-        // throw new Error("Simulando uma falha de conexão com o banco!");
+        // Extrai apenas os últimos 4 dígitos do número do cartão recebido
+        const ultimos4Digitos = cartao.replace(/\s/g, '').slice(-4);
+
+        // Não envia os dados de validade e cvv
         const query = `
             INSERT INTO pedidos 
-            (plano, nome_cliente, email_cliente, usuario_id, cartao, validade, cvv, nome_cartao) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            (plano, nome_cliente, email_cliente, usuario_id, cartao, nome_cartao) 
+            VALUES ($1, $2, $3, $4, $5, $6)
         `;
 
-        await pool.query(query, [plano, nome, email, usuarioId, cartao, validade, cvv, nomeCartao]);
+        // Executa a query passando os parâmetros corretos sem validade e cvv
+        await pool.query(query, [plano, nome, email, usuarioId, ultimos4Digitos, nomeCartao]);
 
         // Renderiza a tela passando a variável sucesso como TRUE
         res.render('resultado', { sucesso: true });
