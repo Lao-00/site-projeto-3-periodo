@@ -1,71 +1,78 @@
 # Base 5 Automações
 
-Projeto acadêmico que simula o site institucional de uma empresa fictícia de automação financeira para empresas. Desenvolvido em HTML e CSS puro, sem frameworks ou bibliotecas externas.
+Projeto acadêmico que simula o site institucional e o sistema de gestão de uma empresa fictícia de automação financeira. O projeto evoluiu de uma interface estática para uma aplicação Full-Stack com renderização no servidor (SSR), autenticação segura e integração com banco de dados relacional.
 
 ---
 
-## 📄 Páginas
+## 🚀 Tecnologias Utilizadas
 
-| Arquivo               | Descrição                                      |
-| --------------------- | ---------------------------------------------- |
-| `login.html`          | Tela de login                                  |
-| `cadastro.html`       | Tela de cadastro de usuário                    |
-| `home_page.html`      | Página inicial                                 |
-| `sobre.html`          | Página institucional com detalhes dos serviços |
-| `acessibilidade.html` | Declaração de acessibilidade                   |
+- **Backend:** Node.js, Express.js
+- **Frontend:** EJS (Template Engine), HTML5, CSS3 (Puro)
+- **Banco de Dados:** PostgreSQL
+- **Segurança & Sessão:** `bcrypt` (hash de senhas), `express-session` + `connect-pg-simple` (persistência no banco) e `express-rate-limit`
+- **Serviços:** `nodemailer` (disparo de e-mails via Gmail SMTP)
 
 ---
 
-## 🗂️ Estrutura de arquivos
+## 📄 Rotas e Telas
 
+| Rota / Tela        | Descrição                                       |
+| ------------------ | ----------------------------------------------- |
+| `/` (Index)        | Página inicial                                  |
+| `/sobre`           | Página institucional com detalhes das soluções  |
+| `/projetos`        | Cases de sucesso e métricas da empresa          |
+| `/acessibilidade`  | Declaração de acessibilidade                    |
+| `/login`           | Autenticação de usuários                        |
+| `/cadastro`        | Criação de novas contas com login automático    |
+| `/perfil`          | Área restrita com dados do usuário logado       |
+| `/pedidos`         | Painel de listagem de compras (Admin/Cliente)   |
+| `/comprar`         | Fluxo de contratação de planos seguro           |
+| `/recuperar-senha` | Fluxo de envio de e-mail e redefinição de senha |
+| `/alterar-info`    | Atualização de e-mail/senha com validação 2FA   |
+
+---
+
+## 🗂️ Estrutura de Arquivos (Visão Geral)
+
+```text
+├── server.js                   # Ponto de entrada do backend, middlewares e rotas
+├── .env                        # Variáveis de ambiente (DB, SMTP, Secrets)
+├── public/                     # Arquivos estáticos servidos publicamente
+│   ├── css/style.css
+│   └── imgs/
+├── views/                      # Telas renderizadas no servidor (EJS)
+│   ├── partials/               # Componentes reaproveitáveis (navbar, footer)
+│   ├── index.ejs
+│   ├── login.ejs
+│   ├── cadastro.ejs
+│   └── ...
+├── README.md                   # Documentação principal
+├── ACESSIBILIDADE.md           # Detalhes das implementações WCAG
+└── ARQUITETURA_E_REQUISITOS.md # Detalhes do sistema, segurança e DB
 ```
-├── login.html
-├── cadastro.html
-├── home_page.html
-├── sobre.html
-├── acessibilidade.html
-├── css/
-│   └── style.css
-└── imgs/
-    └── Logo.jpeg
-```
 
 ---
 
-## 🖥️ HTML
+## 🏗️ Arquitetura e Segurança
 
-O projeto utiliza tags semânticas para estruturar o conteúdo: `<header>` para o cabeçalho com logo e navegação, `<nav>` para os links do menu, `<main>` para o conteúdo principal de cada página, `<section>` e `<article>` para organizar o conteúdo interno e `<footer>` para o rodapé com o link de acessibilidade.
+O sistema agora conta com um backend robusto protegido contra vulnerabilidades comuns:
 
-Os formulários de login e cadastro são estruturados com `<label>` vinculado a cada `<input>` pelo atributo `for`, garantindo que o rótulo e o campo sejam reconhecidos como um par. Todos os campos têm `id` único e `name` definido para envio dos dados.
+- **Rate Limiting:** Bloqueio de ataques de força bruta nas rotas de autenticação.
+- **Persistência de Sessão:** Sessões gerenciadas e validadas diretamente no PostgreSQL, garantindo estabilidade mesmo se o servidor for reiniciado.
+- **Proteção de Dados Sensíveis:** O CVV e a Validade do cartão de crédito não são armazenados; apenas os últimos 4 dígitos são salvos para fins de histórico.
+- **Controle de Acesso (RBAC):** Diferenciação de interface e permissões baseada no status de Administrador (`is_admin`).
 
-A navegação entre páginas é feita por links `<a href="">` simples. O formulário usa `method="get"` em vez de `post` para simular o redirecionamento sem necessidade de backend.
-
----
-
-## 🎨 CSS
-
-O layout das telas de login e cadastro é centralizado com `flexbox` no `body`, criando um card branco sobre fundo azul. As páginas internas (home, sobre, acessibilidade) seguem um layout com header fixo no topo, conteúdo em card com fundo azul escuro e texto claro, e footer ao final.
-
-O header usa `position: sticky` para acompanhar a rolagem da página. O `.header-container` tem `max-width: 1200px` para não esticar demais em telas grandes, com os itens distribuídos via `justify-content: space-between`.
-
-O card de conteúdo `.secao-principal` usa `width: 100%` para ocupar toda a largura disponível independente da quantidade de conteúdo, evitando variação de tamanho entre páginas.
-
-A imagem do logo nas telas de login e cadastro usa `object-fit: cover` para manter as proporções sem distorcer. Na página sobre, o logo é exibido em formato circular via `border-radius: 50%`.
+Para um detalhamento técnico completo, diagramas e regras de negócio, consulte o documento de [Arquitetura e Requisitos](./ARQUITETURA_E_REQUISITOS.md).
 
 ---
 
-## ♿ Acessibilidade
+## ♿ Acessibilidade (WCAG 2.2 Nível AA)
 
-O projeto segue as diretrizes **WCAG 2.2 Nível AA**.
+A interface visual continua seguindo rigorosos padrões de acessibilidade para garantir inclusão:
 
-**Navegação por teclado —** todos os formulários são navegáveis via Tab e Shift+Tab, com `tabindex` numérico definido em cada campo e botão. O Enter avança campo por campo em vez de submeter o formulário imediatamente, submetendo apenas quando o usuário está no último campo.
+- **Navegação por Teclado & Skip Link:** Fluxo totalmente operável via `Tab` e `Enter`, com foco visível customizado (`:focus-visible`).
+- **Semântica e ARIA:** Uso correto de tags estruturais e atributos `aria-` para total suporte a leitores de tela.
+- **Contraste & Responsividade:** Cores validadas e layout fluido e adaptável a qualquer dispositivo.
+- **VLibras:** Ferramenta governamental integrada para tradução do conteúdo para a Língua Brasileira de Sinais.
 
-**Skip link —** páginas com menu de navegação têm um link invisível como primeiro elemento do `<body>`. Ele aparece no canto superior direito no primeiro Tab, permitindo pular os links do menu e ir direto ao conteúdo principal. O `<main>` tem `tabindex="-1"` para garantir que receba o foco corretamente.
-
-**Foco visível —** o outline padrão do browser foi substituído por um estilo personalizado via `:focus-visible`, exibindo um contorno azul apenas durante a navegação por teclado.
-
-**Declaração de acessibilidade —** disponível em `acessibilidade.html`, acessível pelo rodapé de todas as páginas, contendo o padrão adotado, o que foi implementado e canal de contato para feedback.
-
-**Contraste de cores —** elementos seguem as diretrizes da WCAG possuindo contraste mínimo de 4.5:1 para texto normal e 3:1 para texto grande e ícones.
-
-**Fonte legível —** uso da fonte Arial sans-serif com tamanho mínimo de 16px.
+Para visualizar todos os critérios técnicos implementados e validados, consulte a nossa [Declaração de Acessibilidade](./ACESSIBILIDADE.md).
